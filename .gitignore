@@ -13,3 +13,4 @@ test-results/
 *.log
 .DS_Store
 .playwright-mcp/
+.vscode/
