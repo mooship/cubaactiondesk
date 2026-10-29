@@ -118,8 +118,9 @@ test("the Instagram action offers the card image to download, with alt text, and
   await page.goto("/act/post-instagram-explainer-card");
   const image = page.locator("figure img");
   await expect(image).toHaveAttribute("alt", /.+/);
-  const ok = await image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0);
-  expect(ok).toBe(true);
+  // The image is lazy, so give it time to scroll in and download.
+  await image.scrollIntoViewIfNeeded();
+  await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
   await expect(page.getByRole("link", { name: "Download the image" })).toHaveAttribute("download", "");
 });
 

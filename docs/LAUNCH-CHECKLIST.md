@@ -30,18 +30,19 @@ and the content checks are finished and pass locally (see the README for the com
 
 The deploy account is a personal one. Run `npx wrangler whoami` and check it before you pin anything.
 
-1. [ ] `npx wrangler login`, then `npx wrangler whoami`. Add `"account_id"` to `wrangler.jsonc` and to
-       `workers/link-checker/wrangler.jsonc` once you have confirmed the account.
-2. [ ] Create the database: `npx wrangler d1 create cubaactiondesk`. Replace the placeholder `database_id`
-       (`00000000-0000-0000-0000-000000000000`) in **both** `wrangler.jsonc` and `workers/link-checker/wrangler.jsonc`.
-3. [ ] Apply the migration: `npx wrangler d1 migrations apply DB --remote`.
-4. [ ] Deploy the link checker: `npx wrangler deploy -c workers/link-checker/wrangler.jsonc`. It runs on Mondays at 03:00 UTC.
-5. [ ] Connect the repository in the Cloudflare dashboard (Workers Builds) and use these commands. Check that the build's
-       API token is allowed to edit D1, or the migration step will fail.
-   - Build: `npm ci && npx wrangler d1 migrations apply DB --remote && npm run build`
-   - Deploy: `npx wrangler deploy`
-6. [ ] Add the custom domain after checking that the `timothybrits.co.za` zone is on this account: add
-       `"routes": [{ "pattern": "cuba.timothybrits.co.za", "custom_domain": true }]` to `wrangler.jsonc`.
+1. [x] Logged in with `npx wrangler login` (check with `npx wrangler whoami`). The account id is not committed; with more
+       than one account, set `CLOUDFLARE_ACCOUNT_ID` when deploying from a script or CI.
+2. [x] Created the database `cubaactiondesk` (WEUR) and put its id in both wrangler configs.
+3. [x] Applied the migration: `npx wrangler d1 migrations apply DB --remote`.
+4. [x] Deployed the link checker: `npx wrangler deploy -c workers/link-checker/wrangler.jsonc`. It runs on Mondays at
+       03:00 UTC and has no public address.
+5. [x] Deployed the site to `cuba.timothybrits.co.za` with `npm run deploy` (content check, remote migration, build, deploy).
+6. [ ] Enable Analytics Engine once at <https://dash.cloudflare.com/?to=/:account/workers/analytics-engine>. The deploy
+       fails with error 10089 until you do. The first deploy went out without the `EVENTS` binding; after enabling, run
+       `npm run deploy` again. Until then `/go/*` still redirects and simply skips the click count.
+7. [ ] Optional: connect the repository in the dashboard (Workers Builds) with build
+       `npm ci && npm run build` and deploy `npx wrangler deploy`. Its API token needs permission to edit D1 if you also
+       want it to run the migration.
 
 ### The zone is shared, so scope the settings
 

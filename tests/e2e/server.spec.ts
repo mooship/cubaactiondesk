@@ -1,10 +1,12 @@
 import { expect, test } from "@playwright/test";
-import { ACTION_PATH, callerIp } from "./routes.ts";
+import { ACTION_PATH, callerIp, isDeployed } from "./routes.ts";
 
 const COUNTER = "/api/actions/ask-your-mp-un-vote/taken";
+const LOCAL_ONLY = "Needs a forged cf-connecting-ip and writes to the counter table; local Worker only.";
 
 test.describe("counter endpoint", () => {
   test("POST increments, and the count only goes up", async ({ request }) => {
+    test.skip(isDeployed, LOCAL_ONLY);
     const headers = { "cf-connecting-ip": callerIp() };
     const first = await request.post(COUNTER, { headers });
     expect(first.status()).toBe(200);
@@ -22,6 +24,7 @@ test.describe("counter endpoint", () => {
   });
 
   test("404s an unknown or draft action and 400s a malformed one, without creating counters", async ({ request }) => {
+    test.skip(isDeployed, LOCAL_ONLY);
     const headers = { "cf-connecting-ip": callerIp() };
     expect((await request.post("/api/actions/made-up/taken", { headers })).status()).toBe(404);
     expect((await request.post("/api/actions/write-us-embassy-pretoria/taken", { headers })).status()).toBe(404);
@@ -29,6 +32,7 @@ test.describe("counter endpoint", () => {
   });
 
   test("is rate limited per caller: one IP is throttled, a different one is not", async ({ request }) => {
+    test.skip(isDeployed, LOCAL_ONLY);
     const noisy = { "cf-connecting-ip": callerIp() };
     const statuses: number[] = [];
     for (let i = 0; i < 25; i++) statuses.push((await request.post(COUNTER, { headers: noisy })).status());

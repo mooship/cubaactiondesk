@@ -15,12 +15,13 @@
     // assets with no Worker CPU. A path missing from this list gets the static 404 page.
     "run_worker_first": ["/api/*", "/go/*", "/act", "/act/*", "/give", "/learn/*", "!/learn/*.md", "!/act/*.md"],
   },
+  // Moving to cubaactiondesk.org.za later means changing this pattern and SITE_URL in src/lib/site.ts.
+  "routes": [{ "pattern": "cuba.timothybrits.co.za", "custom_domain": true }],
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "cubaactiondesk",
-      // Replaced with the real id after `wrangler d1 create` (see docs/LAUNCH-CHECKLIST.md).
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "5ae35ef9-3db5-4260-b1fa-3a7021e2b507",
       "migrations_dir": "migrations",
     },
   ],

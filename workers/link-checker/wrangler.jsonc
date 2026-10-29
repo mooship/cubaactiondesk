@@ -5,13 +5,15 @@
   "compatibility_date": "2026-10-28",
   "compatibility_flags": ["nodejs_compat"],
   // Mondays at 03:00 UTC (05:00 in South Africa).
+  // Cron only. There is nothing to serve, so no public workers.dev address.
+  "workers_dev": false,
   "triggers": { "crons": ["0 3 * * 1"] },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "cubaactiondesk",
-      // Same database as the site. Replaced with the real id after `wrangler d1 create` (see docs/LAUNCH-CHECKLIST.md).
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      // Same database as the site.
+      "database_id": "5ae35ef9-3db5-4260-b1fa-3a7021e2b507",
     },
   ],
   "observability": { "enabled": true },

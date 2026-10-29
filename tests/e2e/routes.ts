@@ -30,3 +30,9 @@ export const stubCounter = (page: Page, count = 1) =>
 
 /** A distinct caller IP per test, so the counter's rate limiter never couples tests together. */
 export const callerIp = () => `198.51.100.${Math.floor(Math.random() * 250) + 1}`;
+
+/**
+ * True when the suite runs against a deployed site. Cloudflare's edge rejects a forged `cf-connecting-ip`
+ * and the counter writes to the live database, so the tests that need either are for the local Worker only.
+ */
+export const isDeployed = Boolean(process.env.E2E_BASE_URL);
