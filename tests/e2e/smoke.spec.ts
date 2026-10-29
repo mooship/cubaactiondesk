@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { findGluedInline } from "../../src/lib/html-check.ts";
-import { ACTION_PATH, horizontalOverflow, MISSING_PATH, pagesToVisit, sitePaths } from "./routes.ts";
+import { ACTION_PATH, horizontalOverflow, isDeployed, MISSING_PATH, pagesToVisit, sitePaths } from "./routes.ts";
 
 test("every page loads with no console errors, no failed requests, and no horizontal scroll", async ({
   page,
@@ -44,6 +44,7 @@ test("no page is rewritten by Cloudflare: email addresses stay as written and no
 }) => {
   // Email Address Obfuscation breaks mailto links without JavaScript, and Rocket Loader fights the CSP.
   // They are zone settings, so this guards the deployed site against someone else's change.
+  test.skip(!isDeployed, "Zone settings exist only on the deployed site.");
   const problems: string[] = [];
   for (const path of await sitePaths(request)) {
     const html = await (await request.get(path)).text();

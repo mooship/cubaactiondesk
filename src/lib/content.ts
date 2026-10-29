@@ -14,6 +14,12 @@ export async function getLiveActions(): Promise<ActionEntry[]> {
   );
 }
 
+/** One action by slug, only if it is live. */
+export async function getLiveAction(slug: string): Promise<ActionEntry | undefined> {
+  const entry = await getEntry("actions", slug);
+  return entry?.data.status === "live" ? entry : undefined;
+}
+
 /** Live articles, newest first. */
 export async function getLiveArticles(): Promise<ArticleEntry[]> {
   const articles = await getCollection("articles", ({ data }) => data.status === "live");
@@ -50,6 +56,6 @@ export async function getSourcesInOrder(ids: readonly string[]): Promise<SourceE
 
 /** Live actions an article points to, in the order the article lists them. */
 export async function getRelatedLiveActions(ids: readonly string[]): Promise<ActionEntry[]> {
-  const found = await Promise.all(ids.map((id) => getEntry("actions", id)));
-  return found.filter((a): a is ActionEntry => a?.data.status === "live");
+  const found = await Promise.all(ids.map(getLiveAction));
+  return found.filter((a): a is ActionEntry => a !== undefined);
 }

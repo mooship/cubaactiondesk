@@ -8,28 +8,24 @@ interface Props {
   external?: boolean;
   type?: "button" | "submit";
   disabled?: boolean;
-  class?: string;
   [attr: string]: unknown;
 }
 
-const {
-  href,
-  variant = "primary",
-  external = false,
-  type = "button",
-  disabled = false,
-  class: className,
-  ...rest
-} = Astro.props;
-const classes = [styles.button, className].filter(Boolean).join(" ");
+const { href, variant = "primary", external = false, type = "button", disabled = false, ...rest } = Astro.props;
 ---
 
 {href && !disabled ? (
-  <a class={classes} data-variant={variant} href={href} rel={external ? "noopener noreferrer" : undefined} {...rest}>
+  <a
+    class={styles.button}
+    data-variant={variant}
+    href={href}
+    rel={external ? "noopener noreferrer" : undefined}
+    {...rest}
+  >
     <slot />
   </a>
 ) : (
-  <button class={classes} data-variant={variant} type={type} disabled={disabled} {...rest}>
+  <button class={styles.button} data-variant={variant} type={type} disabled={disabled} {...rest}>
     <slot />
   </button>
 )}

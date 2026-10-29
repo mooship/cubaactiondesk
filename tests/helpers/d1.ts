@@ -5,13 +5,13 @@ import { getDb, type Db } from "../../src/db/client.ts";
 
 const MIGRATIONS_DIR = join(import.meta.dirname, "..", "..", "migrations");
 
-/** SQL text of every migration, in order, exactly as `wrangler d1 migrations apply` runs them. */
-export function migrationFiles(): { name: string; sql: string }[] {
-  return readdirSync(MIGRATIONS_DIR)
-    .filter((name) => name.endsWith(".sql"))
-    .toSorted((a, b) => a.localeCompare(b))
-    .map((name) => ({ name, sql: readFileSync(join(MIGRATIONS_DIR, name), "utf8") }));
-}
+/** SQL text of every migration, in order, exactly as `wrangler d1 migrations apply` runs them. Read once per test file. */
+const MIGRATIONS = readdirSync(MIGRATIONS_DIR)
+  .filter((name) => name.endsWith(".sql"))
+  .toSorted((a, b) => a.localeCompare(b))
+  .map((name) => ({ name, sql: readFileSync(join(MIGRATIONS_DIR, name), "utf8") }));
+
+export const migrationFiles = (): { name: string; sql: string }[] => MIGRATIONS;
 
 /** An in-memory SQLite with every migration applied. */
 export function migratedSqlite(): DatabaseSync {

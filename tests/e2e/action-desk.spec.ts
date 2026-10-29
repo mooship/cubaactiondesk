@@ -65,7 +65,7 @@ test.describe("with JavaScript", () => {
   test("Mark as done counts once, shows the star state, and survives a reload without counting again", async ({
     page,
   }) => {
-    await stubCounter(page, 41);
+    await stubCounter(page, { count: 41 });
     await page.goto(ACTION);
     const done = page.locator("[data-done]");
     await expect(done).toHaveAttribute("aria-pressed", "false");
@@ -83,13 +83,16 @@ test.describe("with JavaScript", () => {
     expect(posts).toBe(1);
   });
 
-  test("a slow counter shows a placeholder line that the count then replaces; a fast one never does", async ({
-    page,
-  }) => {
-    await page.route("**/api/actions/*/taken", async (route) => {
-      await new Promise((resolve) => setTimeout(resolve, 700));
-      await route.fulfill({ status: 200, contentType: "application/json", body: '{"slug":"x","count":7}' });
-    });
+  test("a fast counter never shows a placeholder", async ({ page }) => {
+    await stubCounter(page, { count: 7 });
+    await page.goto(ACTION);
+    await page.getByRole("button", { name: /Mark as done/ }).click();
+    await expect(page.locator("[data-total-text]")).toHaveText("7 people took this action.");
+    await expect(page.locator("[data-total-text].skeleton")).toHaveCount(0);
+  });
+
+  test("a slow counter shows a placeholder line that the count then replaces", async ({ page }) => {
+    await stubCounter(page, { count: 7, delay: 700 });
     await page.goto(ACTION);
     const text = page.locator("[data-total-text]");
     await page.getByRole("button", { name: /Mark as done/ }).click();
@@ -101,7 +104,7 @@ test.describe("with JavaScript", () => {
   });
 
   test("a counter that fails leaves no placeholder behind", async ({ page }) => {
-    await page.route("**/api/actions/*/taken", (route) => route.abort());
+    await stubCounter(page, { fail: true });
     await page.goto(ACTION);
     await page.getByRole("button", { name: /Mark as done/ }).click();
     await expect(page.getByRole("button", { name: /Done/ })).toHaveAttribute("aria-pressed", "true");
@@ -146,7 +149,7 @@ test("the Instagram action offers the card image to download, with alt text, and
   const image = page.locator("figure img");
   await expect(image).toHaveAttribute("alt", /.+/);
   // The frame holds the image's shape while it downloads, so nothing jumps when it arrives.
-  const frame = page.locator("figure [class*='frame']");
+  const frame = page.locator("[data-image-frame]");
   await expect(frame).toHaveClass(/skeleton/);
   const box = (await frame.boundingBox())!;
   expect(box.width / box.height).toBeCloseTo(1080 / 1350, 1);

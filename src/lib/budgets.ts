@@ -13,12 +13,21 @@ export const BUDGETS = {
 
 export type PageKind = "learn" | "give" | "action" | "other";
 
+/** Which budget a page answers to, from its path. */
+export function kindOf(path: string): PageKind {
+  if (path.startsWith("/learn")) return "learn";
+  if (path === "/give") return "give";
+  return path.startsWith("/act") ? "action" : "other";
+}
+
 export interface Measurement {
   htmlGz: number;
   /** Compressed size of all inlined <style> blocks. */
   cssGz: number;
   /** Fonts are already compressed (woff2), so raw bytes. */
   fontBytes: number;
+  /** How many font files the page references. Zero means the font budget was never really measured. */
+  fontFiles: number;
   jsGz: number;
   scripts: string[];
   /** First-party assets the page uses that could not be read. */
@@ -72,7 +81,16 @@ export function measurePage(html: string, read: (path: string) => Buffer | undef
 
   const css = [...html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map((m) => m[1]).join("\n");
   const htmlGz = gz(html);
-  return { htmlGz, cssGz: gz(css), fontBytes, jsGz, scripts: [...scripts], missing, total: htmlGz + fontBytes + jsGz };
+  return {
+    htmlGz,
+    cssGz: gz(css),
+    fontBytes,
+    fontFiles: fonts.length,
+    jsGz,
+    scripts: [...scripts],
+    missing,
+    total: htmlGz + fontBytes + jsGz,
+  };
 }
 
 const kb = (bytes: number) => `${(bytes / KB).toFixed(1)} KB`;
@@ -87,6 +105,7 @@ export function checkPage(kind: PageKind, m: Measurement): string[] {
   over("HTML (compressed)", m.htmlGz, BUDGETS.html);
   over("inlined CSS (compressed)", m.cssGz, BUDGETS.css);
   over("fonts", m.fontBytes, BUDGETS.fonts);
+  if (m.fontFiles === 0) problems.push("no web fonts found on the page, so the font budget was not measured");
   if (kind === "action") over("Action Desk JavaScript (compressed)", m.jsGz, BUDGETS.actionJs);
   else if ((kind === "learn" || kind === "give") && m.scripts.length > 0) {
     problems.push(`first-party JavaScript is not allowed on this page (${m.scripts.join(", ")})`);

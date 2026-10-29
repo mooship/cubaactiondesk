@@ -46,7 +46,7 @@ export function isCurrent(pathname: string, href: string): boolean {
 }
 
 /** The public origin when SITE_URL is not set. One place to change when the project moves to its own domain. */
-export const DEFAULT_SITE_URL = "https://cuba.timothybrits.co.za";
+const DEFAULT_SITE_URL = "https://cuba.timothybrits.co.za";
 
 /** The public origin for builds and scripts: SITE_URL if set, otherwise the default. */
 export const siteUrl = (): string => process.env.SITE_URL ?? DEFAULT_SITE_URL;

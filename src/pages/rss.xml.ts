@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { getLiveActions, getLiveArticles } from "../lib/content.ts";
+import { RSS_TYPE, textResponse } from "../lib/http.ts";
 import { rssFeed } from "../lib/rss.ts";
 import { absoluteUrl } from "../lib/site.ts";
 
@@ -22,5 +23,5 @@ export const GET: APIRoute = async ({ site }) => {
     ],
     site!,
   );
-  return new Response(xml, { headers: { "Content-Type": "application/rss+xml; charset=utf-8" } });
+  return textResponse(xml, RSS_TYPE);
 };

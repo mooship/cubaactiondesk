@@ -19,7 +19,7 @@ export interface TwinSource {
 
 const LICENSE = "CC BY 4.0";
 
-export const SITE_SUMMARY =
+const SITE_SUMMARY =
   "Cuba Action Desk SA is an independent South African site about the US blockade (embargo) of Cuba. " +
   "It has ready-to-send emails and messages, short sourced explainers, and a checked list of organisations that deliver aid.";
 

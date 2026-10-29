@@ -1,4 +1,5 @@
 import { handle } from "@astrojs/cloudflare/handler";
+import { MARKDOWN_TYPE } from "./lib/http.ts";
 import { NEGOTIABLE, wantsMarkdown } from "./lib/negotiate.ts";
 import { withSecurityHeaders } from "./lib/security.ts";
 
@@ -17,7 +18,7 @@ export default {
       const res = await env.ASSETS.fetch(new Request(twin, request));
       if (res.ok) {
         const headers = new Headers(res.headers);
-        headers.set("Content-Type", "text/markdown; charset=utf-8");
+        headers.set("Content-Type", MARKDOWN_TYPE);
         headers.append("Vary", "Accept");
         return withSecurityHeaders(new Response(res.body, { status: res.status, headers }));
       }

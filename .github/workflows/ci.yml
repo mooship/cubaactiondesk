@@ -38,12 +38,10 @@ jobs:
       - run: npm ci
       # Installs tools/lint, then Prettier (check only), then ESLint.
       - run: npm run lint:ci
-      # Generated files must match their sources.
+      # Migrations must match the schema. (public/_headers and the link list have drift tests in the unit suite.)
       - run: npx drizzle-kit generate
       # `add -N` makes a newly generated migration show up in the diff.
       - run: git add -N migrations/ && git diff --exit-code migrations/
-      - run: npm run build:headers && git diff --exit-code public/_headers
-      - run: npm run build:links && git diff --exit-code workers/link-checker/links.generated.json
       # Binding types come from wrangler.jsonc and are not committed.
       - run: npx wrangler types
       - run: npm run check:content

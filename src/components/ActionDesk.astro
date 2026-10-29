@@ -2,7 +2,7 @@
 import styles from "./ActionDesk.module.css";
 import Button from "./Button.astro";
 import Star from "./Star.astro";
-import { computeSend } from "../lib/action-desk.ts";
+import { computeSend, MAX_VALUE_LENGTH } from "../lib/action-desk.ts";
 import { peopleCount } from "../lib/format.ts";
 import type { ActionData } from "../content/schemas.ts";
 import type { Contact } from "../lib/targets.ts";
@@ -92,7 +92,7 @@ const needsRecipientNote = usesEmail && !contact?.address;
               id={`f-${p.key}`}
               name={p.key}
               rows="3"
-              maxlength="1000"
+              maxlength={MAX_VALUE_LENGTH}
               data-key={p.key}
               aria-describedby={p.hint ? `h-${p.key}` : undefined}
             >
@@ -103,7 +103,7 @@ const needsRecipientNote = usesEmail && !contact?.address;
               id={`f-${p.key}`}
               name={p.key}
               type="text"
-              maxlength="1000"
+              maxlength={MAX_VALUE_LENGTH}
               value={values[p.key] ?? ""}
               autocomplete={AUTOCOMPLETE[p.key]}
               data-key={p.key}
@@ -130,7 +130,7 @@ const needsRecipientNote = usesEmail && !contact?.address;
     <h2 id="message-heading" class={styles.heading}>
       2. Check and edit your message
     </h2>
-    {(usesEmail || channel === "letter") && (
+    {canPrint && (
       <p class={styles.subject}>
         <strong>Subject:</strong> {subject}
       </p>
@@ -138,7 +138,7 @@ const needsRecipientNote = usesEmail && !contact?.address;
     <p id="message-help" class={styles.hint}>
       Change anything you like. A message in your own words is far more likely to be read than a copied one.
     </p>
-    <label class={styles.srOnly} for="message">
+    <label class="srOnly" for="message">
       Your message
     </label>
     <textarea
@@ -168,7 +168,7 @@ const needsRecipientNote = usesEmail && !contact?.address;
     </h2>
     {image && (
       <figure class={styles.figure}>
-        <div class={`${styles.frame} skeleton`}>
+        <div class={`${styles.frame} skeleton`} data-image-frame>
           <img src={image} alt={imageAlt ?? ""} width="1080" height="1350" loading="lazy" decoding="async" />
         </div>
         <figcaption>
@@ -237,7 +237,7 @@ const needsRecipientNote = usesEmail && !contact?.address;
       <p class={styles.next} data-next-box hidden></p>
     </div>
 
-    <p class={styles.srOnly} role="status" aria-live="polite" data-status></p>
+    <p class="srOnly" role="status" aria-live="polite" data-status></p>
   </aside>
 
   <div class={styles.printOnly} data-print>

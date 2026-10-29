@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
-import { ACTION_PATH, callerIp, isDeployed } from "./routes.ts";
+import { SECURITY_HEADERS } from "../../src/lib/security.ts";
+import { ACTION_PATH, COUNTER_PATH as COUNTER, callerIp, isDeployed } from "./routes.ts";
 
-const COUNTER = "/api/actions/ask-your-mp-un-vote/taken";
 const LOCAL_ONLY = "Needs a forged cf-connecting-ip and writes to the counter table; local Worker only.";
 
 test.describe("counter endpoint", () => {
@@ -95,19 +95,12 @@ test.describe("Markdown for AI readers", () => {
 });
 
 test.describe("headers and policy", () => {
-  const required = [
-    "x-content-type-options",
-    "referrer-policy",
-    "permissions-policy",
-    "cross-origin-opener-policy",
-    "strict-transport-security",
-  ];
-
   test("server-rendered, negotiated and static responses all carry the security headers", async ({ request }) => {
     for (const path of [ACTION_PATH, "/give", "/api/health", "/learn/un-votes", "/about", "/learn/un-votes.md"]) {
       const headers = (await request.get(path)).headers();
-      for (const name of required) expect(headers[name], `${name} on ${path}`).toBeTruthy();
-      expect(headers["x-content-type-options"]).toBe("nosniff");
+      for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
+        expect(headers[name.toLowerCase()], `${name} on ${path}`).toBe(value);
+      }
     }
   });
 

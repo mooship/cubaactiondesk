@@ -4,9 +4,8 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { checkOutput } from "../src/lib/output-check.ts";
 import { siteUrl } from "../src/lib/site.ts";
-import { listDist } from "./dist.ts";
+import { DIST as dist, listDist } from "./dist.ts";
 
-const dist = join(import.meta.dirname, "..", "dist", "client");
 const origin = siteUrl().replace(/\/$/, "");
 
 const files = new Map<string, string>();

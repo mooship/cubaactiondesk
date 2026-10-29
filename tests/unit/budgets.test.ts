@@ -66,7 +66,16 @@ describe("measurePage", () => {
 });
 
 describe("checkPage", () => {
-  const ok = { htmlGz: kb(9), cssGz: kb(3), fontBytes: kb(55), jsGz: 0, scripts: [], missing: [], total: kb(64) };
+  const ok = {
+    htmlGz: kb(9),
+    cssGz: kb(3),
+    fontBytes: kb(55),
+    fontFiles: 2,
+    jsGz: 0,
+    scripts: [],
+    missing: [],
+    total: kb(64),
+  };
 
   it("passes a page inside every budget", () => {
     expect(checkPage("learn", ok)).toEqual([]);
@@ -87,6 +96,10 @@ describe("checkPage", () => {
 
   it("fails fonts over 60 KB", () => {
     expect(checkPage("learn", { ...ok, fontBytes: kb(61) }).join("\n")).toMatch(/fonts/);
+  });
+
+  it("fails a page that references no fonts, since the font budget would pass without measuring anything", () => {
+    expect(checkPage("learn", { ...ok, fontBytes: 0, fontFiles: 0 }).join("\n")).toMatch(/no web fonts/);
   });
 
   it("allows no first-party JavaScript on Learn and Give pages", () => {

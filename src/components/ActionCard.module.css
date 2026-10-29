@@ -65,10 +65,6 @@
   font-weight: 600;
 }
 
-.done[hidden] {
-  display: none;
-}
-
 .star {
   width: 24px;
   height: 24px;

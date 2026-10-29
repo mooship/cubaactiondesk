@@ -1,6 +1,7 @@
 import type { Db } from "../db/client.ts";
 import { recordCheck } from "./link-checks.ts";
 import { REVIEW_AFTER } from "./linkstate.ts";
+import { SITE } from "./site.ts";
 
 /** A donation link to check: the listing's id and its donate URL. */
 export interface CheckedLink {
@@ -10,7 +11,7 @@ export interface CheckedLink {
 
 export type FetchLike = (input: string | URL, init?: RequestInit) => Promise<Response>;
 
-const USER_AGENT = "CubaActionDesk-LinkChecker (+https://github.com/mooship/cubaactiondesk)";
+const USER_AGENT = `CubaActionDesk-LinkChecker (+${SITE.repo})`;
 const TIMEOUT_MS = 10_000;
 
 const request = (fetchImpl: FetchLike, url: string, method: "HEAD" | "GET") =>
@@ -33,7 +34,9 @@ export async function checkUrl(url: string, fetchImpl: FetchLike = fetch): Promi
     // Fall through to GET.
   }
   try {
-    return (await request(fetchImpl, url, "GET")).status;
+    const get = await request(fetchImpl, url, "GET");
+    await get.body?.cancel();
+    return get.status;
   } catch {
     return null;
   }

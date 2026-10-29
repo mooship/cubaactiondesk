@@ -164,9 +164,7 @@ abbr[title] {
     border: 1px solid CanvasText;
     animation: none;
   }
-}
 
-@media (forced-colors: active) {
   :focus-visible {
     outline-color: Highlight;
   }

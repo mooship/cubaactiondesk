@@ -8,7 +8,7 @@ import { buildWhatsAppShare } from "./whatsapp.ts";
  * and in their browser: none of it is sent to the server.
  */
 
-const MAX_VALUE_LENGTH = 1000;
+export const MAX_VALUE_LENGTH = 1000;
 
 /** Prefill values from the query string, for the keys this action defines only. */
 export function parseValues(params: URLSearchParams, keys: readonly string[]): Record<string, string> {

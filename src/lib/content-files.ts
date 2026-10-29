@@ -17,10 +17,12 @@ import type { ContentSet, Entry, Issue } from "./content-check.ts";
 
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
 
-function listFiles(dir: string, extensions: string[]): string[] {
+type Extension = ".md" | ".yaml";
+
+function listFiles(dir: string, extension: Extension): string[] {
   return existsSync(dir)
     ? readdirSync(dir)
-        .filter((name) => extensions.includes(extname(name)) && !name.startsWith("_"))
+        .filter((name) => extname(name) === extension && !name.startsWith("_"))
         .toSorted((a, b) => a.localeCompare(b))
     : [];
 }
@@ -28,13 +30,13 @@ function listFiles(dir: string, extensions: string[]): string[] {
 function load<T>(
   root: string,
   collection: string,
-  extensions: string[],
+  extension: Extension,
   schema: ZodType<T>,
   issues: Issue[],
 ): Entry<T>[] {
   const dir = join(root, collection);
   const entries: Entry<T>[] = [];
-  for (const file of listFiles(dir, extensions)) {
+  for (const file of listFiles(dir, extension)) {
     const id = basename(file, extname(file));
     const where = `${collection}/${file}`;
     const raw = readFileSync(join(dir, file), "utf8");
@@ -69,20 +71,20 @@ function load<T>(
 }
 
 /** Reads and schema-validates every content file. Problems come back as issues, never thrown. */
-export function loadContent(root: string): { set: ContentSet; issues: Issue[] } {
+function loadContent(root: string): { set: ContentSet; issues: Issue[] } {
   const issues: Issue[] = [];
   const set: ContentSet = {
-    actions: load(root, "actions", [".md"], actionSchema, issues),
-    articles: load(root, "articles", [".md"], articleSchema, issues),
-    targets: load(root, "targets", [".yaml"], targetSchema, issues),
-    fundraisers: load(root, "fundraisers", [".yaml"], fundraiserSchema, issues),
-    sources: load(root, "sources", [".yaml"], sourceSchema, issues),
-    glossary: load(root, "glossary", [".yaml"], glossarySchema, issues),
+    actions: load(root, "actions", ".md", actionSchema, issues),
+    articles: load(root, "articles", ".md", articleSchema, issues),
+    targets: load(root, "targets", ".yaml", targetSchema, issues),
+    fundraisers: load(root, "fundraisers", ".yaml", fundraiserSchema, issues),
+    sources: load(root, "sources", ".yaml", sourceSchema, issues),
+    glossary: load(root, "glossary", ".yaml", glossarySchema, issues),
   };
   return { set, issues };
 }
 
 /** The site's own content folder. `fileURLToPath` keeps this right on Windows and when loaded through Astro's config. */
-export const CONTENT_DIR = fileURLToPath(new URL("../content", import.meta.url));
+const CONTENT_DIR = fileURLToPath(new URL("../content", import.meta.url));
 
 export const loadSiteContent = () => loadContent(CONTENT_DIR);

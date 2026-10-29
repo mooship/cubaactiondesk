@@ -9,15 +9,15 @@ import prose from "../../styles/prose.module.css";
 import { getDb } from "../../db/client.ts";
 import { getActionCount } from "../../lib/counters.ts";
 import { fillTemplate, parseValues } from "../../lib/action-desk.ts";
-import { getLiveActions, getSourcesInOrder } from "../../lib/content.ts";
+import { getLiveAction, getLiveActions, getSourcesInOrder } from "../../lib/content.ts";
 import { formatDate } from "../../lib/format.ts";
 import { breadcrumbList } from "../../lib/jsonld.ts";
 import { absoluteUrl } from "../../lib/site.ts";
 import { verifiedContacts } from "../../lib/targets.ts";
 
 const { slug } = Astro.params;
-const entry = slug ? await getEntry("actions", slug) : undefined;
-if (!entry || entry.data.status !== "live") return new Response(null, { status: 404 });
+const entry = slug ? await getLiveAction(slug) : undefined;
+if (!entry) return new Response(null, { status: 404 });
 
 const { data } = entry;
 const target = await getEntry("targets", data.target);

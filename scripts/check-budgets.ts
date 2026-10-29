@@ -1,23 +1,11 @@
 // Fails when a page is over the performance budgets. Prerendered pages are read from dist/client.
 // Server-rendered pages (/act/[slug], /give) are fetched when BUDGET_BASE_URL is set, for example
 // a `wrangler dev` or preview URL. Worker CPU per request cannot be measured here: see docs/LAUNCH-CHECKLIST.md.
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { checkPage, measurePage, type PageKind } from "../src/lib/budgets.ts";
-import { listDist } from "./dist.ts";
-
-const root = join(import.meta.dirname, "..");
-const dist = join(root, "dist", "client");
-const read = (path: string) => {
-  const file = join(dist, path.replace(/^\//, ""));
-  return existsSync(file) ? readFileSync(file) : undefined;
-};
-
-function kindOf(path: string): PageKind {
-  if (path.startsWith("/learn")) return "learn";
-  if (path === "/give") return "give";
-  return path.startsWith("/act") ? "action" : "other";
-}
+import { checkPage, kindOf, measurePage } from "../src/lib/budgets.ts";
+import { sitemapPaths } from "../src/lib/sitemap.ts";
+import { DIST as dist, listDist, readDist as read } from "./dist.ts";
 
 const pages: { path: string; html: string }[] = [];
 for (const name of listDist(dist)) {
@@ -30,9 +18,9 @@ const base = process.env.BUDGET_BASE_URL?.replace(/\/$/, "");
 if (base) {
   // The sitemap lists the server-rendered pages: /act, /give and every live action.
   const sitemap = await (await fetch(`${base}/sitemap-0.xml`)).text();
-  const serverPaths = [...sitemap.matchAll(/<loc>https?:\/\/[^/]+(\/[^<]*)<\/loc>/g)]
-    .map((m) => m[1] ?? "")
-    .filter((path) => path === "/act" || path === "/give" || path.startsWith("/act/"));
+  const serverPaths = sitemapPaths(sitemap).filter(
+    (path) => path === "/act" || path === "/give" || path.startsWith("/act/"),
+  );
   for (const path of serverPaths) {
     const res = await fetch(`${base}${path}`);
     pages.push({ path, html: await res.text() });

@@ -1,5 +1,6 @@
 import type { APIRoute, GetStaticPaths } from "astro";
 import { getLiveArticles } from "../../lib/content.ts";
+import { MARKDOWN_TYPE, textResponse } from "../../lib/http.ts";
 import { articleTwinFor } from "../../lib/twins.ts";
 
 export const getStaticPaths = (async () => {
@@ -8,6 +9,4 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 export const GET: APIRoute = async ({ props, site }) =>
-  new Response(await articleTwinFor(props.entry, site!), {
-    headers: { "Content-Type": "text/markdown; charset=utf-8" },
-  });
+  textResponse(await articleTwinFor(props.entry, site!), MARKDOWN_TYPE);

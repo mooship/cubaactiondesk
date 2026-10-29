@@ -4,11 +4,10 @@ import sitemap from "@astrojs/sitemap";
 import { satteri } from "@astrojs/markdown-satteri";
 import { satteriCitations } from "./src/lib/satteri-citations.ts";
 import { loadSiteContent } from "./src/lib/content-files.ts";
-import { DEFAULT_SITE_URL } from "./src/lib/site.ts";
+import { siteUrl } from "./src/lib/site.ts";
 
-// The public origin. Moving to cubaactiondesk.org.za later is one change: DEFAULT_SITE_URL in src/lib/site.ts
-// (or SITE_URL at build time).
-const site = process.env.SITE_URL ?? DEFAULT_SITE_URL;
+// The public origin: SITE_URL if set, otherwise the default in src/lib/site.ts.
+const site = siteUrl();
 
 // Action pages are rendered on demand, so the sitemap integration cannot see them. List the live ones.
 const liveActionPages = loadSiteContent()

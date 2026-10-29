@@ -8,10 +8,5 @@
     "tests/**/*",
     "scripts/**/*",
     "*.config.ts"
-  ],
-  "exclude": ["dist", "node_modules"],
-  "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "noEmit": true
-  }
+  ]
 }

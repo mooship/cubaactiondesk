@@ -117,7 +117,7 @@ export function checkOutput(site: OutputSite): Issue[] {
     for (const url of links) {
       const path = stripOrigin(url, site.origin);
       if (path === null) continue;
-      if (!resolves(site, path) && !site.files.has(path.slice(1))) error("llms.txt", `link does not resolve: ${url}`);
+      if (!resolves(site, path)) error("llms.txt", `link does not resolve: ${url}`);
     }
     for (const slug of articles)
       if (!llms.includes(`/learn/${slug}.md`)) error("llms.txt", `does not list article ${slug}`);

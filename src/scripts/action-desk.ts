@@ -133,9 +133,6 @@ function init(root: HTMLElement): void {
   });
 
   printButton?.addEventListener("click", () => print());
-  addEventListener("beforeprint", () => {
-    printBox.textContent = message.value;
-  });
 
   function showDone(): void {
     doneButton.dataset.state = "done";
@@ -161,7 +158,9 @@ function init(root: HTMLElement): void {
     say("Marked as done.");
     // A fast answer should not flash a placeholder, so it only appears when the server is slow.
     const before = { text: totalText.textContent, hidden: total.hidden };
+    let waiting = false;
     const slow = setTimeout(() => {
+      waiting = true;
       totalText.textContent = "Counting…";
       totalText.classList.add("skeleton", "skeleton-line");
       total.setAttribute("aria-busy", "true");
@@ -174,6 +173,7 @@ function init(root: HTMLElement): void {
       if (typeof body.count === "number") {
         totalText.textContent = `${peopleCount(body.count)} took this action.`;
         total.hidden = false;
+        waiting = false;
       }
     } catch {
       // Offline or blocked: it is still marked done on this device.
@@ -181,7 +181,7 @@ function init(root: HTMLElement): void {
       clearTimeout(slow);
       totalText.classList.remove("skeleton", "skeleton-line");
       total.removeAttribute("aria-busy");
-      if (totalText.textContent === "Counting…") {
+      if (waiting) {
         totalText.textContent = before.text;
         total.hidden = before.hidden;
       }
