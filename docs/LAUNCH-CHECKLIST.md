@@ -47,10 +47,12 @@ The deploy account is a personal one. Run `npx wrangler whoami` and check it bef
 `timothybrits.co.za` presumably serves other sites. Zone-wide settings below would change those too. Use Configuration Rules
 or Page Rules that match only `cuba.timothybrits.co.za`, or wait until the project has its own domain.
 
-- [ ] **Email Address Obfuscation: off.** It rewrites `mailto:` links and injects JavaScript, which breaks the Action Desk.
-- [ ] **Rocket Loader: off.**
-- [ ] **Bot Fight Mode: off.** It injects challenges and can block AI crawlers. Abuse is handled by rate limiting.
-- [ ] **AI crawler blocking: off** for this host, and **managed robots.txt: off** so ours (with the content signals) is served.
+- [x] **Email Address Obfuscation:** left on. Cloudflare does not rewrite this site's pages (checked on the live site), and
+      a test fails if that changes. If it ever does, wrap the address in `<!--email_off-->` comments.
+- [x] **Rocket Loader: off** (switched off for the zone on 2026-10-29).
+- [x] **Bot Fight Mode: off.** Abuse is handled by rate limiting.
+- [x] **AI crawler blocking and managed robots.txt: off** (zone-wide, 2026-10-29), so our robots.txt with its content
+      signals is what is served.
 - [ ] **WAF managed rules: on.** Early Hints and HTTP/3: on.
 - [ ] **Web Analytics: automatic setup on.** Do not add the snippet by hand, or views are counted twice.
 - [ ] After the first deploy, open the browser console on a few pages and confirm the analytics beacon is not blocked by
@@ -78,9 +80,8 @@ or Page Rules that match only `cuba.timothybrits.co.za`, or wait until the proje
       and confirm it still works.
 - [x] **The US Embassy action is live as a posted letter.** The embassy publishes no general email or form for Pretoria,
       only a postal address. Re-check <https://za.usembassy.gov/contact/> before launch in case it adds one.
-- [ ] **Check the quoted phrases against the live pages.** The research tool summarises pages, so a short quotation may not be
-      word for word. This matters most for the quotes by Waltz, Rodríguez Parrilla and Ramaphosa, the Parliament committee
-      statement, and phrases from the US executive orders.
+- [x] **Quoted phrases checked against the original text.** 21 quotations match word for word, 3 were reworded as
+      paraphrases and 3 had a date or context corrected. Re-check any new quotation the same way.
 - [ ] South Africa's 2026 UN vote is confirmed in the UN's own record (meeting A/81/PV.28). Its 2025 vote comes from the UN
       Project database, which is not the UN itself; confirm it in the UN record too.
 - [ ] Review the source `origin` labels that were judgement calls: `scoop-rubio-cuba-policy-2025` (US government),
