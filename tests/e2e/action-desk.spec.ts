@@ -83,6 +83,33 @@ test.describe("with JavaScript", () => {
     expect(posts).toBe(1);
   });
 
+  test("a slow counter shows a placeholder line that the count then replaces; a fast one never does", async ({
+    page,
+  }) => {
+    await page.route("**/api/actions/*/taken", async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, 700));
+      await route.fulfill({ status: 200, contentType: "application/json", body: '{"slug":"x","count":7}' });
+    });
+    await page.goto(ACTION);
+    const text = page.locator("[data-total-text]");
+    await page.getByRole("button", { name: /Mark as done/ }).click();
+    await expect(text).toHaveClass(/skeleton/);
+    await expect(page.locator("[data-total]")).toHaveAttribute("aria-busy", "true");
+    await expect(text).toHaveText("7 people took this action.");
+    await expect(text).not.toHaveClass(/skeleton/);
+    await expect(page.locator("[data-total]")).not.toHaveAttribute("aria-busy", /.*/);
+  });
+
+  test("a counter that fails leaves no placeholder behind", async ({ page }) => {
+    await page.route("**/api/actions/*/taken", (route) => route.abort());
+    await page.goto(ACTION);
+    await page.getByRole("button", { name: /Mark as done/ }).click();
+    await expect(page.getByRole("button", { name: /Done/ })).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator("[data-total-text]")).not.toHaveText("Counting…");
+    await expect(page.locator("[data-total]")).not.toHaveAttribute("aria-busy", /.*/);
+    await expect(page.locator("[data-total-text].skeleton")).toHaveCount(0);
+  });
+
   test("the done star shows on the action card on the index and home page", async ({ page }) => {
     await stubCounter(page);
     await page.goto(ACTION);
@@ -118,6 +145,11 @@ test("the Instagram action offers the card image to download, with alt text, and
   await page.goto("/act/post-instagram-explainer-card");
   const image = page.locator("figure img");
   await expect(image).toHaveAttribute("alt", /.+/);
+  // The frame holds the image's shape while it downloads, so nothing jumps when it arrives.
+  const frame = page.locator("figure [class*='frame']");
+  await expect(frame).toHaveClass(/skeleton/);
+  const box = (await frame.boundingBox())!;
+  expect(box.width / box.height).toBeCloseTo(1080 / 1350, 1);
   // The image is lazy, so give it time to scroll in and download.
   await image.scrollIntoViewIfNeeded();
   await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);

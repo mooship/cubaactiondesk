@@ -3,6 +3,9 @@ import { addDone, getStorage, nextAction, readDone } from "../lib/done-store.ts"
 import type { Contact } from "../lib/targets.ts";
 import { peopleCount } from "../lib/format.ts";
 
+/** How long to wait for the counter before showing a placeholder instead. */
+const SLOW_MS = 150;
+
 /**
  * Enhances the server-rendered Action Desk. Everything works without this
  * script (the form refreshes the message, Email and WhatsApp are plain links);
@@ -156,6 +159,14 @@ function init(root: HTMLElement): void {
     addDone(getStorage(), slug);
     showDone();
     say("Marked as done.");
+    // A fast answer should not flash a placeholder, so it only appears when the server is slow.
+    const before = { text: totalText.textContent, hidden: total.hidden };
+    const slow = setTimeout(() => {
+      totalText.textContent = "Counting…";
+      totalText.classList.add("skeleton", "skeleton-line");
+      total.setAttribute("aria-busy", "true");
+      total.hidden = false;
+    }, SLOW_MS);
     try {
       const res = await fetch(`/api/actions/${slug}/taken`, { method: "POST", keepalive: true });
       if (!res.ok) return;
@@ -166,6 +177,14 @@ function init(root: HTMLElement): void {
       }
     } catch {
       // Offline or blocked: it is still marked done on this device.
+    } finally {
+      clearTimeout(slow);
+      totalText.classList.remove("skeleton", "skeleton-line");
+      total.removeAttribute("aria-busy");
+      if (totalText.textContent === "Counting…") {
+        totalText.textContent = before.text;
+        total.hidden = before.hidden;
+      }
     }
   });
 

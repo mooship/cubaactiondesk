@@ -132,6 +132,40 @@ abbr[title] {
   border: 0;
 }
 
+/* Placeholder for content that is still loading. Give it the size of what will replace it so nothing moves on arrival.
+   .skeleton-line is a text-sized bar for a line that is filled in later. */
+.skeleton {
+  background: linear-gradient(90deg, var(--border), var(--surface) 50%, var(--border)) 0 0 / 200% 100%;
+  border-radius: var(--radius-control);
+  color: transparent;
+}
+
+.skeleton-line {
+  display: inline-block;
+  min-inline-size: 12rem;
+  vertical-align: middle;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton {
+    animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (forced-colors: active) {
+  .skeleton {
+    background: none;
+    border: 1px solid CanvasText;
+    animation: none;
+  }
+}
+
 @media (forced-colors: active) {
   :focus-visible {
     outline-color: Highlight;

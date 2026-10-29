@@ -107,9 +107,13 @@ jobs:
       # for performance.
       - run: npm run lhci
       - run: npm run lhci:desktop
+      - name: Show which elements shifted
+        if: failure()
+        run: node scripts/lighthouse-shifts.mjs
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: failure()
         with:
           name: lighthouse-reports
           path: .lighthouseci/
+          include-hidden-files: true
           retention-days: 7

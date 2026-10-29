@@ -122,11 +122,17 @@
   margin: 0 0 var(--space-4);
 }
 
+/* The frame keeps the image's shape while it downloads, with the skeleton showing behind it. */
+.frame {
+  max-width: 20rem;
+  aspect-ratio: 1080 / 1350;
+  border-radius: var(--radius-card);
+}
+
 .figure img {
   display: block;
   width: 100%;
-  max-width: 20rem;
-  height: auto;
+  height: 100%;
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
 }

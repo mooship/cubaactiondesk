@@ -168,7 +168,9 @@ const needsRecipientNote = usesEmail && !contact?.address;
     </h2>
     {image && (
       <figure class={styles.figure}>
-        <img src={image} alt={imageAlt ?? ""} width="1080" height="1350" loading="lazy" decoding="async" />
+        <div class={`${styles.frame} skeleton`}>
+          <img src={image} alt={imageAlt ?? ""} width="1080" height="1350" loading="lazy" decoding="async" />
+        </div>
         <figcaption>
           <a href={image} download>
             Download the image

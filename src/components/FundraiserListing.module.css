@@ -1,4 +1,5 @@
 .listing {
+  height: 100%;
   padding: var(--space-5);
   background: var(--surface);
   border: 1px solid var(--border);
