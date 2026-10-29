@@ -39,6 +39,21 @@ test("no page has a missing or stray space around a link, including the server-r
   expect(problems).toEqual([]);
 });
 
+test("no page is rewritten by Cloudflare: email addresses stay as written and no Rocket Loader markup appears", async ({
+  request,
+}) => {
+  // Email Address Obfuscation breaks mailto links without JavaScript, and Rocket Loader fights the CSP.
+  // They are zone settings, so this guards the deployed site against someone else's change.
+  const problems: string[] = [];
+  for (const path of await sitePaths(request)) {
+    const html = await (await request.get(path)).text();
+    if (/email-protection|\[email&#160;protected\]|\[email protected\]/.test(html))
+      problems.push(`${path}: email obfuscated`);
+    if (/rocket-loader|data-cf-settings/.test(html)) problems.push(`${path}: Rocket Loader markup`);
+  }
+  expect(problems).toEqual([]);
+});
+
 test("the skip link is the first focusable element and moves focus to the main content", async ({ page }) => {
   await page.goto("/");
   await page.keyboard.press("Tab");
