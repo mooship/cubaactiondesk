@@ -36,9 +36,8 @@ The deploy account is a personal one. Run `npx wrangler whoami` and check it bef
 4. [x] Deployed the link checker: `npx wrangler deploy -c workers/link-checker/wrangler.jsonc`. It runs on Mondays at
        03:00 UTC and has no public address.
 5. [x] Deployed the site to `cuba.timothybrits.co.za` with `npm run deploy` (content check, remote migration, build, deploy).
-6. [ ] Enable Analytics Engine once at <https://dash.cloudflare.com/?to=/:account/workers/analytics-engine>. The deploy
-       fails with error 10089 until you do. The first deploy went out without the `EVENTS` binding; after enabling, run
-       `npm run deploy` again. Until then `/go/*` still redirects and simply skips the click count.
+6. [x] Enabled Analytics Engine (a one-time dashboard step) and redeployed with the `EVENTS` binding, dataset
+       `cuba_action_desk_events`. Without it the deploy fails with error 10089.
 7. [ ] Optional: connect the repository in the dashboard (Workers Builds) with build
        `npm ci && npm run build` and deploy `npx wrangler deploy`. Its API token needs permission to edit D1 if you also
        want it to run the migration.
