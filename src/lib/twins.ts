@@ -76,6 +76,7 @@ export async function giveTwinFor(origin: URL | string): Promise<string> {
       delivers: f.data.delivers,
       recipientsInCuba: f.data.recipientsInCuba,
       howMoneyReaches: f.data.howMoneyReaches,
+      payNote: f.data.payNote ?? null,
       registration: f.data.registration ? `${f.data.registration.number} (${f.data.registration.body})` : null,
       website: f.data.website,
       lastVerified: f.data.lastVerified,

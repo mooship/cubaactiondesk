@@ -73,7 +73,13 @@ const host = hostOf(data.donateUrl);
     )}
   </dl>
 
-  {data.paymentNotes && <p class={styles.note}>{data.paymentNotes}</p>}
+  {data.payNote && <p class={styles.payNote}>{data.payNote}</p>}
+  {data.paymentNotes && (
+    <details class={styles.trail}>
+      <summary>How we checked the payment options</summary>
+      <p class={styles.note}>{data.paymentNotes}</p>
+    </details>
+  )}
 
   <p class={styles.status}>
     <StatusBadge status={status} />

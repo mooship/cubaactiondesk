@@ -125,6 +125,7 @@ export interface GiveTwinEntry {
   delivers: string;
   recipientsInCuba: string | null;
   howMoneyReaches: string | null;
+  payNote: string | null;
   /** "number (registering body)" */
   registration: string | null;
   website: string;
@@ -153,6 +154,7 @@ export function giveTwin(entries: GiveTwinEntry[], origin: URL | string): string
       `- What they deliver: ${e.delivers}`,
       e.recipientsInCuba && `- Who receives it in Cuba: ${e.recipientsInCuba}`,
       e.howMoneyReaches && `- How money reaches Cuba: ${e.howMoneyReaches}`,
+      e.payNote && `- Paying: ${e.payNote}`,
       e.registration && `- Registration: ${e.registration}`,
       `- Website: ${e.website}`,
       e.lastVerified && `- Last checked by us: ${formatDate(e.lastVerified)}`,

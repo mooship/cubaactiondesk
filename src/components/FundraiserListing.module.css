@@ -45,3 +45,17 @@
   color: var(--text-muted);
   font-size: 0.9375rem;
 }
+
+.payNote {
+  margin: 0 0 var(--space-4);
+}
+
+.trail {
+  margin: 0 0 var(--space-4);
+}
+
+.trail summary {
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}

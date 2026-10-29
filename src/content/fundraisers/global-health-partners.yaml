@@ -20,5 +20,6 @@ evidence:
   - { label: "Independent corroboration: mediCuba-Europe pacemaker flyer (2026) names GHP as its US partner for the pacemaker campaign", url: "https://www.medicuba-europa.org/wp-content/uploads/2026/04/FlyerXpacemakersX26.pdf" }
 onlinePayment: card
 paymentNotes: "Checked 2026-10-29 by reading the page without paying. The donate page embeds the GiveDirect form (donate.givedirect.org, campaign 16452). It offers one-time, monthly, quarterly and annual gifts, amounts in USD, Visa, Mastercard, American Express, Discover, UnionPay and JCB logos, and a country list that includes South Africa. Cheque to a New York address is the alternative. The page says gifts are tax-deductible within the guidelines of US law and that GiveDirect emails the receipt. This is a campaign page (sutures and neonatal appeal, year-end), so re-check it after the new year. GHP also has a general page at https://ghpartners.org/donate/, but it is not Cuba-only (it also names Nicaragua, Bolivia and El Salvador) and its text dates from about 2021, so it was not used."
+payNote: "You pay by card in US dollars through GiveDirect, or by cheque to a New York address. This is a year-end campaign page, so we re-check it after the new year."
 approved: true
 lastVerified: 2026-10-29

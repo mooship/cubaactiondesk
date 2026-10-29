@@ -127,7 +127,10 @@ export const fundraiserSchema = z.object({
    * We do not make test payments. "unconfirmed" until someone has read the donation page.
    */
   onlinePayment: z.enum(["card", "bank-transfer", "unconfirmed"]).default("unconfirmed"),
+  /** What we did to check the payment options. Long, written for reviewers; shown folded away. */
   paymentNotes: z.string().optional(),
+  /** What a donor needs to know about paying, in a sentence or two. Shown on the listing. */
+  payNote: z.string().max(300).optional(),
   approved: z.boolean().default(false),
   lastVerified: nullableDate,
 });

@@ -149,6 +149,7 @@ describe("giveTwin", () => {
           delivers: "Medical supplies",
           recipientsInCuba: "Named hospitals",
           howMoneyReaches: "Shipments",
+          payNote: "Pay by bank transfer.",
           registration: "12-3456789 (IRS)",
           website: "https://one.example",
           lastVerified: new Date("2026-10-29"),
@@ -159,6 +160,7 @@ describe("giveTwin", () => {
     expect(md).toContain("## Org One");
     expect(md).toContain("Medical supplies");
     expect(md).toContain("12-3456789 (IRS)");
+    expect(md).toContain("- Paying: Pay by bank transfer.");
     expect(md).toContain("https://one.example");
     expect(md).toContain("29 October 2026");
   });
