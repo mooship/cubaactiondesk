@@ -21,7 +21,7 @@ describe("referencedAssets", () => {
   it("finds fonts in CSS and preload links, and first-party scripts, once each", () => {
     const html = page(
       '<link rel="preload" href="/_astro/body.abc.woff2" as="font">' +
-        "<style>@font-face{src:url(/_astro/body.abc.woff2)}@font-face{src:url(/_astro/display.def.woff2)}</style>" +
+        '<style>@font-face{src:url(/_astro/body.abc.woff2)}@font-face{src:url("/_astro/display.def.woff2") format("woff2")}</style>' +
         '<script type="module" src="/_astro/app.js"></script>' +
         '<script src="https://static.cloudflareinsights.com/beacon.min.js"></script>',
     );

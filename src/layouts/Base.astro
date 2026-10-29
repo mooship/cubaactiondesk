@@ -1,8 +1,7 @@
 ---
-import "../styles/fonts.css";
 import "../styles/tokens.css";
 import "../styles/base.css";
-import bodyFont from "../../node_modules/@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2?url";
+import { Font } from "astro:assets";
 import styles from "./Base.module.css";
 import Logo from "../components/Logo.astro";
 import Nav from "../components/Nav.astro";
@@ -74,7 +73,8 @@ Astro.csp?.insertScriptHash(speculationRulesHash);
     <meta name="theme-color" content="#0B1F4D" />
     <meta name="msapplication-TileColor" content="#0B1F4D" />
     <meta name="msapplication-config" content="/browserconfig.xml" />
-    <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin="anonymous" />
+    <Font cssVariable="--font-body" preload />
+    <Font cssVariable="--font-display" />
 
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:type" content={type} />

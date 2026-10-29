@@ -33,5 +33,25 @@
     },
   ],
   "analytics_engine_datasets": [{ "binding": "EVENTS", "dataset": "cuba_action_desk_events" }],
-  "observability": { "enabled": true },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    // Kept true on purpose: the no-JavaScript Action Desk puts the sender's name and town in the query string, and
+    // the privacy notice promises we never see them. Do not turn this off without changing that notice.
+    "redact_query_string": true,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "invocation_logs": true,
+      "persist": true,
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+    },
+    "issue_detection": {
+      "enabled": true,
+    },
+  },
 }

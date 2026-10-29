@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
 import { satteri } from "@astrojs/markdown-satteri";
@@ -15,8 +15,32 @@ const liveActionPages = loadSiteContent()
   .set.actions.filter((a) => a.data.status === "live")
   .map((a) => `${site}/act/${a.id}`);
 
+// Two variable fonts, Latin subset only (about 55 KB together), installed from Fontsource packages. Astro hashes and
+// preloads them and builds fallback fonts from the real font metrics, so the swap moves nothing on any operating system.
+const latin = (pkg, file) => ({
+  src: [`./node_modules/@fontsource-variable/${pkg}/files/${file}-latin-wght-normal.woff2`],
+  style: "normal",
+});
+const fonts = [
+  {
+    provider: fontProviders.local(),
+    name: "Public Sans",
+    cssVariable: "--font-body",
+    fallbacks: ["system-ui", "sans-serif"],
+    options: { variants: [{ ...latin("public-sans", "public-sans"), weight: "100 900" }] },
+  },
+  {
+    provider: fontProviders.local(),
+    name: "Oswald",
+    cssVariable: "--font-display",
+    fallbacks: ["Arial Narrow", "sans-serif"],
+    options: { variants: [{ ...latin("oswald", "oswald"), weight: "200 700" }] },
+  },
+];
+
 export default defineConfig({
   site,
+  fonts,
   trailingSlash: "never",
   markdown: {
     processor: satteri({ mdastPlugins: [satteriCitations] }),

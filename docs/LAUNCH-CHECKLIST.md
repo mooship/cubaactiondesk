@@ -75,8 +75,8 @@ or Page Rules that match only `cuba.timothybrits.co.za`, or wait until the proje
 
 - [ ] Run `LHCI_BASE_URL=https://<your-preview> npm run lhci` and `npm run lhci:desktop` against the deployed preview. The
       targets are 100 for accessibility, best practices and SEO, and 95 or more for performance. Also look at the largest
-      contentful paint on mobile (the aim is 1.5 s; the local run measured 1.4 to 1.8 s). The font fallback sizes in
-      `src/styles/fonts.css` are estimates; tune them if layout shift shows up.
+      contentful paint on mobile (the aim is 1.5 s; the local run measured 1.4 to 1.8 s). Fonts and their fallback metrics come from
+      Astro's font provider (`fonts` in `astro.config.mjs`); watch the layout shift on a real phone.
 - [ ] Check that Worker CPU per request is under 5 ms at the median (Workers dashboard).
 - [ ] **Re-check every contact.** The addresses came from each organisation's own page on 29 October 2026: DIRCO,
       the seven newspaper letters desks (Daily Maverick, Sunday Times, TimesLIVE, Business Day, The Citizen, Daily Dispatch,

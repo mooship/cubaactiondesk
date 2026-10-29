@@ -32,7 +32,7 @@ const gz = (data: string | Buffer) => gzipSync(data, { level: 9 }).length;
 /** Fonts and first-party scripts a page loads. The Cloudflare analytics beacon is third party and not counted. */
 export function referencedAssets(html: string): { fonts: string[]; scripts: string[] } {
   const fonts = new Set<string>();
-  for (const m of html.matchAll(/(?:href=["']|url\()(\/[^"')\s]+\.woff2)/g)) fonts.add(m[1]!);
+  for (const m of html.matchAll(/(?:href=["']|url\(["']?)(\/[^"')\s]+\.woff2)/g)) fonts.add(m[1]!);
   const scripts = new Set<string>();
   for (const m of html.matchAll(/<script\b[^>]*\ssrc=["'](\/[^"']+)["']/g)) scripts.add(m[1]!);
   return { fonts: [...fonts], scripts: [...scripts] };

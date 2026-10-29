@@ -30,9 +30,7 @@
   --warning-text: #5c4300;
   --placeholder-mark: #fff0b3;
 
-  /* Typography */
-  --font-display: "Oswald Variable", "Oswald Fallback", "Arial Narrow", Arial, sans-serif;
-  --font-body: "Public Sans Variable", "Public Sans Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Typography. --font-body and --font-display are defined by Astro's font provider (see astro.config.mjs). */
   --step-0: 1.0625rem; /* 17px */
   --step-1: 1.25rem; /* 20px */
   --step-2: 1.5rem; /* 24px */
