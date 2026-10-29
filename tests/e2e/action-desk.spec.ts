@@ -131,10 +131,15 @@ test("the WhatsApp action offers a WhatsApp link that carries the article link",
   expect(decodeURIComponent(href)).toContain("/learn/sa-and-cuba-in-60-seconds");
 });
 
-test("a draft or unknown action is a 404 with the site's not-found page", async ({ request }) => {
-  for (const path of ["/act/write-us-embassy-pretoria", "/act/made-up"]) {
-    const res = await request.get(path);
-    expect(res.status(), path).toBe(404);
-    expect(await res.text(), path).toContain("We could not find that page");
-  }
+test("an unknown action is a 404 with the site's not-found page", async ({ request }) => {
+  const res = await request.get("/act/made-up");
+  expect(res.status()).toBe(404);
+  expect(await res.text()).toContain("We could not find that page");
+});
+
+test("the US Embassy action is a posted letter: print layout, and no email button", async ({ page }) => {
+  await page.goto("/act/write-us-embassy-pretoria");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("US Embassy");
+  await expect(page.getByRole("link", { name: "Open in email" })).toHaveCount(0);
+  await expect(page.locator("[data-print]")).toBeAttached();
 });

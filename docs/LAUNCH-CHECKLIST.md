@@ -13,17 +13,16 @@ and the content checks are finished and pass locally (see the README for the com
 - [ ] **Cuba Solidarity Now (the South African option).** Not approved, and I recommend waiting. Its NPC number could not be
       checked (the CIPC search needs a login), it launched in February 2026 so it is under 12 months old, and its delivery
       claims have no dates or named Cuban recipients. Re-check it in 2027.
-- [ ] **mediCuba-Suisse.** Passes every check and is ready to approve if you want it. Its own annual report says some banks
-      refused transfers that named "mediCuba", so a payment from South Africa could be blocked.
+- [x] **mediCuba-Suisse.** Approved. Its own annual report says some banks refused transfers that named "mediCuba", so a
+      payment from South Africa could be blocked; the listing says to ask the bank first.
 - [ ] **Catholic Relief Services.** Removed from the site at your request (`approved: false`). Its file and notes stay in
       case you want it back: the page funds Cuba, Haiti and Jamaica together, and its large Cuba programme is paid for by a
       US government award.
 - [ ] **Global Health Partners.** Approved. The donate page is a year-end campaign page (`/sutures/`); check it again after
       the new year.
-- [ ] **The responsible party under POPIA.** The privacy page does not name who is responsible. Section 18 of POPIA
-      expects a name and address. Decide who that is (you, or a registered body) and add it to `src/pages/privacy.astro`.
-- [ ] **How long contact-address emails are kept.** The notice says "only as long as it takes, then deleted". Pick a number
-      if you want one.
+- [x] **The responsible party under POPIA.** Timothy Brits, named on the privacy page. Section 18 of POPIA also expects a
+      way to contact the responsible party, which is the `hello@` address; it must exist before launch.
+- [x] **How long contact-address emails are kept.** Deleted as soon as the matter is dealt with.
 - [ ] A short legal read of the privacy notice and the "before you donate" wording (US persons, payment providers).
 
 ## 2. Cloudflare setup (a person, once)
@@ -78,8 +77,8 @@ or Page Rules that match only `cuba.timothybrits.co.za`, or wait until the proje
       the seven newspaper letters desks (Daily Maverick, Sunday Times, TimesLIVE, Business Day, The Citizen, Daily Dispatch,
       IOL) and the Portfolio Committee secretary. The MP action links to the People's Assembly home page; open its MP finder
       and confirm it still works.
-- [ ] **The US Embassy action is a draft.** The embassy publishes no general email or form for Pretoria, only a postal
-      address. Change its `status` to `live` if you want it as a posted letter, and re-check the embassy contact page first.
+- [x] **The US Embassy action is live as a posted letter.** The embassy publishes no general email or form for Pretoria,
+      only a postal address. Re-check <https://za.usembassy.gov/contact/> before launch in case it adds one.
 - [ ] **Check the quoted phrases against the live pages.** The research tool summarises pages, so a short quotation may not be
       word for word. This matters most for the quotes by Waltz, Rodríguez Parrilla and Ramaphosa, the Parliament committee
       statement, and phrases from the US executive orders.

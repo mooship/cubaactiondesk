@@ -18,5 +18,5 @@ evidence:
   - { label: "Swiss UID register entry CHE-413.719.781 (association, active, last validated 2026-09-07)", url: "https://www.uid.admin.ch/Detail.aspx?uid_id=CHE-413.719.781" }
 onlinePayment: bank-transfer
 paymentNotes: "Checked 2026-10-29 by reading the donate page without paying. Options on https://medicuba.ch/fr/faire-un-don: online donation by Twint (a Swiss mobile payment app, not usable from South Africa), payment slip, direct debit, and a direct transfer to a Swiss IBAN printed on the page; the page says a normal bank transfer is the cheapest route. No card form was seen. The online-donation page itself (https://medicuba.ch/fr/don-en-ligne) showed no form in the browser. The same IBAN is printed on the Zewo page. Account numbers are not copied here. Sanctions risk, from the organisation's own 2025 annual report: several foundations could not pay because their banks refused transfers naming the beneficiary mediCuba, and the report describes Swiss banks as fully aligned with US rules. A transfer from South Africa could meet the same screening; ask the bank before sending."
-approved: false
+approved: true
 lastVerified: 2026-10-29

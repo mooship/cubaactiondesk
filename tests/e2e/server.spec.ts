@@ -23,11 +23,10 @@ test.describe("counter endpoint", () => {
     expect(res.headers().allow).toBe("POST");
   });
 
-  test("404s an unknown or draft action and 400s a malformed one, without creating counters", async ({ request }) => {
+  test("404s an unknown action and 400s a malformed one, without creating counters", async ({ request }) => {
     test.skip(isDeployed, LOCAL_ONLY);
     const headers = { "cf-connecting-ip": callerIp() };
     expect((await request.post("/api/actions/made-up/taken", { headers })).status()).toBe(404);
-    expect((await request.post("/api/actions/write-us-embassy-pretoria/taken", { headers })).status()).toBe(404);
     expect((await request.post("/api/actions/Bad_Slug/taken", { headers })).status()).toBe(400);
   });
 
