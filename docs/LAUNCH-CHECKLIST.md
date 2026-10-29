@@ -53,8 +53,12 @@ or Page Rules that match only `cuba.timothybrits.co.za`, or wait until the proje
 - [x] **Bot Fight Mode: off.** Abuse is handled by rate limiting.
 - [x] **AI crawler blocking and managed robots.txt: off** (zone-wide, 2026-10-29), so our robots.txt with its content
       signals is what is served.
-- [ ] **WAF managed rules: on.** Early Hints and HTTP/3: on.
-- [ ] **Web Analytics: automatic setup on.** Do not add the snippet by hand, or views are counted twice.
+- [x] **Early Hints and HTTP/3: on** (read from the zone on 2026-10-29). HTTPS is forced, minimum TLS 1.2, SSL mode full.
+- [ ] **WAF managed rules: unconfirmed.** The API shows the Cloudflare Managed Free Ruleset exists but no zone-level
+      deployment, so check Security, WAF, Managed rules in the dashboard and deploy the Free Managed Ruleset if it is off.
+- [ ] **Web Analytics: decide.** The zone has automatic setup on, but the beacon is not in this site's HTML (checked on the
+      live pages), so no page views are being counted. Either leave it that way (the privacy notice stays true), or add
+      the beacon snippet by hand; the content security policy already allows `static.cloudflareinsights.com`.
 - [ ] After the first deploy, open the browser console on a few pages and confirm the analytics beacon is not blocked by
       the content security policy. If it is, adjust `security.csp` in `astro.config.mjs`.
 
