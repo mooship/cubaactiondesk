@@ -1,0 +1,10 @@
+id: your-instagram-story
+name: Your Instagram story
+channel: social
+addressRequired: false
+address: null
+postal: null
+sourceUrl: null
+lastVerified: null
+options: []
+notes: "The sender posts from their own account. The site posts nothing."

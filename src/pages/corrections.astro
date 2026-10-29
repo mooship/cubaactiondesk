@@ -1,0 +1,41 @@
+---
+import Base from "../layouts/Base.astro";
+import prose from "../styles/prose.module.css";
+import { CORRECTIONS } from "../lib/corrections.ts";
+import { formatDate } from "../lib/format.ts";
+import { SITE } from "../lib/site.ts";
+---
+
+<Base
+  title="Corrections"
+  description="A public log of every correction made to Cuba Action Desk SA, and how to report an error."
+  path="/corrections"
+>
+  <article class={prose.article}>
+    <h1>Corrections</h1>
+    <p class={prose.lede}>
+      When we get something wrong, we fix it openly and list it here, with what it said before and what it says now.
+    </p>
+
+    {CORRECTIONS.length === 0 ? (
+      <p>No corrections have been needed so far.</p>
+    ) : (
+      <ul>
+        {CORRECTIONS.map((c) => (
+          <li>
+            <strong>{formatDate(new Date(c.date))}</strong> on <a href={c.page}>{c.page}</a>.<br />
+            <em>Was:</em> {c.was}
+            <br />
+            <em>Now:</em> {c.now}
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <h2>Report an error</h2>
+    <p>
+      Send the page, what is wrong, and a source if you have one to{" "}
+      <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>. We read every message.
+    </p>
+  </article>
+</Base>

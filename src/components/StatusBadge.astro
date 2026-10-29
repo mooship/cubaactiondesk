@@ -1,0 +1,41 @@
+---
+import styles from "./StatusBadge.module.css";
+import type { LinkStatus } from "../lib/linkstate.ts";
+
+interface Props {
+  status: LinkStatus;
+}
+const { status } = Astro.props;
+
+// Text plus icon, never colour alone.
+const LABELS: Record<LinkStatus, string> = {
+  verified: "Link verified",
+  warning: "Link had a failed check",
+  review: "Link under review",
+  unchecked: "Link not checked yet",
+};
+const ICONS: Record<LinkStatus, string> = {
+  verified: "M5 13l4 4L19 7",
+  warning: "M12 8v5M12 17h.01M10.3 4.2 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 4.2a2 2 0 0 0-3.4 0Z",
+  review: "M12 8v5M12 17h.01M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z",
+  unchecked: "M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z",
+};
+---
+
+<span class={styles.badge} data-status={status}>
+  <svg
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d={ICONS[status]} />
+  </svg>
+  {LABELS[status]}
+</span>

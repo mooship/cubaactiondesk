@@ -1,0 +1,35 @@
+---
+import styles from "./Button.module.css";
+
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary";
+  /** Adds rel="noopener noreferrer" for links that leave the site. */
+  external?: boolean;
+  type?: "button" | "submit";
+  disabled?: boolean;
+  class?: string;
+  [attr: string]: unknown;
+}
+
+const {
+  href,
+  variant = "primary",
+  external = false,
+  type = "button",
+  disabled = false,
+  class: className,
+  ...rest
+} = Astro.props;
+const classes = [styles.button, className].filter(Boolean).join(" ");
+---
+
+{href && !disabled ? (
+  <a class={classes} data-variant={variant} href={href} rel={external ? "noopener noreferrer" : undefined} {...rest}>
+    <slot />
+  </a>
+) : (
+  <button class={classes} data-variant={variant} type={type} disabled={disabled} {...rest}>
+    <slot />
+  </button>
+)}

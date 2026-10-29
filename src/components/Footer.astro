@@ -1,0 +1,50 @@
+---
+import styles from "./Footer.module.css";
+import { SITE } from "../lib/site.ts";
+---
+
+<footer class={styles.footer}>
+  <div class={styles.inner}>
+    <p class={styles.lead}>{SITE.name} is an independent project run by volunteers.</p>
+    <ul class={styles.links}>
+      <li>
+        <a href="/sources">Sources</a>
+      </li>
+      <li>
+        <a href="/corrections">Corrections</a>
+      </li>
+      <li>
+        <a href="/give/how-we-vet">How we vet</a>
+      </li>
+      <li>
+        <a href="/privacy">Privacy</a>
+      </li>
+      <li>
+        <a href="/accessibility">Accessibility</a>
+      </li>
+      <li>
+        <a href="/rss.xml">RSS</a>
+      </li>
+      <li>
+        <a href={SITE.instagram} rel="noopener noreferrer">
+          Instagram {SITE.instagramHandle}
+        </a>
+      </li>
+    </ul>
+    <p class={styles.legal}>
+      Written content is licensed{" "}
+      <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer">
+        CC BY 4.0
+      </a>
+      . Code is{" "}
+      <a href={`${SITE.repo}/blob/main/LICENSE`} rel="noopener noreferrer">
+        MIT
+      </a>
+      , on{" "}
+      <a href={SITE.repo} rel="noopener noreferrer">
+        GitHub
+      </a>
+      . Questions or corrections: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+    </p>
+  </div>
+</footer>

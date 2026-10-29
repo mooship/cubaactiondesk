@@ -1,0 +1,12 @@
+---
+import { STAR_PATH } from "../lib/site.ts";
+
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<svg class={className} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+  <path fill="currentColor" d={STAR_PATH}></path>
+</svg>

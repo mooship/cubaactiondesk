@@ -1,0 +1,47 @@
+.footer {
+  margin-top: var(--space-8);
+  padding: var(--space-6) var(--gutter);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  font-size: 0.9375rem;
+}
+
+.inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+}
+
+.lead {
+  max-width: var(--measure);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+
+.links li {
+  margin: 0;
+}
+
+.links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
+}
+
+.legal {
+  max-width: var(--measure);
+  margin-bottom: 0;
+  color: var(--text-muted);
+}
+
+@media print {
+  .footer {
+    display: none;
+  }
+}

@@ -1,0 +1,24 @@
+id: global-health-partners
+name: Global Health Partners
+country: United States
+category: humanitarian
+website: https://ghpartners.org/
+donateUrl: https://ghpartners.org/sutures/
+registration:
+  number: "51-0201811"
+  body: "IRS (EIN, 501(c)(3)); listed as Global Health Partners Inc"
+  url: https://projects.propublica.org/nonprofits/organizations/510201811
+delivers: Buys and ships medical equipment and supplies (recently pacemakers, surgical sutures and neonatal equipment) to Cuban public hospitals.
+howMoneyReaches: "Gifts buy the equipment or supplies, which GHP ships to Cuba. GHP says it works in partnership with Cuba's Ministry of Health, and names logistics or co-delivery partners per campaign (Global Links for sutures; MediCuba Europa and the Saving Lives Campaign for pacemakers). Its pages do not describe the banking or customs route."
+recipientsInCuba: "Cuban public hospitals. The 2026 maternal and newborn initiative names two Havana maternity hospitals (Diez de Octubre and Ramón González Coro); earlier pages name the Calixto García and Juan Manuel Márquez hospitals."
+activeSince: 1994-01-01
+evidence:
+  - { label: "Pacemakers 2025 appeal: says 440 pacemakers delivered, 110 more on the way (page dated 2025-11-24)", url: "https://ghpartners.org/cuba2025/" }
+  - { label: "Neonatal and maternal initiative (June 2026): names two Havana hospitals; describes planned supplies, not a completed delivery", url: "https://ghpartners.org/cuba-2026/" }
+  - { label: "Cuba Medical Project (launched 1994; older page citing 2016 shipments and Calixto García hospital)", url: "https://ghpartners.org/our-projects/cuba-medical-project/" }
+  - { label: "History and accomplishments (says more than $131 million delivered; page dated 2019)", url: "https://ghpartners.org/about-us/history-accomplishments/" }
+  - { label: "Independent corroboration: mediCuba-Europe pacemaker flyer (2026) names GHP as its US partner for the pacemaker campaign", url: "https://www.medicuba-europa.org/wp-content/uploads/2026/04/FlyerXpacemakersX26.pdf" }
+onlinePayment: card
+paymentNotes: "Checked 2026-10-29 by reading the page without paying. The donate page embeds the GiveDirect form (donate.givedirect.org, campaign 16452). It offers one-time, monthly, quarterly and annual gifts, amounts in USD, Visa, Mastercard, American Express, Discover, UnionPay and JCB logos, and a country list that includes South Africa. Cheque to a New York address is the alternative. The page says gifts are tax-deductible within the guidelines of US law and that GiveDirect emails the receipt. This is a campaign page (sutures and neonatal appeal, year-end), so re-check it after the new year. GHP also has a general page at https://ghpartners.org/donate/, but it is not Cuba-only (it also names Nicaragua, Bolivia and El Salvador) and its text dates from about 2021, so it was not used."
+approved: true
+lastVerified: 2026-10-29

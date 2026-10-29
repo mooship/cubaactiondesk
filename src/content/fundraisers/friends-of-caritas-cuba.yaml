@@ -1,0 +1,21 @@
+id: friends-of-caritas-cuba
+name: Friends of Caritas Cuba (Friends of Caritas Cubana)
+country: United States
+category: faith-based
+website: https://friendsofcaritascubana.org/
+donateUrl: https://friendsofcaritascubana.org/donate-3/
+registration:
+  number: "20-3023256"
+  body: "IRS (EIN, 501(c)(3)); listed as Friends Of Caritas Cubana Corporation, Cambridge MA"
+  url: https://projects.propublica.org/nonprofits/organizations/203023256
+delivers: Raises funds to support the humanitarian and social services of Caritas Cuba, the Catholic Church's aid agency in Cuba (elderly, children, disability, HIV/AIDS programmes and hurricane relief).
+howMoneyReaches: null
+recipientsInCuba: "People served by Caritas Cuba programmes: older people, children at risk, people with disabilities, people living with HIV/AIDS and disaster victims, regardless of religion."
+activeSince: 1999-01-01
+evidence:
+  - { label: "About: founded 1999 as a Catholic Charities Boston committee, incorporated 2005; describes Caritas Cuba programmes", url: "https://friendsofcaritascubana.org/about-us/" }
+  - { label: "Home page: Caritas Cuba beneficiary counts for 2021 (33,564 people), as reported by the organisation", url: "https://friendsofcaritascubana.org/" }
+onlinePayment: unconfirmed
+paymentNotes: "Donate page offers fixed amounts and a monthly option; its code references PayPal. No statement about currencies or international donors was found. The site's events pages and statistics date from 2021-2022, apart from a 2026 Miami fundraiser page."
+approved: false
+lastVerified: 2026-10-29

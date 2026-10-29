@@ -1,0 +1,18 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "cubaactiondesk-link-checker",
+  "main": "./index.ts",
+  "compatibility_date": "2026-10-28",
+  "compatibility_flags": ["nodejs_compat"],
+  // Mondays at 03:00 UTC (05:00 in South Africa).
+  "triggers": { "crons": ["0 3 * * 1"] },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "cubaactiondesk",
+      // Same database as the site. Replaced with the real id after `wrangler d1 create` (see docs/LAUNCH-CHECKLIST.md).
+      "database_id": "00000000-0000-0000-0000-000000000000",
+    },
+  ],
+  "observability": { "enabled": true },
+}

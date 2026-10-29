@@ -1,0 +1,82 @@
+---
+import Base from "../../layouts/Base.astro";
+import prose from "../../styles/prose.module.css";
+import { breadcrumbList } from "../../lib/jsonld.ts";
+import { SITE } from "../../lib/site.ts";
+---
+
+<Base
+  title="How we check organisations"
+  description="The five checks an organisation must pass before Cuba Action Desk SA lists it, and how we test donation links every week."
+  path="/give/how-we-vet"
+  jsonLd={[
+    breadcrumbList(
+      [
+        { name: "Give", path: "/give" },
+        { name: "How we check organisations", path: "/give/how-we-vet" },
+      ],
+      Astro.site!,
+    ),
+  ]}
+>
+  <article class={prose.article}>
+    <p class={prose.crumbs}>
+      <a href="/give">Back to Give</a>
+    </p>
+    <h1>How we check organisations</h1>
+    <p class={prose.lede}>
+      We never collect money, so every donation goes straight from you to the organisation. That is why we check that an
+      organisation is real and delivers before we link to it.
+    </p>
+
+    <h2>The five checks</h2>
+    <p>An organisation is listed only if it:</p>
+    <ol>
+      <li>Is registered in its own country. We show its registration number.</li>
+      <li>Shows evidence of delivery, such as shipment reports, dated photos, or named partner hospitals.</li>
+      <li>Has been active for at least 12 months, or is run by an organisation we already list.</li>
+      <li>Says who receives the aid inside Cuba, and how the money gets there.</li>
+      <li>
+        Takes payment from abroad. Its own donation page must offer an online card form or a bank transfer. A South
+        African Visa or Mastercard works on any international card form. We do not make test payments, so whether a
+        payment goes through on the day is between you and your bank.
+      </li>
+    </ol>
+    <p>If an organisation fails any check, we do not list it.</p>
+
+    <h2>What each listing shows</h2>
+    <p>
+      Its name and country, its registration number, what it delivers, how money reaches Cuba, who receives the aid
+      there, the date we last checked it, and whether its donation link currently works.
+    </p>
+
+    <h2>Weekly link tests</h2>
+    <p>
+      Every week an automatic check visits each donation link. One failed check is noted. After two failed checks in a
+      row the listing shows “Link under review” and the donate button is switched off until the link works again.
+    </p>
+
+    <h2>A mix of organisations</h2>
+    <p>
+      We aim to include at least one church-based or non-political humanitarian option, so that people with different
+      views can all help.
+    </p>
+
+    <h2>Money, payments and risk</h2>
+    <ul>
+      <li>We are not paid by any organisation, and we take no commission.</li>
+      <li>
+        Some payment providers block or delay payments that mention Cuba. If yours fails, try the organisation's other
+        payment method.
+      </li>
+      <li>If you are a US citizen or resident, extra US rules may apply. Ask the organisation how it follows them.</li>
+      <li>This is not financial or legal advice.</li>
+    </ul>
+
+    <h2>Suggest an organisation</h2>
+    <p>
+      Know one we should check? Send the name and a link to{" "}
+      <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+    </p>
+  </article>
+</Base>

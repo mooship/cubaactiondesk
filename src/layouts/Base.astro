@@ -1,0 +1,112 @@
+---
+import "../styles/fonts.css";
+import "../styles/tokens.css";
+import "../styles/base.css";
+import bodyFont from "../../node_modules/@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2?url";
+import styles from "./Base.module.css";
+import Logo from "../components/Logo.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { speculationRulesHash, speculationRulesJson } from "../lib/speculation-rules.ts";
+import { SITE, absoluteUrl, normalizePath, pageTitle } from "../lib/site.ts";
+
+interface Props {
+  /** Page title without the site suffix. Omit on the home page. */
+  title?: string;
+  /** Under 155 characters. */
+  description: string;
+  /** Canonical path. Defaults to the current path. */
+  path?: string;
+  /** Path of the Markdown twin, when the page has one. */
+  markdownPath?: string;
+  type?: "website" | "article";
+  /** JSON-LD objects, serialised into script tags. */
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  path = Astro.url.pathname,
+  markdownPath,
+  type = "website",
+  jsonLd = [],
+  noindex = false,
+} = Astro.props;
+
+const site = Astro.site!;
+const fullTitle = pageTitle(title);
+const canonical = absoluteUrl(normalizePath(path), site);
+
+// One static preview image per section; everything else uses the default.
+const section = normalizePath(path).split("/", 2)[1] ?? "";
+const preview = ["learn", "act", "give"].includes(section) ? `/og/${section}.png` : "/og/default.png";
+
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.name,
+  url: absoluteUrl("/", site),
+  logo: absoluteUrl("/favicon.svg", site),
+  sameAs: [SITE.instagram],
+  email: SITE.contactEmail,
+};
+
+Astro.csp?.insertScriptHash(speculationRulesHash);
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {markdownPath && <link rel="alternate" type="text/markdown" href={markdownPath} />}
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+    <meta name="theme-color" content="#0B1F4D" />
+    <meta name="msapplication-TileColor" content="#0B1F4D" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={absoluteUrl(preview, site)} />
+    <meta property="og:image:alt" content={`${SITE.name}: ${title ?? SITE.tagline}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_ZA" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(organization)} />
+    {jsonLd.map((block) => (
+      <script type="application/ld+json" set:html={JSON.stringify(block)} />
+    ))}
+    <script type="speculationrules" set:html={speculationRulesJson} />
+  </head>
+  <body class={styles.body}>
+    <a class={styles.skipLink} href="#main">
+      Skip to main content
+    </a>
+    <header class={styles.header}>
+      <div class={styles.headerInner}>
+        <Logo />
+        <Nav />
+      </div>
+    </header>
+    <main id="main" class={styles.main} tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,59 @@
+id: letters-to-the-editor
+name: Letters to the editor (South African newspapers)
+channel: email
+addressRequired: true
+address: null
+postal: null
+sourceUrl: null
+lastVerified: null
+options:
+  - id: daily-maverick
+    name: Daily Maverick
+    address: letters@dailymaverick.co.za
+    postal: null
+    sourceUrl: https://www.dailymaverick.co.za/contact-us/
+    lastVerified: 2026-10-29
+    note: "The page does not state a word limit for letters. Keep it short."
+  - id: sunday-times
+    name: Sunday Times
+    address: letters@sundaytimes.co.za
+    postal: null
+    sourceUrl: https://www.timeslive.co.za/information/contact-us/
+    lastVerified: 2026-10-29
+    note: "No word limit stated. Paste the letter into the email body (no attachments) and add your name, street address and daytime phone number. The editor may edit letters."
+  - id: timeslive
+    name: TimesLIVE
+    address: letters@thetimes.co.za
+    postal: null
+    sourceUrl: https://www.timeslive.co.za/information/contact-us/
+    lastVerified: 2026-10-29
+    note: "No word limit stated. Paste the letter into the email body (no attachments) and add your name, street address and daytime phone number. The editor may edit letters."
+  - id: business-day
+    name: Business Day
+    address: letters@businessday.co.za
+    postal: null
+    sourceUrl: https://www.businessday.co.za/information/contact-us/
+    lastVerified: 2026-10-29
+    note: "Letters over 200 words may be shortened (stated on https://www.businessday.co.za/opinion/2026-05-13-letters-to-the-editor/). Paste into the email body, no attachments. Add your name, street address and daytime phone number. Anonymous letters are not published."
+  - id: the-citizen
+    name: The Citizen
+    address: letters@citizen.co.za
+    postal: null
+    sourceUrl: https://www.citizen.co.za/contact-us/
+    lastVerified: 2026-10-29
+    note: "Listed under 'Share your opinions'. No word limit stated."
+  - id: daily-dispatch
+    name: Daily Dispatch
+    address: letters@dispatch.co.za
+    postal: null
+    sourceUrl: https://www.dailydispatch.co.za/pages/contact-us/
+    lastVerified: 2026-10-29
+    note: "No word limit stated. Add your name, street address and daytime phone number. The editor may edit letters."
+  - id: iol-independent-media
+    name: IOL (Independent Media titles)
+    address: opinion@iol.co.za
+    postal: null
+    sourceUrl: https://iol.co.za/about-us/
+    lastVerified: 2026-10-29
+    note: "Listed as 'Opinion and Letters submissions' on the IOL About Us page. No word limit stated. Not a Cape Times-specific address."
+notes: "Verified outlets only. Not included because no current official letters address could be confirmed: Mail and Guardian, News24, Cape Times, Sowetan."

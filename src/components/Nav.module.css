@@ -1,0 +1,108 @@
+/* Mobile first: fixed bottom bar, safe-area aware. */
+.nav {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 10;
+  height: calc(var(--nav-h) + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+  background: var(--header-bg);
+  color: var(--on-dark);
+  border-top: 1px solid var(--border);
+}
+
+.list {
+  display: flex;
+  height: var(--nav-h);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  flex: 1;
+  margin: 0;
+}
+
+.link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 100%;
+  min-height: var(--target);
+  color: inherit;
+  font-size: 0.8125rem;
+  text-decoration: none;
+}
+
+.link:focus-visible {
+  outline-color: var(--focus-on-dark);
+  outline-offset: -4px;
+}
+
+/* Current page is shown by weight and a bar, not by colour alone. */
+.link[aria-current="page"] {
+  font-weight: 600;
+}
+
+.link[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 25% auto;
+  height: 3px;
+  background: currentColor;
+}
+
+.icon {
+  flex: none;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    position: static;
+    height: auto;
+    padding: 0;
+    background: transparent;
+    border: 0;
+  }
+
+  .list {
+    height: auto;
+    gap: var(--space-2);
+  }
+
+  .item {
+    flex: none;
+  }
+
+  .link {
+    flex-direction: row;
+    gap: var(--space-2);
+    height: auto;
+    min-height: var(--target);
+    padding: 0 var(--space-4);
+    font-size: var(--step-0);
+    border-radius: var(--radius-control);
+  }
+
+  .link:hover {
+    background: rgb(255 255 255 / 0.12);
+  }
+
+  .link:focus-visible {
+    outline-offset: 2px;
+  }
+
+  .link[aria-current="page"]::before {
+    inset: auto var(--space-4) 4px;
+    height: 3px;
+  }
+}
+
+@media print {
+  .nav {
+    display: none;
+  }
+}

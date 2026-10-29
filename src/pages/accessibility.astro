@@ -1,0 +1,50 @@
+---
+import Base from "../layouts/Base.astro";
+import prose from "../styles/prose.module.css";
+import { SITE } from "../lib/site.ts";
+---
+
+<Base
+  title="Accessibility"
+  description="The accessibility standard Cuba Action Desk SA aims for, what we have and have not tested, and how to report a barrier."
+  path="/accessibility"
+>
+  <article class={prose.article}>
+    <h1>Accessibility</h1>
+    <p class={prose.meta}>Last reviewed 29 October 2026.</p>
+    <p class={prose.lede}>We want everyone to be able to read this site and use the Action Desk.</p>
+
+    <h2>The standard we aim for</h2>
+    <p>
+      We aim to meet WCAG 2.2 level AA on every page. Where it is cheap and helps our readers, we go further: body text
+      contrast of 7:1, touch targets of at least 44 by 44 pixels, plain English written for a reader aged 13 to 15, and
+      links to explain unusual words.
+    </p>
+
+    <h2>How the site is built for this</h2>
+    <ul>
+      <li>It works without JavaScript. You can read, fill in the blanks, and open your email app or WhatsApp.</li>
+      <li>You can use everything with a keyboard, and there is a link to skip to the main content.</li>
+      <li>Colour is never the only signal. Status labels use words and an icon.</li>
+      <li>Light and dark themes follow your device settings, and the layout works at 400% zoom.</li>
+      <li>
+        Only one thing animates, the star when you mark an action done, and it stops if you ask your device to reduce
+        motion.
+      </li>
+      <li>Letters print cleanly on A4 without menus or buttons.</li>
+    </ul>
+
+    <h2>What we have and have not tested</h2>
+    <p>
+      We run automated accessibility checks on every page, in light and dark themes. Automated tools find only some of
+      the barriers. We have not yet finished testing by hand with TalkBack on Android, NVDA on Windows or VoiceOver on
+      iPhone, or with people who have disabilities. We will list the results here when that is done.
+    </p>
+
+    <h2>Report a barrier</h2>
+    <p>
+      If something does not work for you, tell us at <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+      Say which page and what happened, and how you would like us to reply. We will answer within 10 working days.
+    </p>
+  </article>
+</Base>

@@ -1,0 +1,10 @@
+id: your-network
+name: Three people you know
+channel: whatsapp
+addressRequired: false
+address: null
+postal: null
+sourceUrl: null
+lastVerified: null
+options: []
+notes: "The sender chooses the recipients in their own WhatsApp. The site stores no contact details."

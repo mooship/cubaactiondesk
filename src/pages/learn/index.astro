@@ -1,0 +1,49 @@
+---
+import Base from "../../layouts/Base.astro";
+import prose from "../../styles/prose.module.css";
+import { getLiveArticles } from "../../lib/content.ts";
+import { formatDate, isoDate } from "../../lib/format.ts";
+import { breadcrumbList } from "../../lib/jsonld.ts";
+import { articleReadingMinutes } from "../../lib/text.ts";
+
+const articles = await getLiveArticles();
+---
+
+<Base
+  title="Learn"
+  description="Short, sourced explainers on the US blockade of Cuba and South Africa's links to Cuba. Each takes under five minutes on a phone."
+  path="/learn"
+  jsonLd={[breadcrumbList([{ name: "Learn", path: "/learn" }], Astro.site!)]}
+>
+  <h1>Learn</h1>
+  <p class={prose.lede}>
+    Short explainers you can read on your phone in under five minutes. Every claim links to its source, and every
+    article shows the strongest case against it.
+  </p>
+
+  {articles.length === 0 ? (
+    <div class={prose.notice}>
+      <p>The first explainers are on their way. Please check back soon.</p>
+    </div>
+  ) : (
+    <ul class={prose.grid}>
+      {articles.map((a) => (
+        <li class={prose.notice}>
+          <h2 class={prose.cardTitle}>
+            <a href={`/learn/${a.id}`}>{a.data.title}</a>
+          </h2>
+          <p>{a.data.summary}</p>
+          <p class={prose.meta}>
+            {articleReadingMinutes(a.data.answer, a.body)} minute read. Reviewed{" "}
+            <time datetime={isoDate(a.data.reviewed)}>{formatDate(a.data.reviewed)}</time>.
+          </p>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  <p class={prose.meta}>
+    Unfamiliar words are explained in the <a href="/glossary">glossary</a>. The full list of sources is on the{" "}
+    <a href="/sources">sources page</a>.
+  </p>
+</Base>

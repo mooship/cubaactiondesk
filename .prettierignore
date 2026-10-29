@@ -1,0 +1,22 @@
+dist
+.astro
+.wrangler
+.lighthouseci
+.playwright-mcp
+playwright-report
+test-results
+node_modules
+tools/lint/node_modules
+package-lock.json
+tools/lint/package-lock.json
+worker-configuration.d.ts
+# Generated files
+public/_headers
+workers/link-checker/links.generated.json
+migrations
+# Prose and licences are not reformatted by a tool: the content check validates them
+src/content
+docs
+LICENSE
+LICENSE-CONTENT
+SPEC.md

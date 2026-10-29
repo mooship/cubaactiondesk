@@ -1,0 +1,70 @@
+---
+import Base from "../layouts/Base.astro";
+import ActionCard from "../components/ActionCard.astro";
+import prose from "../styles/prose.module.css";
+import home from "../styles/home.module.css";
+import { getLiveActions, getTargets, targetName } from "../lib/content.ts";
+import { SITE } from "../lib/site.ts";
+
+const actions = await getLiveActions();
+const featured = actions[0];
+const targets = await getTargets();
+
+const entries = [
+  {
+    href: "/act",
+    title: "Act",
+    text: "Ready-to-send emails and messages. Add your own words and send them from your own phone.",
+  },
+  {
+    href: "/learn",
+    title: "Learn",
+    text: "Short explainers with sources. Each takes under five minutes and includes the strongest case against its point of view.",
+  },
+  {
+    href: "/give",
+    title: "Give",
+    text: "Organisations that deliver aid to Cuba, checked by us. You pay them directly.",
+  },
+];
+---
+
+<Base description={SITE.tagline} path="/">
+  <h1>{SITE.tagline}</h1>
+  <p class={prose.lede}>
+    You do not have to go to an event. Pick something to do in two minutes, read a short sourced explainer, or find an
+    organisation that delivers aid. We do not collect your details.
+  </p>
+
+  {featured && (
+    <section class={home.featured} aria-labelledby="featured-heading">
+      <h2 id="featured-heading">Start here</h2>
+      <ActionCard
+        slug={featured.id}
+        title={featured.data.title}
+        summary={featured.data.summary}
+        timeMinutes={featured.data.timeMinutes}
+        targetName={targetName(targets, featured.data.target)}
+      />
+    </section>
+  )}
+
+  <ul class={prose.grid} data-columns="3">
+    {entries.map((e) => (
+      <li class={home.entry}>
+        <h2 class={prose.cardTitle}>
+          <a href={e.href}>{e.title}</a>
+        </h2>
+        <p>{e.text}</p>
+      </li>
+    ))}
+  </ul>
+
+  <p class={prose.meta}>
+    Read more about <a href="/about">who runs this site</a>.
+  </p>
+</Base>
+
+<script>
+  import "../scripts/done-stars.ts";
+</script>

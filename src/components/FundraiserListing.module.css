@@ -1,0 +1,46 @@
+.listing {
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+}
+
+.name {
+  margin: 0 0 var(--space-1);
+  font-size: var(--step-2);
+}
+
+.tags {
+  margin-bottom: var(--space-4);
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-4);
+}
+
+.facts dt {
+  font-weight: 600;
+}
+
+.facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.status {
+  margin-bottom: var(--space-4);
+}
+
+.donate > :first-child {
+  max-width: 100%;
+}
+
+.note {
+  margin: var(--space-2) 0 0;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}

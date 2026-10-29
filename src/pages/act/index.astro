@@ -1,0 +1,106 @@
+---
+export const prerender = false;
+
+import { env } from "cloudflare:workers";
+import Base from "../../layouts/Base.astro";
+import ActionCard from "../../components/ActionCard.astro";
+import Button from "../../components/Button.astro";
+import prose from "../../styles/prose.module.css";
+import { getDb } from "../../db/client.ts";
+import { getActionCounts } from "../../lib/counters.ts";
+import { getLiveActions, getTargets, targetName } from "../../lib/content.ts";
+import { breadcrumbList } from "../../lib/jsonld.ts";
+
+const actions = await getLiveActions();
+const targets = await getTargets();
+
+// A counter problem must never stop someone taking action.
+const counts = await getActionCounts(getDb(env.DB)).catch((): Record<string, number> => ({}));
+
+const targetOptions = [...new Set(actions.map((a) => a.data.target))]
+  .map((id) => ({ id, name: targetName(targets, id) }))
+  .toSorted((a, b) => a.name.localeCompare(b.name));
+
+const targetFilter = Astro.url.searchParams.get("target") ?? "";
+const timeFilter = Number(Astro.url.searchParams.get("time")) || 0;
+const shown = actions.filter(
+  (a) => (!targetFilter || a.data.target === targetFilter) && (!timeFilter || a.data.timeMinutes <= timeFilter),
+);
+---
+
+<Base
+  title="Take action"
+  description="Ready-to-send emails, letters and messages for South Africans who want to act on the US blockade of Cuba. Each takes a minute or two."
+  path="/act"
+  jsonLd={[breadcrumbList([{ name: "Act", path: "/act" }], Astro.site!)]}
+>
+  <h1>Take action</h1>
+  <p class={prose.lede}>
+    Each action takes a minute or two. Pick one, add your own words, and send it from your own email or WhatsApp. We
+    never see what you write.
+  </p>
+
+  {actions.length > 1 && (
+    <form class={prose.filter} method="get" action="/act">
+      <div>
+        <label for="f-target">Who it goes to</label>
+        <select id="f-target" name="target">
+          <option value="">Anyone</option>
+          {targetOptions.map((t) => (
+            <option value={t.id} selected={t.id === targetFilter}>
+              {t.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label for="f-time">Time you have</label>
+        <select id="f-time" name="time">
+          <option value="">Any</option>
+          <option value="2" selected={timeFilter === 2}>
+            Up to 2 minutes
+          </option>
+          <option value="5" selected={timeFilter === 5}>
+            Up to 5 minutes
+          </option>
+        </select>
+      </div>
+      <Button type="submit" variant="secondary">
+        Show actions
+      </Button>
+    </form>
+  )}
+
+  {shown.length === 0 ? (
+    <div class={prose.notice}>
+      <p>
+        {actions.length === 0 ? "No actions are open yet. Please check back soon." : "No actions match those choices."}
+      </p>
+      {actions.length > 0 && (
+        <p>
+          <a href="/act">Show all actions</a>
+        </p>
+      )}
+    </div>
+  ) : (
+    <ul class={prose.grid}>
+      {shown.map((a) => (
+        <li>
+          <ActionCard
+            headingLevel={2}
+            slug={a.id}
+            title={a.data.title}
+            summary={a.data.summary}
+            timeMinutes={a.data.timeMinutes}
+            targetName={targetName(targets, a.data.target)}
+            count={counts[a.id] ?? 0}
+          />
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>
+
+<script>
+  import "../../scripts/done-stars.ts";
+</script>

@@ -1,0 +1,11 @@
+id: your-mp
+name: Your Member of Parliament
+channel: email
+addressRequired: false
+address: null
+postal: null
+lookupUrl: https://www.pa.org.za/
+sourceUrl: null
+lastVerified: null
+options: []
+notes: "The sender finds their MP and the MP's email on the People's Assembly site (enter your address under 'Who represents you?'). Parliament's own contact page for members and constituency offices: https://www.parliament.gov.za/parliamentary-constituency-offices"

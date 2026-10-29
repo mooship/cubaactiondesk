@@ -1,0 +1,78 @@
+---
+import Base from "../layouts/Base.astro";
+import prose from "../styles/prose.module.css";
+import { SITE } from "../lib/site.ts";
+---
+
+<Base
+  title="About"
+  description="Who runs Cuba Action Desk SA, what we do and do not do, and how we stay independent."
+  path="/about"
+>
+  <article class={prose.article}>
+    <h1>About {SITE.shortName}</h1>
+    <p class={prose.lede}>
+      {SITE.name} is for South Africans who want to understand the US blockade of Cuba and act on it without going to an
+      event.
+    </p>
+
+    <h2>Who runs this</h2>
+    <p>
+      This is an independent, volunteer-run project in South Africa. It has no staff, no budget and no advertising, and
+      it is not endorsed by or part of any political party, company or organisation.
+    </p>
+
+    <h2>What the site does</h2>
+    <ul>
+      <li>
+        <a href="/act">Act</a>: emails and messages you can edit and send from your own email app or WhatsApp.
+      </li>
+      <li>
+        <a href="/learn">Learn</a>: short explainers. Every claim links to its source.
+      </li>
+      <li>
+        <a href="/give">Give</a>: organisations that deliver aid, which we check before listing them.
+      </li>
+    </ul>
+
+    <h2>What it does not do</h2>
+    <ul>
+      <li>We never collect or handle money. Donations go from you to the organisation.</li>
+      <li>There are no accounts, no comments and no mailing list.</li>
+      <li>
+        We never see your message or your name. <a href="/privacy">Read the privacy notice</a>.
+      </li>
+    </ul>
+
+    <h2>How we try to be fair</h2>
+    <p>
+      We prefer primary sources, such as United Nations records and government documents. Cuban government sources are
+      allowed but are labelled as such. Each explainer ends with the strongest case against its own point of view. We
+      review articles at least every six months, and we log every fix on the <a href="/corrections">corrections page</a>
+      .
+    </p>
+
+    <h2>Reuse</h2>
+    <p>
+      Written content is licensed{" "}
+      <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer">
+        CC BY 4.0
+      </a>
+      : you may share and adapt it if you credit {SITE.name}. The code is open source under the MIT licence, on{" "}
+      <a href={SITE.repo} rel="noopener noreferrer">
+        GitHub
+      </a>
+      .
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Corrections, suggestions and organisations we should check:{" "}
+      <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>. Follow{" "}
+      <a href={SITE.instagram} rel="noopener noreferrer">
+        {SITE.instagramHandle} on Instagram
+      </a>
+      .
+    </p>
+  </article>
+</Base>

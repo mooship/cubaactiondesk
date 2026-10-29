@@ -1,0 +1,20 @@
+id: cuba-solidarity-now
+name: Cuba Solidarity Now (CSN Emergency Fund NPC)
+country: South Africa
+category: solidarity
+website: https://cubasolidaritynow.com/
+donateUrl: https://cubasolidaritynow.com/get-involved
+registration:
+  number: "2026/215410/08"
+  body: "CIPC (South African non-profit company), number as printed by CSN on its own Get Involved page; not checked on the CIPC register, whose search now needs a BizPortal login"
+delivers: Says it funds three streams, medical supplies, solar energy systems and food, for Cuba. The site gives no list of what was bought or delivered.
+howMoneyReaches: "The site says all funds go to one emergency account held by the NPC, are pooled by stream until a shipment threshold is met, and are then released to a logistics partner for that supply run. It does not name the logistics partner, the Cuban receiving bodies or the banking route. It says volunteers and on-ground contacts in Cuba report needs and confirm delivery over a WhatsApp network."
+recipientsInCuba: "Not named by the organisation. The campaigns page says solar systems went to 2 clinics in Villa Clara province and that a project for the Neuroscience Centre is under way. The Mail & Guardian (2026-04-30) says contributions funded solar installations at a care centre for the elderly and a rural medical clinic."
+activeSince: 2026-02-01
+evidence:
+  - { label: "CSN campaigns page: 24 energy systems deployed, 2 clinics in Villa Clara, collecting 20 tons of food, medicines and solar systems (undated, no photos of delivery, no recipient names)", url: "https://cubasolidaritynow.com/campaigns" }
+  - { label: "Mail & Guardian, 2026-04-30: CSN launched in South Africa in February 2026; operates through a registered non-profit with funds managed by an independent law firm and accountants; two solar installations funded", url: "https://mg.co.za/news/south-africa/2026-04-29-africa-leads-efforts-to-help-ailing-cuba/" }
+onlinePayment: bank-transfer
+paymentNotes: "Checked 2026-10-29 by reading the CSN site without paying. The Get Involved page gives South African EFT details (First National Bank account in the name CSN EMERGENCY FUND NPC with the registration number, branch code and a SWIFT code) and asks donors to use their name as reference and email proof of payment to an address at a law firm (Adriaans Attorneys). Account numbers are not copied here. There is no card form and no payment processor; the Donate buttons link back to the same page. The page also says to email CSN to receive account details and a tracking reference before transferring, which conflicts with printing the details on the page."
+approved: false
+lastVerified: 2026-10-29

@@ -1,0 +1,147 @@
+---
+import { render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import ActionCard from "../../components/ActionCard.astro";
+import prose from "../../styles/prose.module.css";
+import { inlineWithCitations } from "../../lib/citations.ts";
+import {
+  getLiveArticles,
+  getRelatedLiveActions,
+  getSourcesInOrder,
+  getTargets,
+  targetName,
+} from "../../lib/content.ts";
+import { formatDate, isoDate } from "../../lib/format.ts";
+import { articleLd, breadcrumbList } from "../../lib/jsonld.ts";
+import { ORIGIN_LABELS } from "../../lib/origins.ts";
+import { articleReadingMinutes } from "../../lib/text.ts";
+
+export async function getStaticPaths() {
+  const articles = await getLiveArticles();
+  return articles.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+const sources = await getSourcesInOrder(data.sources);
+const related = await getRelatedLiveActions(data.relatedActions);
+const targets = await getTargets();
+const minutes = articleReadingMinutes(data.answer, entry.body);
+const path = `/learn/${entry.id}`;
+---
+
+<Base
+  title={data.title}
+  description={data.summary}
+  path={path}
+  markdownPath={`${path}.md`}
+  type="article"
+  jsonLd={[
+    breadcrumbList(
+      [
+        { name: "Learn", path: "/learn" },
+        { name: data.title, path },
+      ],
+      Astro.site!,
+    ),
+    articleLd(
+      {
+        title: data.title,
+        description: data.summary,
+        path,
+        published: data.published,
+        modified: data.reviewed,
+        citations: sources.map((s) => s.data.url),
+      },
+      Astro.site!,
+    ),
+  ]}
+>
+  <article class={prose.article}>
+    <p class={prose.crumbs}>
+      <a href="/learn">All explainers</a>
+    </p>
+    <h1>{data.title}</h1>
+    <ul class={prose.metaList}>
+      <li>{minutes} minute read</li>
+      <li>
+        Last reviewed <time datetime={isoDate(data.reviewed)}>{formatDate(data.reviewed)}</time>
+      </li>
+    </ul>
+
+    <div class={prose.answer}>
+      <p set:html={inlineWithCitations(data.answer, data.sources)} />
+    </div>
+
+    <div class={prose.body}>
+      <Content />
+    </div>
+
+    {data.counterarguments.length > 0 && (
+      <aside class={prose.counter} aria-labelledby="counter-heading">
+        <h2 id="counter-heading">Main counterarguments</h2>
+        <ul>
+          {data.counterarguments.map((text) => (
+            <li set:html={inlineWithCitations(text, data.sources)} />
+          ))}
+        </ul>
+      </aside>
+    )}
+
+    <section class={prose.sources} aria-labelledby="sources-heading">
+      <h2 id="sources-heading">Sources</h2>
+      <ol>
+        {sources.map((s, i) => (
+          <li id={`source-${i + 1}`}>
+            <a href={s.data.url} rel="noopener noreferrer">
+              {s.data.title}
+            </a>
+            , {s.data.publisher}
+            {s.data.published ? `, ${formatDate(s.data.published)}` : ""}
+            <span class={prose.originTag}>{ORIGIN_LABELS[s.data.origin]}</span>
+            {s.data.archiveUrl && (
+              <>
+                {" "}
+                (
+                <a href={s.data.archiveUrl} rel="noopener noreferrer">
+                  archived copy
+                </a>
+                )
+              </>
+            )}
+          </li>
+        ))}
+      </ol>
+      <p class={prose.meta}>
+        Something wrong? <a href="/corrections">Tell us</a>. We log every correction publicly.
+      </p>
+    </section>
+
+    {related.length > 0 && (
+      <section class={prose.related} aria-labelledby="act-heading">
+        <h2 id="act-heading">What you can do</h2>
+        <ul class={prose.grid}>
+          {related.map((a) => (
+            <li>
+              <ActionCard
+                slug={a.id}
+                title={a.data.title}
+                summary={a.data.summary}
+                timeMinutes={a.data.timeMinutes}
+                targetName={targetName(targets, a.data.target)}
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <section class={prose.related} aria-labelledby="give-heading">
+      <h2 id="give-heading">Help directly</h2>
+      <p>
+        See <a href="/give">organisations that deliver aid to Cuba</a>, and how we check them.
+      </p>
+    </section>
+  </article>
+</Base>

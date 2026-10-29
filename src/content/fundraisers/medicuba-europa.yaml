@@ -1,0 +1,21 @@
+id: medicuba-europa
+name: mediCuba-Europa (Swiss-based network of European solidarity associations)
+country: Switzerland
+category: solidarity
+website: https://www.medicuba-europa.org/
+donateUrl: https://www.medicuba-europa.org/
+registration: null
+delivers: "Runs three campaigns for Cuba's public health system, as listed on its site and 2026 flyers: pacemakers (With a Hand on the Heart, partnered with the US group Global Health Partners), solar power for hospitals and health institutes (Energy for Life) and heparin and other medicines. It is a European NGO network and is separate from MEDICUBA S.A., the Cuban state import company."
+howMoneyReaches: "Its 2026 pacemaker flyer says the Cuban health authorities requested the devices in April 2024, that the devices are delivered to the Ministry of Public Health (MINSAP), and that MINSAP distributes them to hospitals nationwide under a plan agreed in advance. The solar flyer lists named projects built with partner associations (see evidence). Donations are paid into a mediCuba-Europa bank account in Switzerland. No page read describes how money or goods are cleared into Cuba."
+recipientsInCuba: "The Ministry of Public Health (MINSAP) for pacemakers, distributed to hospitals across the country. The Energy for Life flyer names the Latin American School of Medicine, the Center for Molecular Immunology, the Finlay Vaccine Institute, the Faustino Pérez provincial hospital in Matanzas, the William Soler paediatric cardiocentre and polyclinic, and the Borrás Marfán paediatric hospital."
+activeSince: 1997-01-01
+evidence:
+  - { label: "Pacemaker campaign flyer 2026 (English PDF): 760 devices delivered by end 2025, 50 more to MINSAP in 2026, MINSAP distributes; partner Global Health Partners", url: "https://www.medicuba-europa.org/wp-content/uploads/2026/04/FlyerXpacemakersX26.pdf" }
+  - { label: "Energy for Life flyer 2026 (English PDF): named solar projects, some already in operation since 2025", url: "https://www.medicuba-europa.org/wp-content/uploads/2026/04/FlyerXenergyX26.pdf" }
+  - { label: "Newsletter post 2026-03-13: funds secured for 960 of 1,000 pacemakers; mentions growing international financial restrictions", url: "https://www.medicuba-europa.org/2026/03/13/la-solidaridad-navega-hacia-cuba/" }
+  - { label: "Statutes (Spanish PDF, 2011): Swiss Civil Code art. 60 association, seat Miglieglia (Ticino)", url: "https://www.medicuba-europa.org/wp-content/uploads/2016/10/2011_mediCauba_estatutos.pdf" }
+  - { label: "mediCuba-Suisse affiliations page: mediCuba-Europe formed in 1997 on mediCuba-Suisse's initiative", url: "https://medicuba.ch/fr/affiliations" }
+onlinePayment: bank-transfer
+paymentNotes: "Checked 2026-10-29 by reading the site without paying. The Donaciones (Become a donor) section on the home page gives bank transfer details only: a euro IBAN and a Swiss franc IBAN at Banca dello Stato del Cantone Ticino, account holder mediCuba-Europa, with a SWIFT code. There is no card form. The Swiss franc IBAN and SWIFT code on the home page differ from those on the 2026 flyers and the March 2026 newsletter, so confirm the account by email (medicuba-europa@ticino.com) before sending. Account numbers are not copied here. The same sanctions caution as for mediCuba-Suisse applies. No register entry for mediCuba-Europa itself was found (its statutes put the seat at Miglieglia, Ticino, its flyers use Via San Bernardino 5, Ponte Tresa), so registration stays null; the Zurich member mediCuba-Suisse has a verifiable entry and its own file."
+approved: false
+lastVerified: 2026-10-29

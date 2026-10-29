@@ -1,0 +1,22 @@
+id: ifco-pastors-for-peace
+name: IFCO / Pastors for Peace
+country: United States
+category: faith-based
+website: https://ifconews.org/
+donateUrl: https://ifconews.org/donate
+registration:
+  number: "13-2590548"
+  body: "IRS (EIN, 501(c)(3)); listed as Inter-religious Foundation For Community Organization Inc"
+  url: https://projects.propublica.org/nonprofits/organizations/132590548
+delivers: Ships containers of medicines, medical and surgical supplies, food, bicycles and other goods to Cuba through its Friendshipment Caravans.
+howMoneyReaches: "Donations pay to assemble and ship the container (boxes of supplies). IFCO's pages do not describe the shipping route or the Cuban receiving process."
+recipientsInCuba: "Its home page says the 2026 summer container was headed for churches and community hubs in Cuba. No named recipient organisation is given."
+activeSince: 1992-01-01
+evidence:
+  - { label: "Shipment page: current appeal for a second container (60,000 lb, goal $75,000), contents listed", url: "https://ifconews.org/shipment" }
+  - { label: "Solidarity campaigns: says 31 caravans to Cuba since 1992", url: "https://ifconews.org/solidarity-campaigns" }
+  - { label: "Home page: states a container was sent in summer 2026 (no report or photos)", url: "https://ifconews.org/" }
+onlinePayment: unconfirmed
+paymentNotes: "Online donation form is hosted on secure.qgiv.com; other routes are Zelle and cheque to a New York PO box, which are impractical from South Africa. IFCO's pages ask donors not to write 'Cuba' in payment memos or comments (the donate page says such payments are subject to screening) and suggest 'Humanitarian Aid' instead. Pages say gifts are tax-deductible under US law. No statement about currencies or international donors was found."
+approved: false
+lastVerified: 2026-10-29

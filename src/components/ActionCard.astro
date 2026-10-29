@@ -1,0 +1,38 @@
+---
+import styles from "./ActionCard.module.css";
+import Star from "./Star.astro";
+import { minutes, peopleCount } from "../lib/format.ts";
+
+interface Props {
+  slug: string;
+  title: string;
+  summary: string;
+  timeMinutes: number;
+  targetName: string;
+  /** People who marked it done. Omitted when zero. */
+  count?: number;
+  /** The card title is an h3 inside a section. Use 2 when the cards sit straight under the page h1. */
+  headingLevel?: 2 | 3;
+}
+const { slug, title, summary, timeMinutes, targetName, count = 0, headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as "h2" | "h3";
+---
+
+<article class={styles.card} data-action-card={slug}>
+  <Heading class={styles.title}>
+    <a class={styles.link} href={`/act/${slug}`}>
+      {title}
+    </a>
+  </Heading>
+  <p class={styles.summary}>{summary}</p>
+  <ul class={styles.meta}>
+    <li>{minutes(timeMinutes)}</li>
+    <li>To: {targetName}</li>
+    {count > 0 && <li>{peopleCount(count)} took this action</li>}
+  </ul>
+  <!-- Revealed by the Action Desk script when this device has marked the action done. -->
+  <span class={styles.done} data-done-mark hidden>
+    <Star class={styles.star} />
+    <span>Done on this device</span>
+  </span>
+</article>

@@ -1,0 +1,95 @@
+/* Design tokens. Component modules reference these, never raw hex values. */
+
+:root {
+  /* Brand palette */
+  --navy: #0b1f4d;
+  --red: #c8102e;
+  --white: #ffffff;
+  --mist: #eef1f6;
+  --ink: #1a1f2b;
+  --green: #007749;
+
+  /* Semantic colours: light */
+  --bg: var(--white);
+  --surface: var(--mist);
+  --text: var(--ink);
+  --text-muted: #434a5c;
+  --link: var(--navy);
+  --border: #b7bfd0;
+  --focus: var(--navy);
+  --on-dark: var(--white);
+  --focus-on-dark: var(--white);
+  --header-bg: var(--navy);
+  --btn-primary-bg: var(--red);
+  --btn-primary-text: var(--white);
+  --btn-secondary-bg: var(--white);
+  --btn-secondary-text: var(--navy);
+  --btn-secondary-border: var(--navy);
+  --success: var(--green);
+  --warning-bg: #fff4d6;
+  --warning-text: #5c4300;
+  --placeholder-mark: #fff0b3;
+
+  /* Typography */
+  --font-display: "Oswald Variable", "Oswald Fallback", "Arial Narrow", Arial, sans-serif;
+  --font-body: "Public Sans Variable", "Public Sans Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --step-0: 1.0625rem; /* 17px */
+  --step-1: 1.25rem; /* 20px */
+  --step-2: 1.5rem; /* 24px */
+  --step-3: 1.875rem; /* 30px */
+  --step-4: 2.375rem; /* 38px */
+  --leading-body: 1.55;
+  --measure: 68ch;
+
+  /* Spacing scale: 4, 8, 12, 16, 24, 32, 48, 64 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  --radius-control: 6px;
+  --radius-card: 12px;
+
+  --gutter: var(--space-4);
+  --nav-h: 56px;
+  --target: 44px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --page-max: 72rem;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --gutter: var(--space-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter: var(--space-6);
+  }
+}
+
+/* Dark mode: ground navy, surfaces lighter navy, red stays. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--navy);
+    --surface: #16306e;
+    --text: var(--mist);
+    --text-muted: #c5ccdd;
+    --link: var(--white);
+    --border: #4a62a0;
+    --focus: #ffd84d;
+    --header-bg: #071433;
+    --btn-secondary-bg: transparent;
+    --btn-secondary-text: var(--white);
+    --btn-secondary-border: var(--white);
+    --success: #7fe0b0;
+    --warning-bg: #3d3000;
+    --warning-text: #ffe9a6;
+    --placeholder-mark: #5a4a00;
+  }
+}

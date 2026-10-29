@@ -1,0 +1,69 @@
+---
+export const prerender = false;
+
+import { env } from "cloudflare:workers";
+import Base from "../../layouts/Base.astro";
+import FundraiserListing from "../../components/FundraiserListing.astro";
+import prose from "../../styles/prose.module.css";
+import { getDb } from "../../db/client.ts";
+import { getApprovedFundraisers } from "../../lib/content.ts";
+import { breadcrumbList } from "../../lib/jsonld.ts";
+import { getLinkRows, type LinkRow } from "../../lib/link-checks.ts";
+import { statusFromRow } from "../../lib/linkstate.ts";
+
+const fundraisers = await getApprovedFundraisers();
+
+// If the status table cannot be read, listings show as "not checked yet" rather than hiding.
+const rows = await getLinkRows(getDb(env.DB)).catch(() => new Map<string, LinkRow>());
+---
+
+<Base
+  title="Give"
+  description="Organisations that deliver aid to Cuba, checked by us. You pay them directly; this site never handles money."
+  path="/give"
+  markdownPath="/give.md"
+  jsonLd={[breadcrumbList([{ name: "Give", path: "/give" }], Astro.site!)]}
+>
+  <h1>Give</h1>
+  <p class={prose.lede}>
+    These organisations deliver aid to Cuba. You pay them directly. We link to them and never collect money ourselves.
+  </p>
+  <p>
+    We list an organisation only if it passes <a href="/give/how-we-vet">our checks</a>. We test every donation link
+    each week, and pause the button if a link stops working.
+  </p>
+
+  {fundraisers.length === 0 ? (
+    <div class={prose.notice}>
+      <h2 style="margin-top: 0">No organisations are listed yet</h2>
+      <p>
+        We have not finished checking any organisation, and we will not list one until we have. Read{" "}
+        <a href="/give/how-we-vet">how we check</a>. In the meantime you can <a href="/act">take action</a> or{" "}
+        <a href="/learn">learn more</a>.
+      </p>
+    </div>
+  ) : (
+    <ul class={prose.grid}>
+      {fundraisers.map((f) => (
+        <li>
+          <FundraiserListing id={f.id} data={f.data} status={statusFromRow(rows.get(f.data.donateUrl))} />
+        </li>
+      ))}
+    </ul>
+  )}
+
+  <section class={prose.article} aria-labelledby="caveats-heading">
+    <h2 id="caveats-heading">Before you donate</h2>
+    <ul>
+      <li>
+        Some payment providers block or delay payments that mention Cuba. If a payment fails, try the organisation’s
+        other payment method.
+      </li>
+      <li>
+        If you are a US citizen or resident, extra US rules may apply to what you can send to Cuba. Ask the organisation
+        how it follows them before you donate.
+      </li>
+      <li>This is not financial or legal advice.</li>
+    </ul>
+  </section>
+</Base>

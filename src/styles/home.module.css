@@ -1,0 +1,20 @@
+.featured {
+  max-width: var(--measure);
+  margin: var(--space-6) 0;
+}
+
+.featured h2 {
+  margin-top: 0;
+  font-size: var(--step-2);
+}
+
+.entry {
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+}
+
+.entry p:last-child {
+  margin-bottom: 0;
+}

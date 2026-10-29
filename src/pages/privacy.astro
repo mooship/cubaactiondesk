@@ -1,0 +1,113 @@
+---
+import Base from "../layouts/Base.astro";
+import prose from "../styles/prose.module.css";
+import { SITE } from "../lib/site.ts";
+
+const UPDATED = "29 October 2026";
+---
+
+<Base
+  title="Privacy"
+  description="What Cuba Action Desk SA collects and does not collect, who processes it, and your rights under POPIA."
+  path="/privacy"
+>
+  <article class={prose.article}>
+    <h1>Privacy notice</h1>
+    <p class={prose.meta}>Last updated {UPDATED}.</p>
+    <p class={prose.lede}>
+      In short, we never see your message, your name or your town. We set no cookies, and we keep no accounts or mailing
+      list.
+    </p>
+
+    <h2>Who is responsible</h2>
+    <p>
+      {SITE.name} is an independent, volunteer-run project in South Africa. For anything about your personal
+      information, write to <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+    </p>
+
+    <h2>What stays on your device</h2>
+    <ul>
+      <li>
+        What you type on an action. Your name, town and message are put together in your browser and sent from your own
+        email app or WhatsApp. They never reach our server. If you turn JavaScript off, the “Update message” button
+        reloads the page with what you typed in the web address; we do not log or store web addresses, and Cloudflare
+        Web Analytics does not log them either.
+      </li>
+      <li>
+        Which actions you finished. The star on an action card is saved in your browser's local storage on your device
+        only. Clear your browser data to remove it.
+      </li>
+    </ul>
+
+    <h2>What we store</h2>
+    <p>Nothing here can identify you.</p>
+    <ul>
+      <li>
+        Action counters. When you press “Mark as done”, we add one to that action's total. The request has no body and
+        we store only the action name and the total.
+      </li>
+      <li>Link checks. Once a week we test each donation link and keep whether it worked.</li>
+      <li>
+        Outbound clicks. When you press a donate button we count one click for that organisation, and nothing about you.
+      </li>
+    </ul>
+
+    <h2>Abuse protection</h2>
+    <p>
+      To stop automated abuse, the counter is rate limited per network address by Cloudflare. We do not store network
+      addresses.
+    </p>
+
+    <h2>Cloudflare</h2>
+    <p>
+      We use Cloudflare to host the site, serve it quickly, protect it, and forward email. Cloudflare processes your
+      network address to deliver pages, as any host does, under{" "}
+      <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer">
+        its own privacy policy
+      </a>
+      . Cloudflare may process data outside South Africa. For page views and loading speed we use Cloudflare Web
+      Analytics. Cloudflare's documentation says it collects page-load timing metrics, does not collect or use visitors'
+      personal data, and does not track individual end users across the sites it serves.
+    </p>
+
+    <h2>When you email us</h2>
+    <p>
+      Email to {SITE.contactEmail} is forwarded by Cloudflare Email Routing to a private inbox. We use it only to reply
+      and to deal with what you wrote, and we keep it only as long as that takes, then delete it.
+    </p>
+
+    <h2>Other sites</h2>
+    <p>
+      Email apps, WhatsApp and the organisations we link to have their own privacy practices. When you leave this site,
+      theirs apply.
+    </p>
+
+    <h2>Your rights under POPIA</h2>
+    <p>
+      Under the Protection of Personal Information Act you may ask what personal information we hold about you, ask us
+      to correct or delete it, and object to how we use it. Write to{" "}
+      <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+    </p>
+
+    <h2>Complaints</h2>
+    <p>If you are not happy, you may complain to the Information Regulator of South Africa.</p>
+    <ul>
+      <li>
+        General enquiries: <a href="mailto:enquiries@inforegulator.org.za">enquiries@inforegulator.org.za</a>, toll free
+        0800 017 160, 010 023 5200
+      </li>
+      <li>
+        POPIA complaints: <a href="mailto:POPIAComplaints@inforegulator.org.za">POPIAComplaints@inforegulator.org.za</a>
+      </li>
+      <li>Woodmead North Office Park, 54 Maxwell Drive, Woodmead, Johannesburg, 2191</li>
+      <li>
+        <a href="https://inforegulator.org.za/" rel="noopener noreferrer">
+          inforegulator.org.za
+        </a>
+      </li>
+    </ul>
+
+    <h2>Changes</h2>
+    <p>If this notice changes, we update the date at the top.</p>
+  </article>
+</Base>

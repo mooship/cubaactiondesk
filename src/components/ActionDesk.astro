@@ -1,0 +1,244 @@
+---
+import styles from "./ActionDesk.module.css";
+import Button from "./Button.astro";
+import Star from "./Star.astro";
+import { computeSend } from "../lib/action-desk.ts";
+import { peopleCount } from "../lib/format.ts";
+import type { ActionData } from "../content/schemas.ts";
+import type { Contact } from "../lib/targets.ts";
+
+interface Props {
+  slug: string;
+  channel: ActionData["channel"];
+  subject: string;
+  /** The text with `{link}` filled in; the sender's blanks are still `{key}`. */
+  template: string;
+  placeholders: ActionData["placeholders"];
+  values: Record<string, string>;
+  /** The text rendered on the server from `values`. */
+  message: string;
+  contacts: Contact[];
+  selectedContact: string | undefined;
+  lookupUrl: string | undefined;
+  count: number;
+  next: { slug: string; title: string }[];
+  image: string | undefined;
+  imageAlt: string | undefined;
+}
+
+const {
+  slug,
+  channel,
+  subject,
+  template,
+  placeholders,
+  values,
+  message,
+  contacts,
+  selectedContact,
+  lookupUrl,
+  count,
+  next,
+  image,
+  imageAlt,
+} = Astro.props;
+
+const contact = contacts.find((c) => c.id === selectedContact) ?? contacts[0];
+const send = computeSend({ text: message, to: contact?.address ? [contact.address] : [], subject });
+const usesEmail = channel === "email";
+const usesWhatsApp = channel === "whatsapp";
+const canPrint = channel === "email" || channel === "letter";
+const AUTOCOMPLETE: Record<string, string> = { name: "name", town: "address-level2" };
+const needsRecipientNote = usesEmail && !contact?.address;
+---
+
+<div
+  class={styles.desk}
+  data-desk
+  data-slug={slug}
+  data-subject={subject}
+  data-template={template}
+  data-contacts={JSON.stringify(contacts.map((c) => ({ id: c.id, address: c.address })))}
+  data-next={JSON.stringify(next)}
+>
+  <section class={styles.compose} aria-labelledby="fill-heading">
+    <h2 id="fill-heading" class={styles.heading}>
+      1. Fill in the blanks
+    </h2>
+    <form class={styles.form} method="get" action={`/act/${slug}`}>
+      {contacts.length > 1 && (
+        <div class={styles.field}>
+          <label for="f-to">Send to</label>
+          <select id="f-to" name="to" data-contact>
+            {contacts.map((c) => (
+              <option value={c.id} selected={c.id === contact?.id}>
+                {c.name}
+                {c.note ? ` (${c.note})` : ""}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+      {placeholders.map((p) => (
+        <div class={styles.field}>
+          <label for={`f-${p.key}`}>{p.label}</label>
+          {p.hint && (
+            <p id={`h-${p.key}`} class={styles.hint}>
+              {p.hint}
+            </p>
+          )}
+          {p.multiline ? (
+            <textarea
+              id={`f-${p.key}`}
+              name={p.key}
+              rows="3"
+              maxlength="1000"
+              data-key={p.key}
+              aria-describedby={p.hint ? `h-${p.key}` : undefined}
+            >
+                {values[p.key] ?? ""}
+              </textarea>
+          ) : (
+            <input
+              id={`f-${p.key}`}
+              name={p.key}
+              type="text"
+              maxlength="1000"
+              value={values[p.key] ?? ""}
+              autocomplete={AUTOCOMPLETE[p.key]}
+              data-key={p.key}
+              aria-describedby={p.hint ? `h-${p.key}` : undefined}
+            />
+          )}
+          {p.kind === "target" && lookupUrl && (
+            <p class={styles.hint}>
+              <a class={styles.lookup} href={lookupUrl} rel="noopener noreferrer">
+                Look this up
+              </a>
+            </p>
+          )}
+        </div>
+      ))}
+      <!-- Without JavaScript this refreshes the message with your blanks filled in. -->
+      <div data-nojs-only>
+        <Button type="submit" variant="secondary">
+          Update message
+        </Button>
+      </div>
+    </form>
+
+    <h2 id="message-heading" class={styles.heading}>
+      2. Check and edit your message
+    </h2>
+    {(usesEmail || channel === "letter") && (
+      <p class={styles.subject}>
+        <strong>Subject:</strong> {subject}
+      </p>
+    )}
+    <p id="message-help" class={styles.hint}>
+      Change anything you like. A message in your own words is far more likely to be read than a copied one.
+    </p>
+    <label class={styles.srOnly} for="message">
+      Your message
+    </label>
+    <textarea
+      id="message"
+      class={styles.message}
+      rows="16"
+      aria-describedby="message-help"
+      data-message
+    >{message}</textarea>
+    <p class={styles.count}>
+      <span data-count>{send.characters} characters</span>
+    </p>
+    <p class={styles.unfilled} data-unfilled hidden={send.unfilled.length === 0}>
+      Still to fill in: <strong data-unfilled-list>{send.unfilled.map((k) => `{${k}}`).join(", ")}</strong>
+    </p>
+    <p class={styles.hint} data-edited hidden>
+      You edited the message by hand, so the boxes above no longer change it.
+      <button type="button" class={styles.linkButton} data-reset>
+        Start again from the template
+      </button>
+    </p>
+  </section>
+
+  <aside class={styles.send} aria-labelledby="send-heading">
+    <h2 id="send-heading" class={styles.heading}>
+      3. Send it
+    </h2>
+    {image && (
+      <figure class={styles.figure}>
+        <img src={image} alt={imageAlt ?? ""} width="1080" height="1350" loading="lazy" decoding="async" />
+        <figcaption>
+          <a href={image} download>
+            Download the image
+          </a>
+        </figcaption>
+      </figure>
+    )}
+    <ul class={styles.buttons}>
+      {usesEmail && (
+        <li data-email-item hidden={send.email.tooLong}>
+          <Button href={send.email.url ?? "#"} data-email>
+            Open in email
+          </Button>
+        </li>
+      )}
+      {usesWhatsApp && (
+        <li>
+          <Button href={send.whatsappUrl} external data-whatsapp>
+            Share on WhatsApp
+          </Button>
+        </li>
+      )}
+      <li data-js-only hidden>
+        <Button variant="secondary" data-copy>
+          <span data-copy-label>Copy message</span>
+        </Button>
+      </li>
+      {canPrint && (
+        <li data-js-only hidden>
+          <Button variant="secondary" data-print-button>
+            Print
+          </Button>
+        </li>
+      )}
+    </ul>
+    {usesEmail && (
+      <p class={styles.hint} data-email-note hidden={!send.email.tooLong}>
+        This message is too long for the email button. Use “Copy message”, then paste it into your email.
+      </p>
+    )}
+    {needsRecipientNote && <p class={styles.hint}>You add the recipient’s email address in your email app.</p>}
+    {contact?.address && usesEmail && (
+      <p class={styles.hint}>
+        To: <span class={styles.address}>{contact.address}</span>
+      </p>
+    )}
+    {contact?.postal && (
+      <p class={styles.hint}>
+        By post: <span class={styles.address}>{contact.postal}</span>
+      </p>
+    )}
+    <p class={styles.hint}>We never see your message or your name. It goes from your own email app or WhatsApp.</p>
+
+    <div class={styles.doneBox} data-js-only hidden>
+      <button type="button" class={styles.doneButton} data-done aria-pressed="false">
+        <span class={styles.doneStar} aria-hidden="true">
+          <Star />
+        </span>
+        <span data-done-label>Mark as done</span>
+      </button>
+      <p class={styles.hint} data-total hidden={count === 0}>
+        <span data-total-text>{count > 0 ? `${peopleCount(count)} took this action.` : ""}</span>
+      </p>
+      <p class={styles.next} data-next-box hidden></p>
+    </div>
+
+    <p class={styles.srOnly} role="status" aria-live="polite" data-status></p>
+  </aside>
+
+  <div class={styles.printOnly} data-print>
+    {message}
+  </div>
+</div>

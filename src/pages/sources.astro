@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import prose from "../styles/prose.module.css";
+import { formatDate } from "../lib/format.ts";
+import { ORIGIN_LABELS } from "../lib/origins.ts";
+
+const sources = (await getCollection("sources")).toSorted(
+  (a, b) => a.data.publisher.localeCompare(b.data.publisher) || a.data.title.localeCompare(b.data.title),
+);
+---
+
+<Base
+  title="Sources"
+  description="The master list of sources behind every explainer and action on Cuba Action Desk SA."
+  path="/sources"
+>
+  <article class={prose.article}>
+    <h1>Sources</h1>
+    <p class={prose.lede}>
+      Every factual claim on this site links to one of these. Cuban, US and South African government sources are
+      labelled, so you can weigh them yourself.
+    </p>
+
+    {sources.length === 0 ? (
+      <p>No sources are listed yet.</p>
+    ) : (
+      <ul>
+        {sources.map((s) => (
+          <li id={s.id}>
+            <a href={s.data.url} rel="noopener noreferrer">
+              {s.data.title}
+            </a>
+            , {s.data.publisher}
+            {s.data.published ? `, ${formatDate(s.data.published)}` : ""}
+            <span class={prose.originTag}>{ORIGIN_LABELS[s.data.origin]}</span>
+            <br />
+            <span class={prose.meta}>
+              We read it on {formatDate(s.data.accessed)}.
+              {s.data.archiveUrl && (
+                <>
+                  {" "}
+                  <a href={s.data.archiveUrl} rel="noopener noreferrer">
+                    Archived copy
+                  </a>
+                  .
+                </>
+              )}
+            </span>
+          </li>
+        ))}
+      </ul>
+    )}
+  </article>
+</Base>

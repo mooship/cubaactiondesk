@@ -1,0 +1,10 @@
+id: dirco
+name: Department of International Relations and Cooperation (DIRCO)
+channel: email
+addressRequired: true
+address: info@dirco.gov.za
+postal: "Private Bag X152, Pretoria, 0001"
+sourceUrl: https://www.gov.za/about-government/contact-directory/departments/international-relations-and-cooperation-department
+lastVerified: 2026-10-29
+options: []
+notes: "Listed as the department's main email on the gov.za contact directory, and as 'General info' on https://www.dirco.gov.za/contact-us-2/. DIRCO's own contact page also has a Send us a Message form. Ministry address (Minister@dirco.gov.za) is on https://www.gov.za/about-government/contact-directory/ministers/international-relations-and-cooperation-ministry but is not used here."

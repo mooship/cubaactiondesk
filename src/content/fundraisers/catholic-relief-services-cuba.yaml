@@ -1,0 +1,23 @@
+id: catholic-relief-services-cuba
+name: Catholic Relief Services (Cuba response, with Caritas Cuba)
+country: United States
+category: faith-based
+website: https://www.crs.org/
+donateUrl: https://www.crs.org/donate/hurricane-melissa
+registration:
+  number: "13-5563422"
+  body: "IRS (EIN, 501(c)(3)); printed as the Federal Tax Exemption ID Number in the footer of every crs.org page read, and listed on ProPublica Nonprofit Explorer (tax exemption issued March 1946)"
+  url: https://projects.propublica.org/nonprofits/organizations/135563422
+delivers: Works in Cuba through Caritas Cuba, the Catholic Church's aid network. After Hurricane Melissa (landfall 2025-10-28) CRS and Caritas Cuba gave food kits, hygiene supplies, water treatment materials and solar lanterns. CRS says it has delivered more than 32 million dollars of medical and emergency supplies in Cuba since 1993.
+howMoneyReaches: "CRS says it works in partnership with Caritas Cuba and local Church partners (dioceses, Caritas teams, parish networks) and that it provided shelter materials, food, hygiene supplies and cash support after the hurricane. Its pages do not describe the banking route into Cuba. Its Cuba page says Caritas Cuba does not have official legal recognition but is accepted by the Cuban government. The gift form says contributions will be used for the purpose specified by the donor, but that CRS may use them for its general purposes if it judges that purpose unnecessary, undesirable, impractical or impossible."
+recipientsInCuba: "Caritas Cuba and its diocesan members (programmes in all 11 dioceses and nationally in Havana) deliver to vulnerable households: older adults, people with disabilities and families with small children are named. CRS's Cuba page says 6,000 households have received food kits and about 20,000 are expected; its 2026-07-21 release says the Hurricane Melissa response focuses on four dioceses in eastern Cuba."
+activeSince: 1993-01-01
+evidence:
+  - { label: "CRS in Cuba page: partner Caritas Cuba, more than 32 million dollars of supplies delivered since 1993, 6,000 households reached with food kits after Hurricane Melissa, about 20,000 expected", url: "https://www.crs.org/where-we-work/latin-america-caribbean/cuba" }
+  - { label: "CRS news release 2026-07-21: 60 million dollar US State Department award to CRS and Caritas Cuba for food and hygiene supplies to nearly 200,000 households, expected to begin later in 2026", url: "https://www.crs.org/news/crs-receives-60-million-humanitarian-response-cuba" }
+  - { label: "Catholic World Report, 2026-02-12: seven containers of US aid reach Santiago de Cuba, to be distributed by Caritas Cuba (third-party report, not CRS)", url: "https://www.catholicworldreport.com/2026/02/12/caritas-cuba-receives-7-containers-of-humanitarian-aid-from-the-united-states/" }
+  - { label: "Archdiocese of Miami: 2026 airlifts funded by a US government programme with CRS, distributed by Caritas Cuba (third-party report, not CRS)", url: "https://www.miamiarch.org/CatholicDiocese.php?op=Article_adom-hurricane-melissa-aid-to-cuba-continues-into-2026" }
+onlinePayment: card
+paymentNotes: "Checked 2026-10-29 in a browser without paying. The old URL crs.org/help/cuba-emergency now returns 404. CRS has no Cuba-only donation page: the Donate to Emergency Relief button on its Cuba page leads to a general emergency fund page that does not mention Cuba. The nearest real page is the Hurricane Melissa appeal, https://www.crs.org/donate/hurricane-melissa, headed Help Families in Cuba, Haiti and Jamaica, so a gift is not Cuba-only and CRS may reallocate it. That page has amounts from 50 to 1,000 dollars (USD), a Pay with Card section with card number, expiry and security code fields (VGS secure fields, Stripe), PayPal and Google Pay, plus phone and mail options. The page says donations are tax-deductible to the full extent allowable under the law (US 501(c)(3)). Funding note: CRS's own 2026-07-21 release says its expanded Cuba response is funded by a 60 million dollar US State Department award, and earlier third-party reports said the 2026 container and airlift deliveries were US government funded, so those deliveries do not show what a private gift does. CRS's Cuba page does not say how much of the Melissa response came from private donations."
+approved: false
+lastVerified: 2026-10-29

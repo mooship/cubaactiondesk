@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import prose from "../styles/prose.module.css";
+
+const terms = (await getCollection("glossary")).toSorted((a, b) => a.data.term.localeCompare(b.data.term));
+const sources = new Map((await getCollection("sources")).map((s) => [s.id, s]));
+---
+
+<Base
+  title="Glossary"
+  description="Plain-English definitions of the words used in the Cuba blockade debate, such as embargo, OFAC and the Helms-Burton Act."
+  path="/glossary"
+>
+  <article class={prose.article}>
+    <h1>Glossary</h1>
+    <p class={prose.lede}>Plain-English meanings for the words you will meet when reading about the blockade.</p>
+    {terms.length === 0 ? (
+      <p>No terms are listed yet.</p>
+    ) : (
+      <dl class={prose.term}>
+        {terms.map((t) => (
+          <>
+            <dt id={t.id}>{t.data.term}</dt>
+            <dd>
+              {t.data.definition}
+              {t.data.sources.length > 0 && (
+                <span class={prose.meta}>
+                  {" "}
+                  Source:{" "}
+                  {t.data.sources.map((id, i) => (
+                    <>
+                      {i > 0 && ", "}
+                      <a href={sources.get(id)?.data.url ?? "/sources"} rel="noopener noreferrer">
+                        {sources.get(id)?.data.publisher ?? id}
+                      </a>
+                    </>
+                  ))}
+                  .
+                </span>
+              )}
+            </dd>
+          </>
+        ))}
+      </dl>
+    )}
+  </article>
+</Base>

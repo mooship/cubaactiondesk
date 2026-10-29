@@ -1,0 +1,17 @@
+id: national-network-on-cuba
+name: National Network on Cuba (2027 Transnational Material Aid Caravan)
+country: United States
+category: solidarity
+website: https://nnoc.org/
+donateUrl: https://www.paypal.com/donate?campaign_id=RWBRYEQDA5HF4
+registration: null
+delivers: Plans a 2027 material aid caravan to take medical supplies to Cuba; its Action for Cuba Committees also collect medicines for a car caravan with a charter flight from Florida.
+howMoneyReaches: "Home page says donations fund storage, transport, shipping logistics and the direct purchase of medical supplies. No route into Cuba is described."
+recipientsInCuba: "Home page says aid goes to communities bearing the weight of shortages; no recipient organisation or institution is named."
+activeSince: 1991-09-21
+evidence:
+  - { label: "Medical aid caravan page: collection and charter-flight plan for March and April (no delivery report)", url: "https://nnoc.org/medical-aid-caravan/" }
+onlinePayment: unconfirmed
+paymentNotes: "NNOC is a coalition of member organisations; the pages read give no registration number or tax status. The PayPal campaign page rendered only partly, so the beneficiary name was not seen. Other listed routes are Venmo and Zelle (US-only methods), a GoFundMe, and a note asking donors not to put 'Cuba' in the payment description. Not recommended for listing."
+approved: false
+lastVerified: 2026-10-29

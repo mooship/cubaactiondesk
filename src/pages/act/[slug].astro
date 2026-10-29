@@ -1,0 +1,124 @@
+---
+export const prerender = false;
+
+import { getEntry } from "astro:content";
+import { env } from "cloudflare:workers";
+import Base from "../../layouts/Base.astro";
+import ActionDesk from "../../components/ActionDesk.astro";
+import prose from "../../styles/prose.module.css";
+import { getDb } from "../../db/client.ts";
+import { getActionCount } from "../../lib/counters.ts";
+import { fillTemplate, parseValues } from "../../lib/action-desk.ts";
+import { getLiveActions, getSourcesInOrder } from "../../lib/content.ts";
+import { formatDate } from "../../lib/format.ts";
+import { breadcrumbList } from "../../lib/jsonld.ts";
+import { absoluteUrl } from "../../lib/site.ts";
+import { verifiedContacts } from "../../lib/targets.ts";
+
+const { slug } = Astro.params;
+const entry = slug ? await getEntry("actions", slug) : undefined;
+if (!entry || entry.data.status !== "live") return new Response(null, { status: 404 });
+
+const { data } = entry;
+const target = await getEntry("targets", data.target);
+const contacts = target?.data.addressRequired ? verifiedContacts(target.data) : [];
+
+const values = parseValues(
+  Astro.url.searchParams,
+  data.placeholders.map((p) => p.key),
+);
+const link = data.shareArticle ? absoluteUrl(`/learn/${data.shareArticle}`, Astro.site!) : undefined;
+const body = entry.body ?? "";
+const template = fillTemplate(body, {}, link);
+const message = fillTemplate(body, values, link);
+
+// A counter problem must never stop someone taking action.
+const count = await getActionCount(getDb(env.DB), entry.id).catch(() => 0);
+
+const next = (await getLiveActions())
+  .filter((a) => a.id !== entry.id)
+  .map((a) => ({ slug: a.id, title: a.data.title }));
+const sources = await getSourcesInOrder(data.sources);
+
+// Prefilled URLs carry what the visitor typed, so they must not be stored by any cache.
+if (Astro.url.search) Astro.response.headers.set("Cache-Control", "private, no-store");
+---
+
+<Base
+  title={data.title}
+  description={data.summary}
+  path={`/act/${entry.id}`}
+  markdownPath={`/act/${entry.id}.md`}
+  jsonLd={[
+    breadcrumbList(
+      [
+        { name: "Act", path: "/act" },
+        { name: data.title, path: `/act/${entry.id}` },
+      ],
+      Astro.site!,
+    ),
+  ]}
+>
+  <p class={prose.crumbs}>
+    <a href="/act">All actions</a>
+  </p>
+  <h1>{data.title}</h1>
+  <p class={prose.lede}>{data.summary}</p>
+  <ul class={prose.context}>
+    {data.context.map((line) => (
+      <li>{line}</li>
+    ))}
+  </ul>
+  <p class={prose.target}>
+    Goes to: {target?.data.name ?? data.target}
+    {target?.data.lookupUrl && contacts.length === 0 && (
+      <>
+        {" "}
+        (
+        <a href={target.data.lookupUrl} rel="noopener noreferrer">
+          find the address
+        </a>
+        )
+      </>
+    )}
+  </p>
+
+  <ActionDesk
+    slug={entry.id}
+    channel={data.channel}
+    subject={data.subject ?? ""}
+    template={template}
+    placeholders={data.placeholders}
+    values={values}
+    message={message}
+    contacts={contacts}
+    selectedContact={Astro.url.searchParams.get("to") ?? undefined}
+    lookupUrl={target?.data.lookupUrl}
+    count={count}
+    next={next}
+    image={data.image}
+    imageAlt={data.imageAlt}
+  />
+
+  {sources.length > 0 && (
+    <section aria-labelledby="sources-heading" class={prose.sources}>
+      <h2 id="sources-heading">Where the facts in this message come from</h2>
+      <ol>
+        {sources.map((s) => (
+          <li>
+            <a href={s.data.url} rel="noopener noreferrer">
+              {s.data.title}
+            </a>
+            , {s.data.publisher}
+            {s.data.published ? `, ${formatDate(s.data.published)}` : ""}
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
+  <p class={prose.meta}>Last reviewed {formatDate(data.reviewed)}.</p>
+</Base>
+
+<script>
+  import "../../scripts/action-desk.ts";
+</script>

@@ -1,0 +1,23 @@
+id: canadian-red-cross-cuba-appeal
+name: Canadian Red Cross, Cuba Humanitarian Crisis Appeal
+country: Canada
+category: humanitarian
+website: https://www.redcross.ca/
+donateUrl: https://www.canadahelps.org/en/charities/the-canadian-red-cross-society/campaign/cuba-humanitarian-crisis-appeal/?version=2
+registration:
+  number: "119219814RR0001"
+  body: "Canada Revenue Agency (registered charity business number)"
+  url: https://www.canadahelps.org/en/charities/the-canadian-red-cross-society/campaign/cuba-humanitarian-crisis-appeal/?version=2
+delivers: Funds Red Cross relief supplies, humanitarian experts and recovery work for people in Cuba affected by fuel shortages, power cuts and Hurricane Melissa.
+howMoneyReaches: "The Canadian Red Cross says funds support the Red Cross to deliver relief, aid recovery and build resilience, working with its local partner the Cuban Red Cross. It does not say how an individual gift is routed or which share goes to Cuba."
+recipientsInCuba: "Families and communities affected by the crisis, served through the Cuban Red Cross (relief items, medical services, psychosocial support); health centres, nursing homes and schools are named as affected."
+# Earliest dated Canadian Red Cross page found about its Cuba work (blog post dated 2017-10-26 on a team visit to the Havana branch of the Cuban Red Cross after Hurricane Irma, saying support would continue). The Red Cross fact sheet says only "a long history of working with our partners in the Americas, including the Cuban Red Cross". This is not a founding date.
+activeSince: 2017-10-01
+evidence:
+  - { label: "Canadian Red Cross appeal fact sheet (PDF): partner Cuban Red Cross; fundraising costs capped at 8 per cent; says the Red Cross has a long history of working with the Cuban Red Cross", url: "https://cdn.redcross.ca/prodmedia/crc/azure/waystodonate/community-fundraising-resources/en/09-0226ph-cuba-humanitarian-crisis-appeal_-case-en-fa.pdf" }
+  - { label: "Canadian Red Cross blog, 2017-10-26: team visits the Cuban Red Cross in Havana after Hurricane Irma and says it will keep supporting it", url: "https://www.redcross.ca/blog/2017/10/red-cross-vice-president-of-international-operations-reflections-from-cuba" }
+  - { label: "IFRC operation update #3 on the Hurricane Melissa emergency appeal (issued 2026-10-04): context for the Cuban Red Cross response, not proof that Canadian appeal funds were used in it", url: "https://go-api.ifrc.org/api/DownloadFile/94814/MDRCU013-OU3" }
+onlinePayment: card
+paymentNotes: "Checked 2026-10-29 without paying. The appeal page is on CanadaHelps (a registered Canadian charity acting as processor) and shows Donate Now, Donate Monthly and Donate Securities with amounts of $75, $150, $200 or another amount, then a Continue to Complete Donation button. The card fields are on the next step, which was not opened because that button submits a form. CanadaHelps help pages (read the same day) say it accepts Visa, Visa Debit, Mastercard, American Express, PayPal, Google Pay and Apple Pay, not EFTs or cheques; that donors outside Canada can give; that all gifts are processed in Canadian dollars, so the card is charged in CAD and the card issuer converts it; and that it issues Canadian tax receipts only (check whether a Canadian receipt is usable in South Africa). The Red Cross's own pages loaded in a real browser after a short wait but the donation itself is made on CanadaHelps."
+approved: true
+lastVerified: 2026-10-29

@@ -1,0 +1,19 @@
+id: cuba-vive-appeal
+name: Cuba Vive medical aid appeal (Cuba Solidarity Campaign, UK)
+country: United Kingdom
+category: solidarity
+website: https://cubavive.org.uk/
+donateUrl: https://cubavive.org.uk/donate/
+registration: null
+delivers: Buys medical supplies and equipment (and, since 2026, emergency food) in the UK and abroad and ships them to Cuba in containers and flights.
+howMoneyReaches: "Funds buy supplies, which are shipped to Cuba. The Cuba Solidarity Campaign (CSC) says it works with the UK charity Jacob's Well Appeal for sorting, storage, packing and shipping, and that MEDICUBA, part of Cuba's Ministry of Public Health, oversees distribution of donations in Cuba. MEDICUBA's own site describes MEDICuba S.A. as the Cuban state company that clears (nationalises) donated goods for the health system, with the Ministry of Public Health and the Foreign Ministry authorising each donation."
+recipientsInCuba: "Cuban hospitals and polyclinics, supplied as requested by the Cuban health workers' union (SNTS) and the Ministry of Health; the food appeal reaches families."
+activeSince: 2024-01-01
+evidence:
+  - { label: "Aid delivered: 15 consignments listed February 2025 to August 2026, with contents and dates", url: "https://cubavive.org.uk/aid-delivered-to-cuba/" }
+  - { label: "Report on the first containers arriving in Mariel and handover to MEDICUBA and SNTS (2025)", url: "https://cubavive.org.uk/life-saving-medical-aid-arrives-in-cuba/" }
+  - { label: "About: launched January 2024; who requested what", url: "https://cubavive.org.uk/about/" }
+onlinePayment: card
+paymentNotes: "Checked 2026-10-29 without paying. The Donate Here button opens the Cuba Vive Medical Aid Appeal page on shop.cuba-solidarity.org.uk with fixed amounts of 10, 25, 50, 100, 250 and 500 pounds (the page says to call or email for another amount or a BACS transfer). Choosing an amount adds it to a shopping cart (the cart form posts to ww10.aitsafe.com); the cart and the card fields were not opened. The shop's own Ordering page says you pay by credit or debit card (most major cards, not American Express), that CSC currently uses Nochex Ltd to process online card payments, that all transactions are in UK sterling, and that memberships and donations from outside the UK are welcome. Other routes on the Cuba Vive page: cheque payable to CSC (Cuba Vive), card by phone, BACS by email request. CSC is not on the Charity Commission register and no company of that name was found on Companies House, so UK charity tax relief is unlikely."
+approved: false
+lastVerified: 2026-10-29

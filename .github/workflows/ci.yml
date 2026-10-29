@@ -1,0 +1,115 @@
+name: CI
+
+# Checks only. The site deploys through Cloudflare Workers Builds (see docs/LAUNCH-CHECKLIST.md), so there are no
+# Cloudflare secrets in this repository.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  WRANGLER_SEND_METRICS: "false"
+
+jobs:
+  check:
+    name: Lint, typecheck, unit tests, build checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          # The ESLint tools are a separate package (tools/lint) so they can use TypeScript 6 while the site uses 7.
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            tools/lint/package-lock.json
+      - run: npm ci
+      # Installs tools/lint, then Prettier (check only), then ESLint.
+      - run: npm run lint:ci
+      # Generated files must match their sources.
+      - run: npx drizzle-kit generate
+      # `add -N` makes a newly generated migration show up in the diff.
+      - run: git add -N migrations/ && git diff --exit-code migrations/
+      - run: npm run build:headers && git diff --exit-code public/_headers
+      - run: npm run build:links && git diff --exit-code workers/link-checker/links.generated.json
+      # Binding types come from wrangler.jsonc and are not committed.
+      - run: npx wrangler types
+      - run: npm run check:content
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npm run check:output
+      - run: npm run check:budgets
+      - run: npm run check:html
+
+  e2e:
+    name: Playwright E2E and accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # Cache the browser download per Playwright version; system libraries are installed either way.
+      - id: playwright-version
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+      - id: playwright-cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
+      - if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+      - if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+      # playwright.config.ts builds the site, applies the migration to a local D1 and starts `wrangler dev`.
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+  lighthouse:
+    name: Lighthouse (mobile and desktop)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx wrangler d1 migrations apply DB --local
+      # Each config starts `wrangler dev` itself. Median of 3 runs: 100 for accessibility, best practices and SEO, 95 or more
+      # for performance.
+      - run: npm run lhci
+      - run: npm run lhci:desktop
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: failure()
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/
+          retention-days: 7

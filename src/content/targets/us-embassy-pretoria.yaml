@@ -1,0 +1,10 @@
+id: us-embassy-pretoria
+name: U.S. Embassy Pretoria
+channel: letter
+addressRequired: true
+address: null
+postal: "U.S. Embassy Pretoria, 877 Pretorius Street, Arcadia, Pretoria"
+sourceUrl: https://za.usembassy.gov/contact/
+lastVerified: 2026-10-29
+options: []
+notes: "The embassy's contact page (read 2026-10-29) lists the postal location and phone +27 12 431 4000, but no general-enquiries email address and no contact form for Pretoria. The only email addresses on it are American Citizen Services addresses for the consulates and a visa technical-support address, which are not for this purpose. So no email address is recorded. Check the live page for a form or email before launch."
