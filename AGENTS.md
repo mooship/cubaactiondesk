@@ -101,6 +101,9 @@ Do not reopen these without being asked.
 Nothing on the site or in the docs may read as AI-generated. This covers articles, action templates, page copy, the
 README and docs. Use the `humanizer` skill when writing or reviewing prose.
 
+- British English (South African usage): organisation, licence (noun), programme, defence, centre, colour, favour,
+  towards. Dates read "30 October 2026". Keep US spellings inside quotations, proper names, titles of sources, URLs and
+  source ids (`hklaw-ofac-cuba-program-2026-10`).
 - No em dashes or en dashes.
 - No "not X but Y" contrasts, no staged one-line closers, no forced groups of three.
 - No bold as decoration, and none of the stock words (crucial, pivotal, landscape, testament and the like).
