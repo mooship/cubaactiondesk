@@ -1,0 +1,41 @@
+name: Suggest an organisation
+description: An organisation that delivers aid to Cuba and could be listed on the Give page.
+title: "Organisation: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We list an organisation only if it passes the five checks on [How we check organisations](https://cuba.timothybrits.co.za/give/how-we-vet). Fill in what you know, and leave the rest blank.
+  - type: input
+    id: name
+    attributes:
+      label: Name and country
+    validations:
+      required: true
+  - type: input
+    id: website
+    attributes:
+      label: Its website
+    validations:
+      required: true
+  - type: input
+    id: registration
+    attributes:
+      label: Registration number and the register it appears on
+      description: For example a charity or company number, with a link to the register entry.
+  - type: input
+    id: donate
+    attributes:
+      label: Its own donation page
+      description: The page on its own site, not a third-party fundraiser.
+    validations:
+      required: true
+  - type: textarea
+    id: delivery
+    attributes:
+      label: Evidence that it delivers
+      description: Shipment reports, dated photos, named partner hospitals, or anything else you have read.
+  - type: textarea
+    id: recipients
+    attributes:
+      label: Who receives the aid in Cuba, and how does the money get there?

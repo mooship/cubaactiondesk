@@ -1,0 +1,25 @@
+name: Report a bug
+description: Something is broken, or a barrier stops you using the site.
+title: "Bug: "
+body:
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect instead?
+  - type: input
+    id: page
+    attributes:
+      label: Which page?
+      placeholder: /act/ask-your-mp-un-vote
+  - type: input
+    id: device
+    attributes:
+      label: Your device and browser
+      description: Include any assistive technology, such as TalkBack or NVDA.
+      placeholder: Samsung A15, Chrome

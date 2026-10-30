@@ -100,6 +100,12 @@ Deployment goes through Cloudflare Workers Builds, so there are no Cloudflare se
 command applies D1 migrations before it builds. Step by step, with the dashboard settings that cannot be set from code, in
 [docs/LAUNCH-CHECKLIST.md](docs/LAUNCH-CHECKLIST.md).
 
+## Contributing
+
+Corrections, new organisations, recipients and code are all welcome. [CONTRIBUTING.md](CONTRIBUTING.md) says how to help,
+[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) sets out how we treat each other, and [SECURITY.md](SECURITY.md) explains how to
+report a vulnerability privately.
+
 ## Licence
 
 Code is [MIT](LICENSE). Written content (articles, action templates, glossary) is

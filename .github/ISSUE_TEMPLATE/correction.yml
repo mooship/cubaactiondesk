@@ -1,0 +1,36 @@
+name: Correct a fact
+description: Something on the site is wrong, out of date or unsourced.
+title: "Correction: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for checking our work. Fixes are logged on the public corrections page.
+  - type: input
+    id: page
+    attributes:
+      label: Which page?
+      description: The address or title of the page.
+      placeholder: /learn/un-votes
+    validations:
+      required: true
+  - type: textarea
+    id: says
+    attributes:
+      label: What does it say now?
+      description: Quote the sentence or figure.
+    validations:
+      required: true
+  - type: textarea
+    id: right
+    attributes:
+      label: What should it say?
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Where can we read this?
+      description: Links to the pages you read. A primary source such as a UN record or a government document is best.
+    validations:
+      required: true

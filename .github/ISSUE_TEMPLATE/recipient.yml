@@ -1,0 +1,35 @@
+name: Suggest a recipient
+description: Someone a visitor could write to, such as an MP, a committee or a newspaper.
+title: "Recipient: "
+body:
+  - type: input
+    id: who
+    attributes:
+      label: Who is it?
+      description: A person, office or publication.
+    validations:
+      required: true
+  - type: input
+    id: address
+    attributes:
+      label: Email address or WhatsApp number
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: The page where that address is published
+      description: We only list contact details that the person or office has published for the public.
+    validations:
+      required: true
+  - type: input
+    id: checked
+    attributes:
+      label: The date you checked it
+      placeholder: 30 October 2026
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why would a message to them matter?
