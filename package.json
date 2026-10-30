@@ -33,6 +33,7 @@
     "build:headers": "node scripts/build-headers.ts",
     "build:links": "node scripts/build-link-list.ts",
     "build:images": "node scripts/build-images.ts",
+    "build:avatars": "node scripts/build-profile-pictures.ts",
     "lhci": "lhci autorun --config=lighthouserc.cjs",
     "prepare": "lefthook install --force || echo \"Skipped git hooks (not a git repository)\"",
     "lhci:desktop": "lhci autorun --config=lighthouserc.desktop.cjs"

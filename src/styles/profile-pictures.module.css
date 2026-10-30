@@ -1,0 +1,44 @@
+/* The profile pictures page: a grid of round previews, each with its download button, and a list of apps. */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-4);
+  margin: var(--space-6) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.preview {
+  width: min(100%, 10rem);
+  height: auto;
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+
+.apps {
+  margin: 0 0 var(--space-5);
+}
+
+.apps dt {
+  margin-top: var(--space-4);
+  font-weight: 600;
+}
+
+.apps dd {
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

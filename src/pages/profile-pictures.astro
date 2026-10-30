@@ -1,0 +1,76 @@
+---
+import Base from "../layouts/Base.astro";
+import Button from "../components/Button.astro";
+import prose from "../styles/prose.module.css";
+import styles from "../styles/profile-pictures.module.css";
+import { PICTURE_SIZE, PREVIEW_SIZE, PROFILE_PICTURES, picturePath, previewPath } from "../lib/profile-pictures.ts";
+
+const apps = [
+  ["Facebook", "Open your profile, tap your current photo, and choose to update your profile picture."],
+  ["Instagram", "In the phone app, open your profile, tap Edit profile, and change the photo."],
+  ["Threads", "Open your profile, tap Edit profile, then tap your photo and pick the file."],
+  ["X", "Open your profile, tap Edit profile, then tap your photo and pick the file. Save the change."],
+  ["WhatsApp", "Open Settings, tap your profile photo, tap Edit, and choose the picture from your gallery."],
+  ["Telegram", "Open Settings, tap your photo, and choose to set a new photo."],
+  ["Signal", "Open Settings, tap your avatar or name, tap to edit the photo, and choose Photo."],
+] as const;
+---
+
+<Base
+  title="Profile pictures"
+  description="Free profile pictures for Facebook, Instagram, Threads, X, WhatsApp, Telegram and Signal. Download one and set it as your own photo."
+  path="/profile-pictures"
+>
+  <h1>Profile pictures</h1>
+  <p class={prose.lede}>
+    A profile picture shows the people who see your name where you stand. Pick one below, download it, and set it as
+    your photo in any of the apps listed underneath.
+  </p>
+
+  <ul class={styles.grid}>
+    {PROFILE_PICTURES.map((picture) => (
+      <li class={styles.item}>
+        <img
+          class={styles.preview}
+          src={previewPath(picture)}
+          alt={picture.alt}
+          width={PREVIEW_SIZE}
+          height={PREVIEW_SIZE}
+          decoding="async"
+        />
+        <Button href={picturePath(picture)} variant="secondary" download>
+          Download {picture.label.toLowerCase()}
+        </Button>
+      </li>
+    ))}
+  </ul>
+
+  <div class={prose.article}>
+    <p>
+      Each download is a square PNG, {PICTURE_SIZE} by {PICTURE_SIZE} pixels. All seven apps show your photo in a
+      circle. The star sits well inside that circle, so none of it is cut off. The previews above are round for the same
+      reason.
+    </p>
+
+    <h2>How to set it</h2>
+    <p>
+      Save the picture to your phone first. App menus change from one version to the next, so treat these as the general
+      steps. If a menu looks different, search the app's help for "change profile picture".
+    </p>
+    <dl class={styles.apps}>
+      {apps.map(([name, steps]) => (
+        <>
+          <dt>{name}</dt>
+          <dd>{steps}</dd>
+        </>
+      ))}
+    </dl>
+    <p>Who can see your photo depends on each app's privacy settings.</p>
+
+    <h2>Using the pictures</h2>
+    <p>
+      Anyone can use these as a profile picture. Using one does not mean we endorse you or that you speak for us. Cuba
+      Action Desk SA is an independent project, and you can read more <a href="/about">about it</a>.
+    </p>
+  </div>
+</Base>

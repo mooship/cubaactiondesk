@@ -62,7 +62,8 @@ npx wrangler dev --port 8799
 
 Generated files are committed and a test or CI step fails if they drift: `public/_headers`
 (`npm run build:headers`), `workers/link-checker/links.generated.json` (`npm run build:links`),
-the icons and images (`npm run build:icons`, `npm run build:images`) and the migrations in `migrations/`
+the icons and images (`npm run build:icons`, `npm run build:images`), the profile pictures
+(`npm run build:avatars`) and the migrations in `migrations/`
 (`npm run db:generate`).
 
 ## Adding content
