@@ -26,7 +26,7 @@ In this repository (issues, pull requests, comments and reviews) and anywhere el
 
 The maintainer, Timothy Brits (GitHub: mooship), looks after the project and decides what to do. A first slip usually gets a friendly word. Serious or repeated problems get a comment removed, an issue closed, or a person blocked from the repository.
 
-To report a problem, email hello@cubaactiondesk.org.za, or use GitHub's "Report content" on the comment. We keep the identity of the person who reports private. If you think we got a decision wrong, reply to the message and we will look again.
+To report a problem, email cubaactiondesk@icloud.com, or use GitHub's "Report content" on the comment. We keep the identity of the person who reports private. If you think we got a decision wrong, reply to the message and we will look again.
 
 ## Where this comes from
 

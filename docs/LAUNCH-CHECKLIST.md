@@ -21,7 +21,7 @@ and the content checks are finished and pass locally (see the README for the com
 - [ ] **Global Health Partners.** Approved. The donate page is a year-end campaign page (`/sutures/`); check it again after
       the new year.
 - [x] **The responsible party under POPIA.** Timothy Brits, named on the privacy page. Section 18 of POPIA also expects a
-      way to contact the responsible party, which is the `hello@` address; it must exist before launch.
+      way to contact the responsible party, which is the contact address in `src/lib/site.ts` (for now a personal iCloud address).
 - [x] **How long contact-address emails are kept.** Deleted as soon as the matter is dealt with.
 - [ ] A short legal read of the privacy notice and the "before you donate" wording (US persons, payment providers).
 
@@ -65,8 +65,10 @@ or Page Rules that match only `cuba.timothybrits.co.za`, or wait until the proje
 ## 3. When the project gets its own domain (cubaactiondesk.org.za)
 
 - [ ] Register the `.org.za` domain and point its nameservers at Cloudflare.
-- [ ] **Set up Email Routing so `hello@cubaactiondesk.org.za` really exists.** It is printed in the footer, on About, Privacy,
-      Accessibility and Corrections, and in the structured data. Until it works, change `contactEmail` in `src/lib/site.ts`.
+- [ ] **Set up Email Routing so `hello@cubaactiondesk.org.za` really exists.** Until then the contact address is cubaactiondesk@icloud.com. It
+      is printed in the footer, on About, Privacy, Accessibility, Corrections and How we check organisations, and in the
+      structured data, all from `contactEmail` in `src/lib/site.ts`. When the routing works, change that value, the
+      address in `SECURITY.md` and `CODE_OF_CONDUCT.md`, and the privacy sentence under "When you email us".
 - [ ] Set `SITE_URL=https://cubaactiondesk.org.za` for the build (or change the default in `astro.config.mjs`), then run
       `npm run build:images` so the preview images show the new host.
 - [ ] Add the domain as a custom domain on the Worker, then turn on HSTS preload once everything is stable.

@@ -23,7 +23,7 @@ Other sites that share our Cloudflare zone are not covered, and neither are the 
 
 Use GitHub's private reporting: [open a private security report](https://github.com/mooship/cubaactiondesk/security/advisories/new). Only the maintainer can see it.
 
-You can also email hello@cubaactiondesk.org.za with "Security" in the subject. Please do not open a public issue or post the details anywhere until we have fixed the problem.
+You can also email cubaactiondesk@icloud.com with "Security" in the subject. Please do not open a public issue or post the details anywhere until we have fixed the problem.
 
 Tell us what you found, where, how to reproduce it and what you think someone could do with it. A short report with clear steps is better than a long one.
 

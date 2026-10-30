@@ -5,8 +5,8 @@ export const SITE = {
   instagram: "https://www.instagram.com/cubaactiondesk/",
   instagramHandle: "@cubaactiondesk",
   repo: "https://github.com/mooship/cubaactiondesk",
-  // Must exist (Cloudflare Email Routing) before launch: see docs/LAUNCH-CHECKLIST.md.
-  contactEmail: "hello@cubaactiondesk.org.za",
+  // Temporary personal address until the project has its own domain: see docs/LAUNCH-CHECKLIST.md.
+  contactEmail: "cubaactiondesk@icloud.com",
   locale: "en-ZA",
 } as const;
 
