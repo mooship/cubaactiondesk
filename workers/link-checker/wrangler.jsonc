@@ -16,5 +16,23 @@
       "database_id": "5ae35ef9-3db5-4260-b1fa-3a7021e2b507",
     },
   ],
-  "observability": { "enabled": true },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "redact_query_string": false,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "invocation_logs": true,
+      "persist": true,
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+    },
+    "issue_detection": {
+      "enabled": true,
+    },
+  },
 }
