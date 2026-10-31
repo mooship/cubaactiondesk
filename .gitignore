@@ -13,4 +13,5 @@ test-results/
 *.log
 .DS_Store
 .playwright-mcp/
-.vscode/
+.vscode/*
+!.vscode/settings.json

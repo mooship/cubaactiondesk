@@ -34,9 +34,23 @@
     "build:links": "node scripts/build-link-list.ts",
     "build:images": "node scripts/build-images.ts",
     "build:avatars": "node scripts/build-profile-pictures.ts",
-    "lhci": "lhci autorun --config=lighthouserc.cjs",
+    "lhci": "lhci autorun --config=.github/lighthouserc.cjs",
     "prepare": "lefthook install --force || echo \"Skipped git hooks (not a git repository)\"",
-    "lhci:desktop": "lhci autorun --config=lighthouserc.desktop.cjs"
+    "lhci:desktop": "lhci autorun --config=.github/lighthouserc.desktop.cjs"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "plugins": [
+      "prettier-plugin-astro"
+    ],
+    "overrides": [
+      {
+        "files": "*.astro",
+        "options": {
+          "parser": "astro"
+        }
+      }
+    ]
   },
   "dependencies": {
     "@astrojs/cloudflare": "14.4.3",

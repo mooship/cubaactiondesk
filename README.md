@@ -102,8 +102,8 @@ command applies D1 migrations before it builds. Step by step, with the dashboard
 
 ## Contributing
 
-Corrections, new organisations, recipients and code are all welcome. [CONTRIBUTING.md](CONTRIBUTING.md) says how to help,
-[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) sets out how we treat each other, and [SECURITY.md](SECURITY.md) explains how to
+Corrections, new organisations, recipients and code are all welcome. [CONTRIBUTING.md](.github/CONTRIBUTING.md) says how to help,
+[CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md) sets out how we treat each other, and [SECURITY.md](.github/SECURITY.md) explains how to
 report a vulnerability privately.
 
 ## Licence

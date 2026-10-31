@@ -30,4 +30,4 @@ To report a problem, email cubaactiondesk@icloud.com, or use GitHub's "Report co
 
 ## Where this comes from
 
-We wrote this ourselves for a small project. You may copy and adapt it under [CC BY 4.0](LICENSE-CONTENT) with credit to Cuba Action Desk SA.
+We wrote this ourselves for a small project. You may copy and adapt it under [CC BY 4.0](../LICENSE-CONTENT) with credit to Cuba Action Desk SA.

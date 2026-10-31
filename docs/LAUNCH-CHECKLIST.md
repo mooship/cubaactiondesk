@@ -68,7 +68,7 @@ or Page Rules that match only `cuba.timothybrits.co.za`, or wait until the proje
 - [ ] **Set up Email Routing so `hello@cubaactiondesk.org.za` really exists.** Until then the contact address is cubaactiondesk@icloud.com. It
       is printed in the footer, on About, Privacy, Accessibility, Corrections and How we check organisations, and in the
       structured data, all from `contactEmail` in `src/lib/site.ts`. When the routing works, change that value, the
-      address in `SECURITY.md` and `CODE_OF_CONDUCT.md`, and the privacy sentence under "When you email us".
+      address in `.github/SECURITY.md` and `.github/CODE_OF_CONDUCT.md`, and the privacy sentence under "When you email us".
 - [ ] Set `SITE_URL=https://cubaactiondesk.org.za` for the build (or change the default in `astro.config.mjs`), then run
       `npm run build:images` so the preview images show the new host.
 - [ ] Add the domain as a custom domain on the Worker, then turn on HSTS preload once everything is stable.

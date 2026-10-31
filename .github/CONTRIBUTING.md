@@ -19,22 +19,22 @@ By taking part you agree to follow the [code of conduct](CODE_OF_CONDUCT.md).
 - Every claim in an article gets a `[[source-id]]` marker, and every source is a page you actually read. We prefer primary sources such as UN records and government documents. Cuban government sources are allowed and are labelled as such.
 - Write British English in South African usage (organisation, programme, defence), in plain sentences for a reader aged 13 to 15.
 - Message templates stay under 200 words and have at least two blanks for the sender to fill in.
-- Nothing on the site may read as if a machine wrote it. The Writing section of [AGENTS.md](AGENTS.md) lists what to avoid, and it applies to every contributor.
+- Nothing on the site may read as if a machine wrote it. The Writing section of [AGENTS.md](../AGENTS.md) lists what to avoid, and it applies to every contributor.
 - Do not reuse other groups' logos or artwork.
 
 ## Rules for code
 
-Setup and commands are in the [README](README.md). The principles are in [AGENTS.md](AGENTS.md), which is written for people and for AI tools alike. In short:
+Setup and commands are in the [README](../README.md). The principles are in [AGENTS.md](../AGENTS.md), which is written for people and for AI tools alike. In short:
 
 - Write the failing test first for anything in `src/lib`. Match the code around your change, and build only what the change needs.
-- Run the checks for what you changed. The "Done means" section of [AGENTS.md](AGENTS.md) lists them, and CI runs the same ones.
+- Run the checks for what you changed. The "Done means" section of [AGENTS.md](../AGENTS.md) lists them, and CI runs the same ones.
 - Generated files (`public/_headers`, the link list, icons, images, profile pictures and migrations) are committed. Change the source, regenerate and commit both.
 - Leave the Lefthook commit hook switched on.
 - The site has no accounts, comments or mailing list, and it never handles money. It uses no client framework and no CSS framework, because the pages have to stay light on a prepaid phone. A change that breaks one of these needs a very good reason.
 
 ## Licences
 
-Code is [MIT](LICENSE). Written content is [CC BY 4.0](LICENSE-CONTENT). By sending a contribution you confirm that you wrote it or have the right to share it, and that it can be used under those licences.
+Code is [MIT](../LICENSE). Written content is [CC BY 4.0](../LICENSE-CONTENT). By sending a contribution you confirm that you wrote it or have the right to share it, and that it can be used under those licences.
 
 ## Security
 

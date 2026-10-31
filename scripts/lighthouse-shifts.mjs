@@ -4,8 +4,9 @@ import { createRequire } from "node:module";
 import { join } from "node:path";
 
 const root = ".lighthouseci";
-const limit = createRequire(import.meta.url)("../lighthouserc.cjs").ci.assert.assertions["cumulative-layout-shift"][1]
-  .maxNumericValue;
+const limit = createRequire(import.meta.url)("../.github/lighthouserc.cjs").ci.assert.assertions[
+  "cumulative-layout-shift"
+][1].maxNumericValue;
 
 function* reports(dir) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
