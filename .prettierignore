@@ -3,6 +3,7 @@ dist
 .wrangler
 .lighthouseci
 .playwright-mcp
+.claude/skills
 playwright-report
 test-results
 node_modules
