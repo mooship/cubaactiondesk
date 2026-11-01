@@ -22,6 +22,7 @@ export default tseslint.config(
       ".lighthouseci/**",
       ".playwright-mcp/**",
       ".claude/skills/**",
+      ".claude/agents/**",
       "playwright-report/**",
       "test-results/**",
       "worker-configuration.d.ts",

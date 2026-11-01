@@ -4,6 +4,7 @@ dist
 .lighthouseci
 .playwright-mcp
 .claude/skills
+.claude/agents
 playwright-report
 test-results
 node_modules
