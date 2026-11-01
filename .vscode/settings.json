@@ -10,7 +10,7 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
-    "package.json": "package-lock.json, tsconfig.json, astro.config.mjs, wrangler.jsonc, worker-configuration.d.ts, drizzle.config.ts, vitest.config.ts, playwright.config.ts, eslint.config.js, .prettierignore, .htmlvalidate.json, lefthook.yml",
+    "package.json": "package-lock.json, tsconfig.json, astro.config.mjs, wrangler.jsonc, worker-configuration.d.ts, drizzle.config.ts, vitest.config.ts, playwright.config.ts, eslint.config.js, .prettierignore, .htmlvalidate.json, lefthook.yml, .mcp.json, skills-lock.json",
     "README.md": "AGENTS.md, CLAUDE.md, LICENSE, LICENSE-CONTENT",
     ".gitignore": ".env*"
   }
