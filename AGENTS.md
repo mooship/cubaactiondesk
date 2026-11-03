@@ -23,6 +23,10 @@ Windows with Git Bash or PowerShell. Node 22.23.4 or newer.
 - Lefthook runs Prettier, ESLint and the unit tests on commit. Do not skip it with `LEFTHOOK=0` to get a commit through.
 - CI (`.github/workflows/ci.yml`) is the reference list of what must pass.
 
+## Commit messages
+
+Use [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/) for every commit, with the subject format `<type>[optional scope][!]: <description>`. Use a recognised type such as `feat`, `fix`, `docs`, `test`, `refactor`, `perf`, `build`, `ci` or `chore`. Mark breaking changes with `!` and explain them in the body or a `BREAKING CHANGE:` footer.
+
 ## How to work here
 
 Keep changes small and in the grain of the code around them: names, comment density, idiom. These principles are tuned to
