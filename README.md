@@ -91,7 +91,7 @@ ESLint lives in its own package, `tools/lint`, because typescript-eslint needs T
 TypeScript 7 does not have one. That package pins TypeScript 6 while the site compiles with 7. `npm run lint:ci` installs it.
 The root `eslint.config.js` re-exports the real config so editors find it.
 
-Lefthook runs on every commit: Prettier (writing), ESLint (fixing) and the unit tests. Skip it once with
+Lefthook runs on every commit: Prettier (writing) and ESLint (fixing). Unit tests run separately and in CI. Skip it once with
 `LEFTHOOK=0 git commit`.
 
 ## Deploying

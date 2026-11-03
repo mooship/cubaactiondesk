@@ -20,7 +20,7 @@ Windows with Git Bash or PowerShell. Node 22.23.4 or newer.
   once, and again after editing `wrangler.jsonc`.
 - `npm run lint` needs `npm run lint:setup` once, because ESLint lives in its own package, `tools/lint`. That package pins
   TypeScript 6 because typescript-eslint cannot use TypeScript 7. The root `eslint.config.js` only re-exports it.
-- Lefthook runs Prettier, ESLint and the unit tests on commit. Do not skip it with `LEFTHOOK=0` to get a commit through.
+- Lefthook runs Prettier and ESLint on commit. Unit tests run separately and in CI. Do not skip hooks with `LEFTHOOK=0` to get a commit through.
 - CI (`.github/workflows/ci.yml`) is the reference list of what must pass.
 
 ## Commit messages

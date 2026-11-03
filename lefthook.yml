@@ -1,6 +1,3 @@
-# Git hooks, installed by `npm install` (the prepare script runs `lefthook install`).
-# On every commit: format what is staged, fix what ESLint can, then run the unit tests.
-# Skip once with `LEFTHOOK=0 git commit ...`. CI runs the same checks without writing (npm run lint:ci).
 pre-commit:
   jobs:
     - name: format
@@ -12,6 +9,3 @@ pre-commit:
       glob: "*.{ts,mjs,js,astro,css,json,jsonc,md}"
       run: npm run lint:ensure --silent && npm exec --prefix tools/lint -- eslint --fix --no-warn-ignored --max-warnings 0 {staged_files}
       stage_fixed: true
-
-    - name: test
-      run: npx vitest run
