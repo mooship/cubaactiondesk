@@ -86,7 +86,7 @@ describe("articleTwin", () => {
   });
 
   it("includes counterarguments and a numbered source list with origins", () => {
-    expect(md).toContain("## Main counterarguments");
+    expect(md).toContain("## Other views and qualifications");
     expect(md).toContain("- Others say otherwise [2].");
     expect(md).toContain("1. UN vote. United Nations, 28 October 2026. https://un.example/vote (United Nations)");
     expect(md).toContain("2. Cuban statement. MINREX. https://cu.example/s (Cuban government)");

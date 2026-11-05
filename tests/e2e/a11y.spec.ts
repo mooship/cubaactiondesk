@@ -70,7 +70,7 @@ test("text spacing overrides do not break the layout (WCAG 1.4.12)", async ({ pa
 
 test("at 400% zoom (320 CSS pixels wide) nothing needs horizontal scrolling", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });
-  for (const path of ["/", "/learn/un-votes", ACTION_PATH, "/give"]) {
+  for (const path of ["/", "/learn", "/learn/un-votes", ACTION_PATH, "/give", "/about", "/profile-pictures"]) {
     await page.goto(path);
     expect(await horizontalOverflow(page), path).toBeLessThanOrEqual(0);
   }

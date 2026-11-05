@@ -11,14 +11,14 @@ const articles = await getLiveArticles();
 
 <Base
   title="Learn"
-  description="Short, sourced explainers on the US blockade of Cuba and South Africa's links to Cuba. Each takes under five minutes on a phone."
+  description="Sourced explainers on the US blockade of Cuba, its laws and effects, and South Africa's links to Cuba, with reading times and other views."
   path="/learn"
   jsonLd={[breadcrumbList([{ name: "Learn", path: "/learn" }], Astro.site!)]}
 >
-  <h1>Learn</h1>
+  <h1>Learn about the blockade</h1>
   <p class={prose.lede}>
-    Short explainers you can read on your phone in under five minutes. Every claim links to its source, and every
-    article shows the strongest case against it.
+    Start with the sanctions themselves, or read about their effects and South Africa's ties with Cuba. Each explainer
+    links to its sources and includes other views. The reading times below help you choose.
   </p>
 
   {articles.length === 0 ? (
@@ -26,9 +26,9 @@ const articles = await getLiveArticles();
       <p>The first explainers are on their way. Please check back soon.</p>
     </div>
   ) : (
-    <ul class={prose.grid}>
+    <ul class={`${prose.grid} ${prose.directory}`}>
       {articles.map((a) => (
-        <li class={prose.notice}>
+        <li>
           <h2 class={prose.cardTitle}>
             <a href={`/learn/${a.id}`}>{a.data.title}</a>
           </h2>

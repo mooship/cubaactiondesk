@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import prose from "../styles/prose.module.css";
 import { SITE } from "../lib/site.ts";
 
-const UPDATED = "29 October 2026";
+const UPDATED = "5 November 2026";
 ---
 
 <Base
@@ -15,8 +15,7 @@ const UPDATED = "29 October 2026";
     <h1>Privacy notice</h1>
     <p class={prose.meta}>Last updated {UPDATED}.</p>
     <p class={prose.lede}>
-      In short, we never see your message, your name or your town. We set no cookies, and we keep no accounts or mailing
-      list.
+      We do not store your Action Desk message, name or town. We set no cookies and have no accounts or mailing list.
     </p>
 
     <h2>Who is responsible</h2>
@@ -26,13 +25,14 @@ const UPDATED = "29 October 2026";
       <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
     </p>
 
-    <h2>What stays on your device</h2>
+    <h2>Your action messages</h2>
     <ul>
       <li>
-        What you type on an action. Your name, town and message are put together in your browser and sent from your own
-        email app or WhatsApp. They never reach our server. If you turn JavaScript off, the “Update message” button
-        reloads the page with what you typed in the web address; we do not log or store web addresses, and Cloudflare
-        Web Analytics does not log them either.
+        With JavaScript on, your name, town and message are put together in your browser and sent from your own email
+        app or WhatsApp. They do not reach our server. With JavaScript off, the “Update message” button puts the
+        filled-in fields in the web address and sends them to the server to render your message. We do not log or store
+        those web addresses, and the response is marked private and not to be cached. The address may remain in your
+        browser's history; avoid sharing it if it contains personal information.
       </li>
       <li>
         Which actions you finished. The star on an action card is saved in your browser's local storage on your device
@@ -61,8 +61,8 @@ const UPDATED = "29 October 2026";
 
     <h2>Cloudflare</h2>
     <p>
-      We use Cloudflare to host the site, serve it quickly, protect it, and forward email. Cloudflare processes your
-      network address to deliver pages, as any host does, under{" "}
+      We use Cloudflare to host and protect the site. Cloudflare processes your network address to deliver pages, as any
+      host does, under{" "}
       <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer">
         its own privacy policy
       </a>

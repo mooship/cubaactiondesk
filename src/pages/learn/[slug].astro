@@ -80,7 +80,7 @@ const path = `/learn/${entry.id}`;
 
     {data.counterarguments.length > 0 && (
       <aside class={prose.counter} aria-labelledby="counter-heading">
-        <h2 id="counter-heading">Main counterarguments</h2>
+        <h2 id="counter-heading">Other views and qualifications</h2>
         <ul>
           {data.counterarguments.map((text) => (
             <li set:html={inlineWithCitations(text, data.sources)} />

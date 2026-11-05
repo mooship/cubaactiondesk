@@ -1,7 +1,7 @@
 ---
 slug: post-instagram-explainer-card
 title: Post the card to your story
-summary: One minute. Save our plain-text summary card, post it to your story, and add a line of your own.
+summary: Post a summary of South Africa's ties with Cuba to your Instagram story, with your own caption.
 context:
   - A summary card (an image) and a caption for your Instagram story.
   - You post it yourself; nothing is posted from this site.
@@ -29,4 +29,4 @@ South Africa and Cuba in 60 seconds. Posting from {town}.
 
 The full explainer is here: {link}
 
-Share it with someone who would want to know. Posted by {name}.
+{name}

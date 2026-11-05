@@ -22,10 +22,7 @@ const apps = [
   path="/profile-pictures"
 >
   <h1>Profile pictures</h1>
-  <p class={prose.lede}>
-    A profile picture shows the people who see your name where you stand. Pick one below, download it, and set it as
-    your photo in any of the apps listed underneath.
-  </p>
+  <p class={prose.lede}>Use a Cuba Action Desk star as your profile photo. Choose a colour below.</p>
 
   <ul class={styles.grid}>
     {PROFILE_PICTURES.map((picture) => (
@@ -47,9 +44,8 @@ const apps = [
 
   <div class={prose.article}>
     <p>
-      Each download is a square PNG, {PICTURE_SIZE} by {PICTURE_SIZE} pixels. All seven apps show your photo in a
-      circle. The star sits well inside that circle, so none of it is cut off. The previews above are round for the same
-      reason.
+      Each download is a square PNG, {PICTURE_SIZE} by {PICTURE_SIZE} pixels. The star fits inside a circular profile
+      crop. Who can see your photo depends on each app's privacy settings.
     </p>
 
     <h2>How to set it</h2>
@@ -65,8 +61,6 @@ const apps = [
         </>
       ))}
     </dl>
-    <p>Who can see your photo depends on each app's privacy settings.</p>
-
     <h2>Using the pictures</h2>
     <p>
       Anyone can use these as a profile picture. Using one does not mean we endorse you or that you speak for us. Cuba

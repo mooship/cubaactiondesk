@@ -24,10 +24,6 @@ counterarguments:
   - "Independent experts appointed by the UN Human Rights Council said in August 2026 that new US measures threaten the rights to health, life and food. They said a State Department report offered no concrete evidence that Cuba supports terrorism or subversion [[un-news-cuba-experts-2026-08]]."
 status: live
 ---
-## What people disagree about
-
-The US [embargo](/glossary#embargo) restricts trade, travel and money transfers with Cuba. People disagree about its aims, its effects and its name.
-
 ## The case for the embargo
 
 A June 2025 White House memorandum describes Cuba as run by "a Communist regime." It says dissidents and peaceful protesters are arbitrarily detained and that there is no free press. [[nspm-5-2025]]
@@ -72,6 +68,6 @@ The UN resolution urges states with similar laws to repeal them. [[un-news-cuba-
 
 Cuba and South Africa use "blockade." [[dirco-lamola-unga81-2026]] The UN resolution says "embargo." [[un-news-cuba-embargo-vote-2026]] The US government says there is no blockade and calls its policy an economic embargo. [[nspm-5-2025]]
 
-## What the sources do not settle
+## Limits of the evidence
 
-The sources we found do not measure how much of Cuba's crisis comes from US measures and how much from Cuban policy. Torres Pérez names both as causes. Cuba's foreign minister says the blockade is the threat.
+The sources cited here do not measure how much of Cuba's crisis comes from US measures and how much from Cuban policy. Torres Pérez names both as causes. [[columbia-torres-cuba-crisis-2025]] Cuba's foreign minister calls the blockade the threat. [[un-news-cuba-embargo-vote-2026]]

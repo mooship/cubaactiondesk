@@ -1,7 +1,7 @@
 ---
 slug: ask-your-mp-un-vote
 title: Ask your MP to keep SA backing Cuba
-summary: Two minutes. Ask your MP to raise South Africa's UN position on the US embargo of Cuba with Parliament's international relations committee.
+summary: Ask your MP to raise South Africa's position on the embargo with Parliament's international relations committee.
 context:
   - An email to your own Member of Parliament.
   - Use the link above to find your MP's name and email address. You send the email yourself; the site cannot send it for you.

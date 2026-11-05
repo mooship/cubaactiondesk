@@ -27,10 +27,6 @@ counterarguments:
   - "The US also says its laws leave room for trade in food and medicine. The 2000 trade act allows such sales under licence and for cash in advance [[crs-r43888-cuba-sanctions]]."
 status: live
 ---
-## A stack of laws
-
-The blockade rests on many laws, orders and Treasury rules added over more than 60 years.
-
 ## The first layer, 1961 to 1963
 
 The Foreign Assistance Act of 1961 lets the President set up a "total embargo upon all trade" between the US and Cuba. [[crs-r43888-cuba-sanctions]]
@@ -57,7 +53,7 @@ The Act also says when a president may suspend the embargo. This needs a transit
 
 Presidents suspended Title III in six-month periods from 1996. [[crs-r43888-cuba-sanctions]] On 17 April 2019, the Trump administration said it would stop. Lawsuits could be filed from 2 May 2019. [[cleary-title-iii-2019]]
 
-From that date, former owners of confiscated property could bring claims in US courts against foreign companies accused of "trafficking" in it. [[cleary-title-iii-2019]] This is why Title III matters to companies outside the US.
+From that date, former owners of confiscated property could bring claims in US courts against foreign companies accused of "trafficking" in it. [[cleary-title-iii-2019]]
 
 In January 2025, President Biden announced a new six-month suspension of Title III. [[hklaw-cuba-easing-2025-01]] Secretary of State Marco Rubio later withdrew that notice. [[hklaw-cuba-rescinds-2025-07]]
 
@@ -85,11 +81,9 @@ On 30 September 2026, a new set of Treasury rules took effect, called the Cuba S
 
 The UN resolution voted on in October 2026 voices concern about the Helms-Burton Act's reach beyond US borders. It urges states with similar laws to repeal them. [[un-news-cuba-embargo-debate-2026]]
 
-## Laws and orders are different
-
-Congress passes laws, while a president can write executive orders alone. Many of the 2025 and 2026 changes came through orders, notices and Treasury rules, which a later president can change. The laws above need Congress.
-
 ## Who can end it
+
+The 2025 changes to Title III came through presidential and State Department notices. [[hklaw-cuba-easing-2025-01]] [[hklaw-cuba-rescinds-2025-07]] The 2026 changes used executive orders and Treasury rules. [[hklaw-ofac-cuba-program-2026-10]] Changing these measures does not repeal the embargo laws. [[crs-r43888-cuba-sanctions]]
 
 A report for the US Congress says the President cannot end the embargo alone. Helms-Burton ties its end to a "democratically elected government in Cuba." Without that, Congress would need to change the laws. [[crs-r43888-cuba-sanctions]]
 

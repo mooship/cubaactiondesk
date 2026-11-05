@@ -1,7 +1,7 @@
 ---
 title: South Africa and Cuba in 60 seconds
 summary: "Cuban troops in Angola, Cuban doctors and engineers in South Africa, and South Africa's call to end the US embargo of Cuba."
-answer: "A war, doctors and engineers link South Africa and Cuba [[saho-cuito-cuanavale]] [[dm-cuba-doctor-programme-2025]]. South Africa's government wants the US embargo of Cuba to end [[dirco-lamola-unga81-2026]]. The US government disagrees [[un-news-cuba-embargo-vote-2026]]."
+answer: "Cuban troops fought in Angola, and Cuba later trained South African doctors and sent engineers to South Africa [[saho-cuito-cuanavale]] [[dm-cuba-doctor-programme-2025]] [[gov-za-cuban-water-experts-2021]]. South Africa's government wants the US embargo of Cuba to end [[dirco-lamola-unga81-2026]]. The US government disagrees [[un-news-cuba-embargo-vote-2026]]."
 published: 2026-10-29
 reviewed: 2026-10-29
 sources:

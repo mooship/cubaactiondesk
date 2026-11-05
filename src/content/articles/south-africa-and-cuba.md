@@ -24,11 +24,7 @@ status: live
 ---
 ## The war in Angola
 
-In 1987 and 1988, a major battle took place near the town of Cuito Cuanavale in Angola. [[saho-cuito-cuanavale]]
-
-Angola's army, called FAPLA, had help from Cuba and the Soviet Union. The rebel group UNITA had help from the South African Defence Force (SADF). [[saho-cuito-cuanavale]]
-
-Cuban troops helped defend the town. An early group of 120 Cuban soldiers reached Cuito and helped organise its defences. [[saho-cuito-cuanavale]]
+In 1987 and 1988, Angola's army, FAPLA, fought near Cuito Cuanavale with help from Cuba and the Soviet Union. UNITA had support from the South African Defence Force (SADF). [[saho-cuito-cuanavale]] An early group of 120 Cuban soldiers reached the town and helped organise its defences. [[saho-cuito-cuanavale]]
 
 The fighting built up over months. On 14 August 1987, fourteen Angolan and Cuban brigades began a large attack. In October 1987, the Angolan army's 47th Brigade was largely destroyed at the Lomba River. [[saho-cuito-cuanavale]]
 
@@ -42,7 +38,7 @@ The Angolan, Cuban and ANC view is that South Africa wanted to rescue UNITA and 
 
 Nelson Mandela described the battle as "a turning point for the liberation of our continent and my people." [[saho-cuito-cuanavale]] On a visit to Cuba in 1991, he called it a victory for all Africa. [[conversation-cuito-cuanavale-2017]]
 
-## What came after
+## Negotiations and withdrawal
 
 Talks followed, and the countries taking part included Angola, Cuba, the Soviet Union, Britain and the United States. [[conversation-cuito-cuanavale-2017]] The talks led to South African and Cuban forces leaving Angola. [[saho-cuito-cuanavale]]
 

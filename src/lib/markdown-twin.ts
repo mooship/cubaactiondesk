@@ -74,7 +74,7 @@ export function articleTwin(a: ArticleTwinInput, origin: URL | string): string {
     `${text(a.body).trim()}\n`,
   ];
   if (a.counterarguments.length > 0) {
-    parts.push(`## Main counterarguments\n\n${a.counterarguments.map((c) => `- ${text(c)}`).join("\n")}\n`);
+    parts.push(`## Other views and qualifications\n\n${a.counterarguments.map((c) => `- ${text(c)}`).join("\n")}\n`);
   }
   parts.push(`## Sources\n\n${a.sources.map(sourceLine).join("\n")}\n`);
   if (a.related.length > 0) {
@@ -111,7 +111,7 @@ export function actionTwin(a: ActionTwinInput, origin: URL | string): string {
     `${a.context.map((line) => `- ${line}`).join("\n")}\n`,
     `Goes to: ${a.targetName}. Takes about ${minutes(a.timeMinutes)}.\n`,
     "You fill in the blanks, then send the message from your own email app or WhatsApp. " +
-      "The site never sees the message or who sends it.\n",
+      "The site does not store what you write or send the message for you.\n",
   ];
   if (a.subject) parts.push(`Subject: ${a.subject}\n`);
   parts.push(`## Message template\n\n\`\`\`text\n${a.template.trim()}\n\`\`\`\n`);

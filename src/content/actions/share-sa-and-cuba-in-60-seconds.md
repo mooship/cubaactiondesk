@@ -1,7 +1,7 @@
 ---
 slug: share-sa-and-cuba-in-60-seconds
 title: Share SA and Cuba in 60 seconds
-summary: One minute. Send our short explainer to three people on WhatsApp, with a line from you.
+summary: Send a short explainer to someone you know on WhatsApp, with a note about why you are sharing it.
 context:
   - A WhatsApp message with a link to our 60-second explainer.
   - You choose who gets it; nothing is sent from this site.
@@ -29,4 +29,4 @@ I read something short about South Africa and Cuba and thought of you.
 
 It takes about 60 seconds: {link}
 
-Could you read it and send it to two other people? That makes three of us. Thanks!
+I'd be interested to hear what you think.

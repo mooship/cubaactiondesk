@@ -2,7 +2,7 @@
 
 A website for South Africans who want to understand the US blockade of Cuba and do something about it. It has
 ready-to-send emails and messages, short sourced explainers, and a list of aid organisations that have been checked.
-The site never sees what visitors write and never handles money.
+The site does not store visitors' messages and never handles money. Visitors send messages from their own apps.
 
 Live site (for now): https://cuba.timothybrits.co.za. Instagram: [@cubaactiondesk](https://www.instagram.com/cubaactiondesk/).
 
@@ -11,7 +11,7 @@ Live site (for now): https://cuba.timothybrits.co.za. Instagram: [@cubaactiondes
 | Section | What it does                                                                                                                   |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Act     | Templates for an MP, DIRCO, newspapers and friends. Visitors fill in the blanks and send from their own email app or WhatsApp. |
-| Learn   | Eight explainers. Every claim links to a source, and every article ends with the strongest counterargument.                    |
+| Learn   | Eight explainers with sources, other views and qualifications.                                                                 |
 | Give    | Organisations that deliver aid. Donations go straight to them through a plain redirect.                                        |
 
 ## Stack
@@ -91,8 +91,8 @@ ESLint lives in its own package, `tools/lint`, because typescript-eslint needs T
 TypeScript 7 does not have one. That package pins TypeScript 6 while the site compiles with 7. `npm run lint:ci` installs it.
 The root `eslint.config.js` re-exports the real config so editors find it.
 
-Lefthook runs on every commit: Prettier (writing) and ESLint (fixing). Unit tests run separately and in CI. Skip it once with
-`LEFTHOOK=0 git commit`.
+Lefthook runs on every commit: Prettier (writing) and ESLint (fixing). Unit tests run separately and in CI. Fix any failing
+check before committing; do not bypass the hooks.
 
 ## Deploying
 

@@ -1,7 +1,7 @@
 ---
 slug: write-dirco-sa-position
 title: Ask DIRCO for SA's position
-summary: Two minutes. Email DIRCO and ask how the US embargo of Cuba affects South African companies and banks, and what the government's position is.
+summary: Ask DIRCO how the embargo affects South African companies and banks, and whether it has published guidance.
 context:
   - Email to the Department of International Relations and Cooperation (DIRCO), at its published main address.
   - It asks what the government's position is on how the embargo affects South African companies and banks.

@@ -13,55 +13,57 @@ const targets = await getTargets();
 const entries = [
   {
     href: "/act",
-    title: "Act",
-    text: "Ready-to-send emails and messages. Add your own words and send them from your own phone.",
+    title: "Write to someone",
+    text: "Choose a recipient and edit a suggested message. You send it from your own app.",
   },
   {
     href: "/learn",
-    title: "Learn",
-    text: "Short explainers with sources. Each takes under five minutes and includes the strongest case against its point of view.",
+    title: "Understand the blockade",
+    text: "Read about the sanctions, their effects and South Africa's ties with Cuba. Follow the sources and the arguments for keeping them.",
   },
   {
     href: "/give",
-    title: "Give",
-    text: "Organisations that deliver aid to Cuba, checked by us. You pay them directly.",
+    title: "Help fund aid",
+    text: "Find an organisation delivering aid to Cuba. Read our checks before donating on its own website.",
   },
 ];
 ---
 
 <Base description={SITE.tagline} path="/">
-  <h1>{SITE.tagline}</h1>
+  <h1 class={home.title}>Take action on the US blockade of Cuba</h1>
   <p class={prose.lede}>
-    You do not have to go to an event. Pick something to do in two minutes, read a short sourced explainer, or find an
-    organisation that delivers aid. We do not collect your details.
+    From South Africa, you can write to a public representative or help fund aid to Cuba. Start with a message below, or
+    read up on the blockade before deciding what to do.
   </p>
 
-  {featured && (
-    <section class={home.featured} aria-labelledby="featured-heading">
-      <h2 id="featured-heading">Start here</h2>
-      <ActionCard
-        slug={featured.id}
-        title={featured.data.title}
-        summary={featured.data.summary}
-        timeMinutes={featured.data.timeMinutes}
-        targetName={targetName(targets, featured.data.target)}
-      />
-    </section>
-  )}
+  <div class={home.paths}>
+    {featured && (
+      <section class={home.featured} aria-labelledby="featured-heading">
+        <h2 id="featured-heading">A message you can send today</h2>
+        <ActionCard
+          slug={featured.id}
+          title={featured.data.title}
+          summary={featured.data.summary}
+          timeMinutes={featured.data.timeMinutes}
+          targetName={targetName(targets, featured.data.target)}
+        />
+      </section>
+    )}
 
-  <ul class={prose.grid} data-columns="3">
-    {entries.map((e) => (
-      <li class={home.entry}>
-        <h2 class={prose.cardTitle}>
-          <a href={e.href}>{e.title}</a>
-        </h2>
-        <p>{e.text}</p>
-      </li>
-    ))}
-  </ul>
+    <ul class={home.routes}>
+      {entries.map((e) => (
+        <li class={home.entry}>
+          <h2 class={prose.cardTitle}>
+            <a href={e.href}>{e.title}</a>
+          </h2>
+          <p>{e.text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
 
   <p class={prose.meta}>
-    Read more about <a href="/about">who runs this site</a>.
+    An independent South African project. <a href="/about">About the site</a>.
   </p>
 </Base>
 

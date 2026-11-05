@@ -55,10 +55,8 @@
 /* The direct answer every article opens with. */
 .answer {
   margin: 0 0 var(--space-6);
-  padding: var(--space-4) var(--space-5);
-  background: var(--surface);
-  border-left: 6px solid var(--red);
-  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  padding-left: var(--space-5);
+  border-left: 4px solid var(--red);
   font-size: var(--step-1);
   line-height: 1.45;
 }
@@ -103,9 +101,8 @@
 
 .counter {
   margin: var(--space-6) 0;
-  padding: var(--space-4) var(--space-5);
-  border: 2px solid var(--text);
-  border-radius: var(--radius-card);
+  padding: var(--space-5) 0 0;
+  border-top: 2px solid var(--border);
 }
 
 .counter h2 {
@@ -166,6 +163,21 @@
 
 .grid > li {
   margin: 0;
+}
+
+.directory > li {
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+.directory h2 a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
+}
+
+.directory p:last-child {
+  margin-bottom: 0;
 }
 
 .notice {

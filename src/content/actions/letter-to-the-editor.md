@@ -1,7 +1,7 @@
 ---
 slug: letter-to-the-editor
 title: Write a letter to the editor
-summary: Two minutes. A letter of under 150 words for a South African newspaper, about the UN vote on the embargo.
+summary: Write to a South African newspaper about the UN vote on the embargo. The draft is under 150 words.
 context:
   - A letter to the editor of the South African newspaper you choose. Use the letters address that paper publishes.
   - Papers print short letters, so this one is under 150 words. If you add sentences of your own, keep it short.

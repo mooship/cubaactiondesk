@@ -30,7 +30,7 @@ const rows = await getLinkRows(getDb(env.DB)).catch(() => new Map<string, LinkRo
   </p>
   <p>
     We list an organisation only if it passes <a href="/give/how-we-vet">our checks</a>. We test every donation link
-    each week, and pause the button if a link stops working.
+    each week and pause the button after two failed checks in a row.
   </p>
 
   {fundraisers.length === 0 ? (

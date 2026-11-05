@@ -2,7 +2,7 @@
 
 Cuba Action Desk SA is a volunteer project run by one person. We take security reports seriously and answer every one, though replies take days rather than hours.
 
-The site promises visitors a few things: it never sees what they write, it never handles money, and its donation links go only to organisations we have checked. A report that shows one of those promises can be broken is the most useful kind.
+The site does not store visitors' messages or handle money. Donation links go only to organisations we have checked. Please report any behaviour that breaks these promises. With JavaScript off, filled-in action fields reach the server in the query string to render the message; those responses must remain private and uncached.
 
 ## What is covered
 

@@ -136,7 +136,8 @@ const needsRecipientNote = usesEmail && !contact?.address;
       </p>
     )}
     <p id="message-help" class={styles.hint}>
-      Change anything you like. A message in your own words is far more likely to be read than a copied one.
+      Add why this matters to you and what you want the recipient to do. Keep only the claims you are comfortable
+      sending.
     </p>
     <label class="srOnly" for="message">
       Your message
@@ -222,7 +223,7 @@ const needsRecipientNote = usesEmail && !contact?.address;
         By post: <span class={styles.address}>{contact.postal}</span>
       </p>
     )}
-    <p class={styles.hint}>We never see your message or your name. It goes from your own email app or WhatsApp.</p>
+    <p class={styles.hint}>This site does not send your message. You send it yourself.</p>
 
     <div class={styles.doneBox} data-js-only hidden>
       <button type="button" class={styles.doneButton} data-done aria-pressed="false">

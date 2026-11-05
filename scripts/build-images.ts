@@ -75,8 +75,8 @@ const images = [
     width: 1200,
     height: 630,
     html: og(
-      "Learn about the Cuba blockade and act on it",
-      "Ready-to-send messages, sourced explainers, and organisations that deliver aid.",
+      "Take action on the US blockade of Cuba",
+      "Write to a representative from South Africa or help fund aid to Cuba.",
     ),
   },
   {
@@ -89,7 +89,7 @@ const images = [
     file: "og/act.png",
     width: 1200,
     height: 630,
-    html: og("Take action", "Ready-to-send emails and messages. A minute or two each."),
+    html: og("Take action", "Write to DIRCO, your MP or a newspaper. Edit a suggested message and send it yourself."),
   },
   {
     file: "og/give.png",

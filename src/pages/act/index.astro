@@ -30,14 +30,14 @@ const shown = actions.filter(
 
 <Base
   title="Take action"
-  description="Ready-to-send emails, letters and messages for South Africans who want to act on the US blockade of Cuba. Each takes a minute or two."
+  description="Edit and send an email, letter or message about the US blockade of Cuba. Choose a recipient and a task that fits the time you have."
   path="/act"
   jsonLd={[breadcrumbList([{ name: "Act", path: "/act" }], Astro.site!)]}
 >
   <h1>Take action</h1>
   <p class={prose.lede}>
-    Each action takes a minute or two. Pick one, add your own words, and send it from your own email or WhatsApp. We
-    never see what you write.
+    Write to DIRCO, your MP or a newspaper, or share an explainer with someone you know. Each action has a suggested
+    message you can edit and send yourself. We do not store what you write.
   </p>
 
   {actions.length > 1 && (

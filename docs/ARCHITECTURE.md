@@ -28,8 +28,9 @@ flowchart LR
   V -.->|mailto or WhatsApp share| OWN[Visitor's own email or WhatsApp]
 ```
 
-The message never reaches our server. Name, town and text are assembled in the browser (or, with JavaScript off, in the
-address bar and the server-rendered template) and handed to the visitor's own app.
+With JavaScript on, name, town and text are assembled in the browser and handed to the visitor's own app. With JavaScript
+off, the filled-in fields reach the server in the query string so it can render the message. Those responses are marked
+`private, no-store`; the site does not log or store the query strings.
 
 ### What renders where
 
@@ -142,9 +143,9 @@ with disabled users is on the launch checklist.
 - **No Astro sessions** (`session: false`), so the adapter does not provision a KV namespace we would never use.
 - **Placeholders are not highlighted inside the textarea.** A textarea cannot style part of its text. Unfilled blanks are
   listed under the message instead ("Still to fill in: ..."), which also works for screen readers.
-- **Vetting check 5 changed.** It used to be "we test a South African card". It is now "the organisation's own donation page
-  offers an online card form or a bank transfer", because a South African Visa or Mastercard works on any international card
-  form and nobody has to make a test payment.
+- **Vetting checks do not include payments.** Check 5 asks whether the organisation's own donation page offers an online
+  card form or a bank transfer. Reading the payment options cannot confirm whether a bank or payment provider will accept
+  a particular donation from South Africa.
 - **The link checker has no outside integration.** When a link first goes under review it writes one warning to Workers
   Logs, once and not every week, and the donate button switches itself off. Nobody is notified, so look at `/give` or the
   logs now and then.

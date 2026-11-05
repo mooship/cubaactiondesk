@@ -26,7 +26,7 @@ counterarguments:
   - "The US says it also helps Cubans directly. In May 2026 it offered $100 million in aid, to go through the Catholic Church and other independent groups. Secretary of State Marco Rubio said the US would not let aid reach companies linked to Cuba's military [[dailysabah-cuba-aid-2026]]."
 status: live
 ---
-## What happened
+## Oil and sanctions in 2026
 
 Venezuela had been Cuba's main oil supplier. In January 2026, the US captured Venezuela's president, Nicolás Maduro. [[un-news-cuba-humanitarian-2026-02]]
 
@@ -42,17 +42,13 @@ New US sanctions on energy companies followed on 23 July 2026. [[un-news-cuba-ex
 
 On 30 September 2026, new Treasury rules took effect. They require US banks to block accounts of Cuban private business owners, and they end some travel permissions. [[hklaw-ofac-cuba-program-2026-10]]
 
-## What UN officials report
+## Blackouts and health shortages
 
 On 4 February 2026, the UN Secretary-General's spokesperson said the Secretary-General was "extremely concerned" about Cuba. The UN said most Cubans faced rolling blackouts. [[un-news-cuba-humanitarian-2026-02]]
 
-On 6 April 2026, the UN Resident Coordinator in Cuba, Francisco Pichón, said over 96,000 surgeries were waiting. About one million people relied on water trucks, which were short of diesel. [[un-news-cuba-energy-2026-04]]
+On 6 April 2026, the UN Resident Coordinator in Cuba, Francisco Pichón, said over 96,000 surgeries were waiting and about one million people relied on water trucks that were short of diesel. [[un-news-cuba-energy-2026-04]] The UN had mobilised $26.2 million for a plan to help about two million people, with a $68 million gap remaining. [[un-news-cuba-energy-2026-04]]
 
-The UN had mobilised $26.2 million for a plan to help about two million people. It said a $68 million gap remained. [[un-news-cuba-energy-2026-04]]
-
-On 15 May 2026, UN officials said some areas had blackouts of up to 20 hours. They said more than 100,000 patients, including 11,000 children, were waiting for surgery. [[un-news-cuba-health-2026-05]]
-
-The UN said about five million people with long-term illnesses risked breaks in treatment. More than 32,000 pregnant women faced higher risks. [[un-news-cuba-health-2026-05]]
+By 15 May 2026, UN officials reported blackouts of up to 20 hours in some areas and more than 100,000 patients waiting for surgery, including 11,000 children. [[un-news-cuba-health-2026-05]] About five million people with long-term illnesses risked breaks in treatment, and more than 32,000 pregnant women faced higher risks. [[un-news-cuba-health-2026-05]]
 
 The UN also reports another cause of need: Hurricane Melissa, which damaged homes and services. The UN launched a $74 million plan for it. [[un-news-cuba-humanitarian-2026-02]]
 
@@ -60,7 +56,7 @@ In August 2026, independent UN experts said energy, transport, irrigation and ba
 
 In October 2026, Mr Pichón warned of an energy crisis and a possible humanitarian collapse. [[un-news-cuba-embargo-debate-2026]]
 
-## Who is blamed for the crisis
+## Disputes over the causes
 
 Cuba's foreign minister told the UN in July 2026 that US measures cost Cuba about $8 billion between March 2025 and February 2026. The US representative blamed the Cuban government for repression and for the economic problems. [[un-press-ga12769-2026]]
 
@@ -68,10 +64,8 @@ In August 2026, independent UN human rights experts said the US was trying to fo
 
 The UN General Assembly voted on 28 October 2026 for a resolution calling for the embargo to end. The vote was 130 to 17, with 25 abstentions. [[un-press-ga12801-2026]]
 
-## Aid
+## Aid and South Africa's response
 
 Mr Rubio announced $100 million in US aid in May 2026. Cuban President Miguel Díaz-Canel said Cuba would accept it if the US truly gave that amount. [[dailysabah-cuba-aid-2026]]
-
-## What this means for South Africa
 
 In August 2026, Parliament's committee on international relations said the embargo continues to affect Cuba's development. [[sa-parliament-ir-committee-cuba-2026]]

@@ -27,7 +27,7 @@ status: live
 ---
 ## Two words for one policy
 
-Cuba's government and many of its supporters say "[blockade](/glossary#blockade)." The US government says "[embargo](/glossary#embargo)," or just "sanctions."
+Cuba's government and many of its supporters say "[blockade](/glossary#blockade)." The US government says "[embargo](/glossary#embargo)," or just "sanctions." [[un-news-cuba-embargo-debate-2026]]
 
 The UN resolution uses "embargo." Its full title is "Necessity of ending the economic, commercial and financial embargo imposed by the United States of America against Cuba." [[un-news-cuba-embargo-vote-2025]]
 
@@ -39,9 +39,7 @@ This site uses both words. "Blockade" appears in its titles because Cuba and man
 
 ## How it began
 
-On 3 February 1962, US President John F. Kennedy proclaimed an embargo on trade between the United States and Cuba. [[proclamation-3447-1962]] Imports of Cuban goods were banned from 7 February 1962. [[proclamation-3447-1962]]
-
-UN News says the embargo was first imposed in 1960. [[un-news-cuba-embargo-debate-2026]]
+UN News dates the first embargo measures to 1960. [[un-news-cuba-embargo-debate-2026]] On 3 February 1962, US President John F. Kennedy proclaimed an embargo on trade between the United States and Cuba, banning imports of Cuban goods from 7 February. [[proclamation-3447-1962]]
 
 In July 1963, the US Treasury issued the Cuban Assets Control Regulations. They ban most trade and money transfers and freeze Cuban government assets. [[crs-r43888-cuba-sanctions]]
 
