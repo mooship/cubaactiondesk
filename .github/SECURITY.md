@@ -1,6 +1,6 @@
 # Security policy
 
-Cuba Action Desk SA is a volunteer project run by one person. We take security reports seriously and answer every one, though replies take days rather than hours.
+Cuba Action Desk SA is a volunteer project run by one person. I answer every security report, though replies take days rather than hours.
 
 The site does not store visitors' messages or handle money. Donation links go only to organisations we have checked. Please report any behaviour that breaks these promises. With JavaScript off, filled-in action fields reach the server in the query string to render the message; those responses must remain private and uncached.
 

@@ -8,18 +8,18 @@ By taking part you agree to follow the [code of conduct](CODE_OF_CONDUCT.md).
 
 ## Ways to help
 
-- **Correct a fact.** Use the "Correct a fact" issue form. Give the page, what it says, what is right and a link to the source you read. Published fixes are logged on the [corrections page](https://cuba.timothybrits.co.za/corrections).
-- **Suggest an organisation.** Use the "Suggest an organisation" form. It must pass the five checks on [How we check organisations](https://cuba.timothybrits.co.za/give/how-we-vet), so bring its registration number, its own donation page and evidence that it delivers.
-- **Suggest someone to write to.** Use the "Suggest a recipient" form. We need an address, the page where it is published and the date you checked it.
-- **Report a bug or a barrier.** Use the "Report a bug" form. Accessibility barriers count, and we want to hear about them.
-- **Send a pull request.** Fix a typo, improve an explainer, add a test, or take on something from the issue list.
+- To correct a fact, use the "Correct a fact" issue form. Give the page, what it says, what is right and a link to the source you read. Published fixes are logged on the [corrections page](https://cuba.timothybrits.co.za/corrections).
+- To suggest an organisation, use the "Suggest an organisation" form. It must pass the five checks on [How we check organisations](https://cuba.timothybrits.co.za/give/how-we-vet), so bring its registration number, its own donation page and evidence that it delivers.
+- To suggest someone to write to, use the "Suggest a recipient" form. We need an address, the page where it is published and the date you checked it.
+- To report a bug or a barrier, use the "Report a bug" form. Accessibility barriers count, and we want to hear about them.
+- Pull requests are welcome too: fix a typo, improve an explainer, add a test, or take on something from the issue list.
 
 ## Rules for written content
 
 - Every claim in an article gets a `[[source-id]]` marker, and every source is a page you actually read. We prefer primary sources such as UN records and government documents. Cuban government sources are allowed and are labelled as such.
 - Write British English in South African usage (organisation, programme, defence), in plain sentences for a reader aged 13 to 15.
 - Message templates stay under 200 words and have at least two blanks for the sender to fill in.
-- Nothing on the site may read as if a machine wrote it. The Writing section of [AGENTS.md](../AGENTS.md) lists what to avoid, and it applies to every contributor.
+- Write plainly, in short sentences a 13-year-old can follow. The Writing section of [AGENTS.md](../AGENTS.md) lists what to avoid, and it applies to every contributor.
 - Do not reuse other groups' logos or artwork.
 
 ## Rules for code

@@ -8,11 +8,9 @@ Live site (for now): https://cuba.timothybrits.co.za. Instagram: [@cubaactiondes
 
 ## What is in it
 
-| Section | What it does                                                                                                                   |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Act     | Templates for an MP, DIRCO, newspapers and friends. Visitors fill in the blanks and send from their own email app or WhatsApp. |
-| Learn   | Eight explainers with sources, other views and qualifications.                                                                 |
-| Give    | Organisations that deliver aid. Donations go straight to them through a plain redirect.                                        |
+Act has message templates for an MP, DIRCO, newspapers and friends. Visitors fill in the blanks and send from their own
+email app or WhatsApp. Learn has eight explainers with sources, other views and qualifications. Give lists organisations
+that deliver aid; donations go straight to them through a plain redirect.
 
 ## Stack
 
@@ -70,16 +68,19 @@ the icons and images (`npm run build:icons`, `npm run build:images`), the profil
 
 All of it is files. After any change, run `npm run check:content`; it explains what is wrong.
 
-- **An action** is `src/content/actions/<slug>.md`: frontmatter plus the message template. An action can only be
-  `live` if its target has a verified contact (an address, a source page and a verification date).
-- **An article** is `src/content/articles/<slug>.md`. Put `[[source-id]]` after each claim. The numbers come from the
-  order of `sources` in the frontmatter. Every article needs a direct answer, counterarguments and a live related action.
-- **A source** is `src/content/sources/<id>.yaml`. Use only pages that were actually read.
-- **An organisation** is `src/content/fundraisers/<id>.yaml`. It stays `approved: false` until all five checks on
-  `/give/how-we-vet` are met. `npm run check:content` refuses to accept `approved: true` otherwise. After approving one, run
-  `npm run build:links` so the weekly link checker tests it.
+Actions live in `src/content/actions/<slug>.md`: frontmatter plus the message template. An action can only be `live` if
+its target has a verified contact (an address, a source page and a verification date).
 
-Write plainly. No page should read as if a machine wrote it.
+Articles live in `src/content/articles/<slug>.md`. Put `[[source-id]]` after each claim. The numbers come from the order
+of `sources` in the frontmatter. Every article needs a direct answer, counterarguments and a live related action.
+
+Sources live in `src/content/sources/<id>.yaml`. Use only pages that were actually read.
+
+Organisations live in `src/content/fundraisers/<id>.yaml`. One stays `approved: false` until all five checks on
+`/give/how-we-vet` are met, and `npm run check:content` refuses `approved: true` otherwise. After approving one, run
+`npm run build:links` so the weekly link checker tests it.
+
+Write plainly, in short sentences a 13-year-old can follow. The Writing section of [AGENTS.md](AGENTS.md#writing) has the house style and lists what to avoid.
 
 ## Lint and format
 

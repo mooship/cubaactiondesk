@@ -2,10 +2,9 @@
 
 ## What the site must do
 
-1. **Act.** Give people a two-minute task: a message to the right South African or US recipient, sent from the
-   visitor's own email app or WhatsApp.
-2. **Learn.** Short, sourced explainers that a non-specialist can read on a phone in under five minutes.
-3. **Give.** Link to organisations that deliver aid. The site never collects or processes money.
+The site gives people a two-minute task: a message to the right South African or US recipient, sent from the visitor's
+own email app or WhatsApp. It also has short, sourced explainers that a non-specialist can read on a phone in under five
+minutes, and it links to organisations that deliver aid. It never collects or processes money.
 
 It is built for mid-range Android phones, expensive data and patchy connections. Everything works without JavaScript
 except Copy, Print and the "done" counter.
@@ -58,8 +57,8 @@ Cloudflare's own HTML-to-Markdown feature needs a paid plan, and our source is a
 
 Everything is files in `src/content`, checked in two layers.
 
-- **Schemas** (`src/content/schemas.ts`, Zod) check each file on its own. Astro runs them during the build.
-- **Cross-collection rules** (`src/lib/content-check.ts`) check things no single file can: every source exists, a live
+- Zod schemas in `src/content/schemas.ts` check each file on its own. Astro runs them during the build.
+- Cross-collection rules in `src/lib/content-check.ts` check what no single file can: every source exists, a live
   action has a verified target, an approved organisation passes all five checks, and so on. They run in
   `npm run check:content`, in the unit tests and in CI. They deliberately do not run inside `astro build`, because some
   rules depend on today's date and a calendar must not be able to break a production deploy.
@@ -90,14 +89,17 @@ not stored. `src/db/schema.ts` is the single source of truth for tables; migrati
 
 ## Security
 
-- **CSP:** Astro writes a `<meta>` policy on every page with hashes for the inlined CSS and scripts. `default-src 'self'`,
-  `object-src 'none'`, and `form-action 'self'`, which means no form on the site can send anything to another origin. The
-  only third-party origins are Cloudflare's analytics beacon (script and connect).
-- **Other headers:** `src/lib/security.ts` defines them once. The Worker adds them to its own responses and
-  `npm run build:headers` writes them to `public/_headers` for static assets. A test fails if the two drift.
-- **Redirects:** `/go/[id]` only ever redirects to the donate URL of an approved listing from the content files. A URL in
-  the query string, or any other id, is a 404, so it cannot be used as an open redirect.
-- **Secrets:** the link checker's GitHub token is a Worker secret. Nothing secret is in the repository.
+Astro writes the content security policy as a `<meta>` tag on every page, with hashes for the inlined CSS and scripts.
+It sets `default-src 'self'`, `object-src 'none'` and `form-action 'self'`, so no form on the site can send anything to
+another origin. The only third-party origins are Cloudflare's analytics beacon (script and connect).
+
+The other headers are defined once, in `src/lib/security.ts`. The Worker adds them to its own responses and
+`npm run build:headers` writes them to `public/_headers` for static assets. A test fails if the two drift.
+
+`/go/[id]` only ever redirects to the donate URL of an approved listing from the content files. A URL in the query
+string, or any other id, is a 404, so it cannot be used as an open redirect.
+
+The link checker's GitHub token is a Worker secret. Nothing secret is in the repository.
 
 ## Performance
 
@@ -131,24 +133,23 @@ English). Every page is scanned by axe in light and dark mode in the Playwright 
 templates. Automated tools find only part of the real barriers, so manual testing with TalkBack, NVDA and VoiceOver and
 with disabled users is on the launch checklist.
 
-## Where this differs from the original brief, and why
+## Decisions and trade-offs
 
-- **TypeScript 7 and no `@astrojs/check`.** `@astrojs/check` needs TypeScript 5 or 6. Type checking is `tsc --noEmit`, which
-  does not read `.astro` files, so logic that matters lives in typed `.ts` modules and the Astro frontmatter is covered by
-  ESLint, the build and the browser tests.
-- **ESLint in `tools/lint`.** typescript-eslint needs TypeScript's JavaScript API, which version 7 does not have. The lint
-  package pins TypeScript 6. See the README.
-- **Markdown processing uses Sätteri,** which is Astro 7's default, with a small plugin for citations. The brief assumed
-  remark.
-- **No Astro sessions** (`session: false`), so the adapter does not provision a KV namespace we would never use.
-- **Placeholders are not highlighted inside the textarea.** A textarea cannot style part of its text. Unfilled blanks are
-  listed under the message instead ("Still to fill in: ..."), which also works for screen readers.
-- **Vetting checks do not include payments.** Check 5 asks whether the organisation's own donation page offers an online
-  card form or a bank transfer. Reading the payment options cannot confirm whether a bank or payment provider will accept
-  a particular donation from South Africa.
-- **The link checker has no outside integration.** When a link first goes under review it writes one warning to Workers
-  Logs, once and not every week, and the donate button switches itself off. Nobody is notified, so look at `/give` or the
-  logs now and then.
-- **Reading time is computed** from the word count, not written in the frontmatter.
-- **`compressHTML` is left on,** and the few places where a space must survive next to a link use `{" "}`. A build check
+- TypeScript 7, without `@astrojs/check`, which needs TypeScript 5 or 6. Type checking is `tsc --noEmit`, which does not
+  read `.astro` files, so logic that matters lives in typed `.ts` modules and the Astro frontmatter is covered by ESLint,
+  the build and the browser tests.
+- ESLint lives in `tools/lint`. typescript-eslint needs TypeScript's JavaScript API, which version 7 does not have, so the
+  lint package pins TypeScript 6. See the README.
+- Markdown processing uses Sätteri, Astro 7's default, with a small plugin for citations.
+- Astro sessions are off (`session: false`), so the adapter does not provision a KV namespace the site would never use.
+- Placeholders are not highlighted inside the textarea, because a textarea cannot style part of its text. Unfilled blanks
+  are listed under the message instead ("Still to fill in: ..."), which also works for screen readers.
+- Vetting checks do not include payments. Check 5 asks whether the organisation's own donation page offers an online card
+  form or a bank transfer. Reading the payment options cannot confirm whether a bank or payment provider will accept a
+  particular donation from South Africa.
+- The link checker has no outside integration. When a link first goes under review it writes one warning to Workers Logs,
+  once and not every week, and the donate button switches itself off. Nobody is notified, so look at `/give` or the logs
+  now and then.
+- Reading time is computed from the word count, not written in the frontmatter.
+- `compressHTML` is left on, and the few places where a space must survive next to a link use `{" "}`. A build check
   (`npm run check:output`) fails on a missing or stray space around links.
