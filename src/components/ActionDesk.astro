@@ -50,6 +50,8 @@ const usesWhatsApp = channel === "whatsapp";
 const canPrint = channel === "email" || channel === "letter";
 const AUTOCOMPLETE: Record<string, string> = { name: "name", town: "address-level2" };
 const needsRecipientNote = usesEmail && !contact?.address;
+// scripts/build-images.ts writes a small WebP next to each card PNG. The page shows the WebP; the PNG is the download.
+const preview = image?.endsWith(".png") ? image.replace(/\.png$/, "-preview.webp") : image;
 ---
 
 <div
@@ -170,7 +172,7 @@ const needsRecipientNote = usesEmail && !contact?.address;
     {image && (
       <figure class={styles.figure}>
         <div class={`${styles.frame} skeleton`} data-image-frame>
-          <img src={image} alt={imageAlt ?? ""} width="1080" height="1350" loading="lazy" decoding="async" />
+          <img src={preview} alt={imageAlt ?? ""} width="1080" height="1350" loading="lazy" decoding="async" />
         </div>
         <figcaption>
           <a href={image} download>

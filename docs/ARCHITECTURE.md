@@ -117,8 +117,9 @@ The link checker's GitHub token is a Worker secret. Nothing secret is in the rep
 accessibility, best practices and SEO, and at least 95 for performance, with layout shift at or under 0.02. On the last local
 run, desktop scored 100 everywhere and mobile scored 99 or 100 for performance. Performance is allowed some slack because
 total blocking time depends on the machine running the test. The Learn pages are text-only, so the largest element is a
-heading or the intro paragraph. The fonts are Public Sans and Oswald, Latin subsets from Fontsource, self-hosted, with
-metric-matched fallbacks.
+heading or the intro paragraph. The fonts are Source Serif 4 for text and Big Shoulders Display for headings,
+Latin subsets cut to the weights in use and self-hosted from `src/assets/fonts`, with metric-matched fallbacks. Only the
+display face is preloaded.
 
 Lighthouse skips one audit, the robots.txt check, because it does not recognise the `Content-Signal` line that tells AI
 crawlers they may use the site.

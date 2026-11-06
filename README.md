@@ -110,5 +110,5 @@ report a vulnerability privately.
 ## Licence
 
 Code is [MIT](LICENSE). Written content (articles, action templates, glossary) is
-[CC BY 4.0](LICENSE-CONTENT): reuse it and credit Cuba Action Desk SA. Fonts come from Fontsource under their own open
-licences. Source documents and quotations belong to their publishers.
+[CC BY 4.0](LICENSE-CONTENT): reuse it and credit Cuba Action Desk SA. The fonts, Big Shoulders Display and Source Serif 4,
+are under the SIL Open Font License; see `src/assets/fonts`. Source documents and quotations belong to their publishers.

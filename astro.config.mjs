@@ -14,26 +14,27 @@ const liveActionPages = loadSiteContent()
   .set.actions.filter((a) => a.data.status === "live")
   .map((a) => `${site}/act/${a.id}`);
 
-// Two variable fonts, Latin subset only (about 55 KB together), installed from Fontsource packages. Astro hashes and
-// preloads them and builds fallback fonts from the real font metrics, so the swap moves nothing on any operating system.
-const latin = (pkg, file) => ({
-  src: [`./node_modules/@fontsource-variable/${pkg}/files/${file}-latin-wght-normal.woff2`],
-  style: "normal",
-});
+// Two variable fonts, Latin only and cut to the weights in use (about 51 KB together). They live in src/assets/fonts,
+// where a README says how they were made. Astro hashes them and builds fallback fonts from the real font metrics, so
+// the swap moves nothing on any operating system.
 const fonts = [
   {
     provider: fontProviders.local(),
-    name: "Public Sans",
+    name: "Source Serif 4",
     cssVariable: "--font-body",
-    fallbacks: ["system-ui", "sans-serif"],
-    options: { variants: [{ ...latin("public-sans", "public-sans"), weight: "100 900" }] },
+    fallbacks: ["Georgia", "serif"],
+    options: {
+      variants: [{ src: ["./src/assets/fonts/source-serif-4.woff2"], weight: "400 700", style: "normal" }],
+    },
   },
   {
     provider: fontProviders.local(),
-    name: "Oswald",
+    name: "Big Shoulders Display",
     cssVariable: "--font-display",
     fallbacks: ["Arial Narrow", "sans-serif"],
-    options: { variants: [{ ...latin("oswald", "oswald"), weight: "200 700" }] },
+    options: {
+      variants: [{ src: ["./src/assets/fonts/big-shoulders-display.woff2"], weight: "700 900", style: "normal" }],
+    },
   },
 ];
 
