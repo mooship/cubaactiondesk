@@ -18,7 +18,7 @@ that deliver aid; donations go straight to them through a plain redirect.
   Give and the API render on demand.
 - Content is Markdown and YAML in `src/content`, validated by Zod schemas and by `npm run check:content`.
 - Cloudflare D1 through Drizzle holds two tables: anonymous action counters and donation-link check results.
-- CSS Modules and global tokens. No CSS framework and no client framework. The Action Desk script is about 2 KB.
+- CSS Modules and global tokens. No CSS framework and no client framework. The Action Desk script is about 2.2 KB gzipped (4.8 KB raw).
 - TypeScript 7 compiles the project. Vitest runs the unit tests and Playwright runs the browser tests.
 
 How it fits together, and why, is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). What still has to be done by a person
