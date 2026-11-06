@@ -30,31 +30,31 @@ status: live
 
 Venezuela had been Cuba's main oil supplier. In January 2026, the US captured Venezuela's president, Nicolás Maduro. [[un-news-cuba-humanitarian-2026-02]]
 
-On 29 January 2026, President Trump signed Executive Order 14380. It declared a national emergency about Cuba. It lets the President add tariffs on goods from countries that supply oil to Cuba. [[eo-14380-2026]]
+Executive Order 14380, which President Trump signed on 29 January 2026, declared a national emergency about Cuba. It lets the President add tariffs on goods from countries that supply oil to Cuba. [[eo-14380-2026]]
 
 Two legal scholars wrote in April 2026 that Mexico had stopped its oil shipments to Cuba. [[justsecurity-cuba-oil-embargo-2026]]
 
-In late March 2026, a Russian oil tanker was allowed to dock in Cuba. [[un-news-cuba-energy-2026-04]] In April, the same scholars said they found no ship seized under the new Cuba oil powers. [[justsecurity-cuba-oil-embargo-2026]]
+A Russian oil tanker was allowed to dock in Cuba in late March 2026. [[un-news-cuba-energy-2026-04]] In April, the same scholars said they found no ship seized under the new Cuba oil powers. [[justsecurity-cuba-oil-embargo-2026]]
 
-On 1 May 2026, the President signed Executive Order 14404. It allows sanctions on people in Cuba's energy, defence, mining, financial and security sectors, and on foreign banks that help them. [[hklaw-ofac-cuba-program-2026-10]]
+The President signed Executive Order 14404 on 1 May 2026. It allows sanctions on people in Cuba's energy, defence, mining, financial and security sectors, and on foreign banks that help them. [[hklaw-ofac-cuba-program-2026-10]]
 
 New US sanctions on energy companies followed on 23 July 2026. [[un-news-cuba-experts-2026-08]]
 
-On 30 September 2026, new Treasury rules took effect. They require US banks to block accounts of Cuban private business owners, and they end some travel permissions. [[hklaw-ofac-cuba-program-2026-10]]
+New Treasury rules took effect on 30 September 2026. They require US banks to block accounts of Cuban private business owners, and they end some travel permissions. [[hklaw-ofac-cuba-program-2026-10]]
 
 ## Blackouts and health shortages
 
-On 4 February 2026, the UN Secretary-General's spokesperson said the Secretary-General was "extremely concerned" about Cuba. The UN said most Cubans faced rolling blackouts. [[un-news-cuba-humanitarian-2026-02]]
+The UN Secretary-General's spokesperson said on 4 February 2026 that the Secretary-General was "extremely concerned" about Cuba. The UN said most Cubans faced rolling blackouts. [[un-news-cuba-humanitarian-2026-02]]
 
-On 6 April 2026, the UN Resident Coordinator in Cuba, Francisco Pichón, said over 96,000 surgeries were waiting and about one million people relied on water trucks that were short of diesel. [[un-news-cuba-energy-2026-04]] The UN had mobilised $26.2 million for a plan to help about two million people, with a $68 million gap remaining. [[un-news-cuba-energy-2026-04]]
+The UN Resident Coordinator in Cuba, Francisco Pichón, said on 6 April 2026 that over 96,000 surgeries were waiting and about one million people relied on water trucks that were short of diesel. [[un-news-cuba-energy-2026-04]] The UN had mobilised $26.2 million for a plan to help about two million people, with a $68 million gap remaining. [[un-news-cuba-energy-2026-04]]
 
 By 15 May 2026, UN officials reported blackouts of up to 20 hours in some areas and more than 100,000 patients waiting for surgery, including 11,000 children. [[un-news-cuba-health-2026-05]] About five million people with long-term illnesses risked breaks in treatment, and more than 32,000 pregnant women faced higher risks. [[un-news-cuba-health-2026-05]]
 
 The UN also reports another cause of need: Hurricane Melissa, which damaged homes and services. The UN launched a $74 million plan for it. [[un-news-cuba-humanitarian-2026-02]]
 
-In August 2026, independent UN experts said energy, transport, irrigation and basic services were breaking down together. They said rubbish was piling up in parts of Havana, with a risk of disease. [[un-news-cuba-experts-2026-08]]
+Independent UN experts said in August 2026 that energy, transport, irrigation and basic services were breaking down together. They said rubbish was piling up in parts of Havana, with a risk of disease. [[un-news-cuba-experts-2026-08]]
 
-In October 2026, Mr Pichón warned of an energy crisis and a possible humanitarian collapse. [[un-news-cuba-embargo-debate-2026]]
+Mr Pichón warned in October 2026 of an energy crisis and a possible humanitarian collapse. [[un-news-cuba-embargo-debate-2026]]
 
 ## Disputes over the causes
 

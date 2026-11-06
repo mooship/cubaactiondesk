@@ -62,7 +62,7 @@ In April 2020, 217 Cuban doctors arrived to help South Africa during the Covid-1
 
 ## Engineers
 
-In April 2021, the Department of Water and Sanitation welcomed 24 Cuban engineers. They came to work as advisors in provinces and municipalities. [[gov-za-cuban-water-experts-2021]]
+In April 2021, the Department of Water and Sanitation welcomed 24 Cuban engineers. They came to work as advisers in provinces and municipalities. [[gov-za-cuban-water-experts-2021]]
 
 The union Solidarity asked a court to stop the project. The department said it would cost R18.3 million a year, not the R64 million that had been reported. [[mg-cuban-engineers-solidarity-2021]]
 

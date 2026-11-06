@@ -39,13 +39,7 @@ In March 1962, the [Trading with the Enemy Act](/glossary#trading-with-the-enemy
 
 The [Cuban Democracy Act](/glossary#cuban-democracy-act) of 1992 bars US-owned companies abroad from trading with Cuba. It also stops ships that visited Cuba from loading or unloading freight in the US for 180 days, unless the Treasury gives a licence. [[crs-r43888-cuba-sanctions]]
 
-The [Helms-Burton Act](/glossary#helms-burton-act) was approved on 12 March 1996. [[govinfo-helms-burton-act-1996]] It did three main things.
-
-First, it wrote the embargo, as it stood on 1 March 1996, into law. [[govinfo-helms-burton-act-1996]]
-
-Second, Title III lets US nationals sue people who "traffic" in property Cuba confiscated. [[crs-r43888-cuba-sanctions]]
-
-Third, Title IV bars such people from entering the US. [[crs-r43888-cuba-sanctions]]
+The [Helms-Burton Act](/glossary#helms-burton-act) was approved on 12 March 1996. It wrote the embargo, as it stood on 1 March 1996, into law. [[govinfo-helms-burton-act-1996]] Its Title III lets US nationals sue people who "traffic" in property Cuba confiscated, and Title IV bars such people from entering the US. [[crs-r43888-cuba-sanctions]]
 
 The Act also says when a president may suspend the embargo. This needs a transition government in Cuba, and the President must first consult Congress. [[govinfo-helms-burton-act-1996]]
 

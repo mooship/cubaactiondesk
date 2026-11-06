@@ -21,17 +21,15 @@ reviewed: 2026-10-29
 ---
 Dear Sir or Madam,
 
-I am a South African writing from {town}.
+What is the government's position on how the United States embargo on Cuba affects South African companies and banks? And has DIRCO published any guidance on it?
 
-On 28 October 2026 the UN General Assembly again voted on a resolution calling for an end to the United States embargo on Cuba, passing it with 130 votes in favour, 17 against and 25 abstentions. UN records show South Africa voted in favour.
+I ask as a South African in {town}. On 28 October 2026 the UN General Assembly passed a resolution calling for an end to the embargo, with 130 votes in favour, 17 against and 25 abstentions. UN records show South Africa voted in favour.
 
 {personal_reason}
 
 {my_point}
 
-Please would you tell me the government's position on how the embargo affects South African companies and banks, and whether DIRCO has published any guidance on it?
-
-Thank you for your time.
+A reply, or a link to anything DIRCO has already published, would help.
 
 Kind regards,
 {name}

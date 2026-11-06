@@ -11,7 +11,7 @@ channel: social
 timeMinutes: 1
 shareArticle: sa-and-cuba-in-60-seconds
 image: /cards/sa-and-cuba-in-60-seconds.png
-imageAlt: "A plain-text summary card titled South Africa and Cuba in 60 seconds, with a few short lines of text on a plain background and the Cuba Action Desk SA name."
+imageAlt: 'Card from Cuba Action Desk SA titled "South Africa and Cuba in 60 seconds". It reads: Cuban troops fought in Angola at Cuito Cuanavale in 1987 and 1988. Since 1996, South Africa has sent medical students to train in Cuba. On 28 October 2026, 130 countries voted at the UN to call for the US embargo of Cuba to end. 17 voted against and 25 abstained. South Africa''s government wants the embargo to end. The US ambassador told the UN: "There is no blockade." At the bottom are the explainer''s address and @cubaactiondesk.'
 placeholders:
   - { key: name, label: Your name, kind: identity }
   - { key: town, label: Your town, kind: identity }

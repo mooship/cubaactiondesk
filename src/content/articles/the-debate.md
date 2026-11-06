@@ -70,4 +70,4 @@ Cuba and South Africa use "blockade." [[dirco-lamola-unga81-2026]] The UN resolu
 
 ## Limits of the evidence
 
-The sources cited here do not measure how much of Cuba's crisis comes from US measures and how much from Cuban policy. Torres Pérez names both as causes. [[columbia-torres-cuba-crisis-2025]] Cuba's foreign minister calls the blockade the threat. [[un-news-cuba-embargo-vote-2026]]
+The sources cited here do not measure how much of Cuba's crisis comes from US measures and how much from Cuban policy. Torres Pérez names both as causes. [[columbia-torres-cuba-crisis-2025]]

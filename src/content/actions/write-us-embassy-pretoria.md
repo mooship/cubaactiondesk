@@ -15,23 +15,19 @@ placeholders:
   - { key: town, label: Your town, kind: identity }
   - { key: personal_reason, label: "Why this matters to you", hint: "One or two sentences in your own words.", kind: own_words, multiline: true }
   - { key: my_point, label: "Your own point", hint: "For example, a South African business or bank link to Cuba.", kind: own_words, multiline: true }
-sources: [un-digital-library-cuba-embargo-vote-2026, un-news-cuba-embargo-vote-2026]
+sources: [hklaw-ofac-cuba-program-2026-10, un-digital-library-cuba-embargo-vote-2026, un-news-cuba-embargo-vote-2026]
 status: live
 reviewed: 2026-10-29
 ---
 To the Ambassador,
 
-I am a South African writing from {town}.
-
-On 28 October 2026 the UN General Assembly again voted on a resolution calling for an end to the United States embargo on Cuba. It passed with 130 votes in favour, 17 against and 25 abstentions.
+New US Treasury rules on Cuba, the Cuba Sanctions Regulations, took effect on 30 September 2026. As a South African in {town}, I would like to know how the embargo applies to South African companies and banks that deal with Cuba.
 
 {personal_reason}
 
 {my_point}
 
-Please would you explain how the embargo applies to South African companies and banks that deal with Cuba?
-
-Thank you for your time.
+The UN General Assembly called again for the embargo to end on 28 October 2026, with 130 votes in favour, 17 against and 25 abstentions. I would be grateful for an explanation I can share with others here.
 
 Yours faithfully,
 {name}

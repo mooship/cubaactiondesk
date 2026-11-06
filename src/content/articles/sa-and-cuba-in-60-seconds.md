@@ -24,7 +24,7 @@ In 1987 and 1988, Cuban troops fought in Angola at Cuito Cuanavale. [[saho-cuito
 
 Namibia became independent in March 1990. [[conversation-cuito-cuanavale-2017]] Freedom Park, near Pretoria, names 2,070 Cuban soldiers who died in Angola. [[saho-cuito-cuanavale]]
 
-Since 1996, South Africa has sent medical students to train in Cuba. [[dm-cuba-doctor-programme-2025]] In April 2020, 217 Cuban doctors came to help during Covid-19. [[sanews-cuban-doctors-2020]] In April 2021, 24 Cuban engineers came to advise on water. [[gov-za-cuban-water-experts-2021]]
+Since 1996, South Africa has sent medical students to train in Cuba. [[dm-cuba-doctor-programme-2025]] A group of 217 Cuban doctors came to help during Covid-19 in April 2020, [[sanews-cuban-doctors-2020]] and 24 Cuban engineers came to advise on water a year later. [[gov-za-cuban-water-experts-2021]]
 
 The US has an [embargo](/glossary#embargo) on Cuba. On 28 October 2026, 130 countries voted at the UN to call for it to end, 17 voted against and 25 abstained. [[un-news-cuba-embargo-vote-2026]]
 

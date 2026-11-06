@@ -37,13 +37,9 @@ The 2026 text also says that US measures applied since 2017 reversed the easing 
 
 ## The results
 
-In 1992, 59 countries voted yes, 3 voted no and 71 abstained. The US abstained for the first time in 2016. [[un-news-cuba-embargo-vote-2026]]
+Support has swung widely. In 1992, 59 countries voted yes, 3 voted no and 71 abstained, and in 2016 the US abstained for the first time. [[un-news-cuba-embargo-vote-2026]] By 2024 the vote was 187 to 2, with only the US and Israel against and Moldova abstaining. [[un-press-ga12801-2026]]
 
-In 2024, the vote was 187 to 2. The US and Israel voted no, and Moldova abstained. [[un-press-ga12801-2026]]
-
-In 2025, the vote was 165 to 7, with 12 abstentions. Argentina, Hungary, Israel, North Macedonia, Paraguay, Ukraine and the US voted no. [[un-news-cuba-embargo-vote-2025]]
-
-In 2026, the vote was 130 to 17, with 25 abstentions. [[un-press-ga12801-2026]] The UN voting record lists 21 states as not voting. [[un-digital-library-cuba-embargo-vote-2026]] The UN press release does not list which states voted no or abstained.
+The margin then fell. The 2025 vote was 165 to 7, with 12 abstentions; Argentina, Hungary, Israel, North Macedonia, Paraguay, Ukraine and the US voted no. [[un-news-cuba-embargo-vote-2025]] In 2026 it fell again, to 130 to 17 with 25 abstentions. [[un-press-ga12801-2026]] The UN voting record lists 21 states as not voting. [[un-digital-library-cuba-embargo-vote-2026]] The UN press release does not list which states voted no or abstained.
 
 Al Jazeera reported that Germany and Italy moved from yes to abstain. The UN voting record shows Germany abstained. [[un-digital-library-cuba-embargo-vote-2026]] Al Jazeera said US officials cited the rise in abstentions as proof that their push is working. Cuban officials accused the US of threatening countries with tariffs and visa limits. [[aljazeera-un-cuba-vote-2026]]
 
@@ -59,9 +55,7 @@ The US ambassador also said US exports to Cuba were over $876 million in the fir
 
 ## How South Africa votes
 
-South Africa voted yes in October 2025, according to the UN Project voting database. [[un-project-ares-80-4]]
-
-South Africa voted yes in October 2026, according to the UN voting record. [[un-digital-library-cuba-embargo-vote-2026]] SABC News reported that South Africa's envoy, Mxolisi Nkosi, called for talks between Havana and Washington to resume. [[sabc-un-cuba-vote-2026]] The envoy's remarks come from that one report.
+South Africa voted yes in October 2025, according to the UN Project voting database, [[un-project-ares-80-4]] and again in October 2026, according to the UN voting record. [[un-digital-library-cuba-embargo-vote-2026]] SABC News reported that South Africa's envoy, Mxolisi Nkosi, called for talks between Havana and Washington to resume. [[sabc-un-cuba-vote-2026]] The envoy's remarks come from that one report.
 
 In 2018, President Cyril Ramaphosa said South Africa would again vote in favour of the resolution. [[gov-za-presidency-cuba-vote-2018]]
 
@@ -69,4 +63,4 @@ In August 2026, Parliament's committee on international relations again backed l
 
 ## What the vote changes
 
-The vote shows where governments stand, but the embargo itself is set in US law. A report for the US Congress says the President cannot end it alone. [[crs-r43888-cuba-sanctions]]
+The UN vote does not change US law. A report for the US Congress says the President cannot end the embargo alone. [[crs-r43888-cuba-sanctions]]

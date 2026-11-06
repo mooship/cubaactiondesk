@@ -27,6 +27,4 @@ On 28 October 2026 the UN General Assembly voted for the 34th time on ending the
 
 {my_point}
 
-I hope South Africa keeps speaking up.
-
 {name}, {town}

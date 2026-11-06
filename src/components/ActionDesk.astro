@@ -209,10 +209,10 @@ const needsRecipientNote = usesEmail && !contact?.address;
     </ul>
     {usesEmail && (
       <p class={styles.hint} data-email-note hidden={!send.email.tooLong}>
-        This message is too long for the email button. Use “Copy message”, then paste it into your email.
+        This message is too long for the email button. Use "Copy message", then paste it into your email.
       </p>
     )}
-    {needsRecipientNote && <p class={styles.hint}>You add the recipient’s email address in your email app.</p>}
+    {needsRecipientNote && <p class={styles.hint}>You add the recipient's email address in your email app.</p>}
     {contact?.address && usesEmail && (
       <p class={styles.hint}>
         To: <span class={styles.address}>{contact.address}</span>
