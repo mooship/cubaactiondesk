@@ -1,51 +1,147 @@
 .title {
-  max-width: 24ch;
+  max-width: 16ch;
+  margin-bottom: var(--space-5);
 }
 
-.paths {
+/* Letters-page layout: the featured letter takes two thirds, a ruled column of other actions the rest. */
+.desk {
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-7);
   margin: var(--space-7) 0;
+  padding-top: var(--space-4);
+  border-top: 3px solid var(--rule-heavy);
 }
 
-.featured {
+.featured,
+.others {
   min-width: 0;
 }
 
-.featured h2 {
-  margin-top: 0;
+/* Small capitals-style section labels in the display face. */
+.kicker {
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  border: 0;
+  color: var(--text-muted);
+  font-size: var(--step-small);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.stamp {
+  display: inline-block;
+  margin: 0 0 var(--space-4);
+  padding: 0.2em 0.5em 0.1em;
+  border: 3px solid currentColor;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-1);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transform: rotate(-1.5deg);
+}
+
+.letterTitle {
+  margin: 0 0 var(--space-4);
+  font-size: var(--step-3);
+}
+
+.letterTitle a {
+  color: inherit;
+  text-decoration-thickness: 2px;
+}
+
+/* The template excerpt, set like a letter on a sheet of paper. */
+.letter {
+  max-width: var(--measure);
+  margin: 0 0 var(--space-5);
+  padding: var(--space-5) var(--space-6);
+  background: var(--surface);
+  border-left: 4px solid var(--accent);
+  font-size: var(--step-1);
+  line-height: 1.5;
+}
+
+.letter p:last-child {
+  margin-bottom: 0;
+}
+
+.go {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-5);
+}
+
+.go a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
+  font-family: var(--font-display);
+  font-weight: 800;
   font-size: var(--step-2);
 }
 
-.routes {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.time {
+  color: var(--text-muted);
+  font-size: var(--step-small);
 }
 
-.entry {
+.list {
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.list li {
+  display: grid;
+  gap: var(--space-1);
   margin: 0;
   padding: var(--space-4) 0;
   border-top: 1px solid var(--border);
 }
 
-.entry h2 {
-  margin-bottom: var(--space-1);
+.to {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-small);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
-.entry a {
+.listLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
+  font-weight: 600;
+}
+
+.all a {
   display: inline-flex;
   align-items: center;
   min-height: var(--target);
 }
 
-.entry p:last-child {
-  margin-bottom: 0;
+.done {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--success);
+  font-weight: 600;
+}
+
+.star {
+  width: 24px;
+  height: 24px;
 }
 
 @media (min-width: 1024px) {
-  .paths {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  .desk {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
     gap: var(--space-8);
     align-items: start;
   }

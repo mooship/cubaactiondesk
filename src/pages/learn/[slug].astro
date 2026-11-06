@@ -121,7 +121,7 @@ const path = `/learn/${entry.id}`;
     {related.length > 0 && (
       <section class={prose.related} aria-labelledby="act-heading">
         <h2 id="act-heading">What you can do</h2>
-        <ul class={prose.grid}>
+        <ul class={prose.rows}>
           {related.map((a) => (
             <li>
               <ActionCard

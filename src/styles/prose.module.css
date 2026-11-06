@@ -99,14 +99,18 @@
   text-decoration: underline;
 }
 
+/* The other side of the argument, boxed like a newspaper sidebar under a heavy rule. */
 .counter {
-  margin: var(--space-6) 0;
-  padding: var(--space-5) 0 0;
-  border-top: 2px solid var(--border);
+  margin: var(--space-7) 0;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  background: var(--surface);
+  border-top: 6px solid var(--rule-heavy);
 }
 
 .counter h2 {
   margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
   font-size: var(--step-2);
 }
 
@@ -121,6 +125,21 @@
 
 .sources ol {
   padding-left: 1.5em;
+}
+
+@media (min-width: 1024px) {
+  .sources {
+    max-width: none;
+  }
+
+  .sources ol {
+    columns: 2;
+    column-gap: var(--space-7);
+  }
+
+  .sources li {
+    break-inside: avoid;
+  }
 }
 
 .sources li {
@@ -153,20 +172,21 @@
   padding-left: 1.25em;
 }
 
-.grid {
-  display: grid;
-  gap: var(--space-4);
+/* A single-column list of entries separated by rules, closed by a rule at the foot. */
+.rows {
   margin: 0 0 var(--space-6);
   padding: 0;
   list-style: none;
+  border-bottom: 1px solid var(--border);
 }
 
-.grid > li {
+.rows > li {
   margin: 0;
 }
 
+/* Rows that are plain text entries (not components with their own rule) get the rule here. */
 .directory > li {
-  padding-top: var(--space-5);
+  padding: var(--space-5) 0;
   border-top: 1px solid var(--border);
 }
 
@@ -180,17 +200,21 @@
   margin-bottom: 0;
 }
 
+/* A notice is set off by a gold rule in the margin, not a box. */
 .notice {
   max-width: var(--measure);
-  padding: var(--space-4) var(--space-5);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
+  margin-bottom: var(--space-6);
+  padding: var(--space-1) 0 var(--space-1) var(--space-5);
+  border-left: 6px solid var(--gold);
+}
+
+.notice > :last-child {
+  margin-bottom: 0;
 }
 
 .cardTitle {
   margin-top: 0;
-  font-size: var(--step-2);
+  font-size: var(--step-3);
 }
 
 .filter {
@@ -234,18 +258,6 @@
 .term dd {
   margin: var(--space-1) 0 0;
   max-width: var(--measure);
-}
-
-@media (min-width: 640px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .grid[data-columns="3"] {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }
 
 @media print {

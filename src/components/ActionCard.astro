@@ -19,6 +19,7 @@ const Heading = `h${headingLevel}` as "h2" | "h3";
 ---
 
 <article class={styles.card} data-action-card={slug}>
+  <p class={styles.stamp}>To: {targetName}</p>
   <Heading class={styles.title}>
     <a class={styles.link} href={`/act/${slug}`}>
       {title}
@@ -27,7 +28,6 @@ const Heading = `h${headingLevel}` as "h2" | "h3";
   <p class={styles.summary}>{summary}</p>
   <ul class={styles.meta}>
     <li>{minutes(timeMinutes)}</li>
-    <li>To: {targetName}</li>
     {count > 0 && <li>{peopleCount(count)} took this action</li>}
   </ul>
   <!-- Revealed by the Action Desk script when this device has marked the action done. -->

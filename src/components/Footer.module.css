@@ -2,7 +2,7 @@
   margin-top: var(--space-8);
   padding: var(--space-6) var(--gutter);
   background: var(--surface);
-  border-top: 1px solid var(--border);
+  border-top: 3px solid var(--rule-heavy);
   font-size: var(--step-small);
 }
 

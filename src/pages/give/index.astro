@@ -43,7 +43,7 @@ const rows = await getLinkRows(getDb(env.DB)).catch(() => new Map<string, LinkRo
       </p>
     </div>
   ) : (
-    <ul class={prose.grid}>
+    <ul class={prose.rows}>
       {fundraisers.map((f) => (
         <li>
           <FundraiserListing id={f.id} data={f.data} status={statusFromRow(rows.get(f.data.donateUrl))} />

@@ -7,7 +7,7 @@ import Logo from "../components/Logo.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import { speculationRulesHash, speculationRulesJson } from "../lib/speculation-rules.ts";
-import { SITE, absoluteUrl, normalizePath, pageTitle } from "../lib/site.ts";
+import { BRAND, SITE, absoluteUrl, normalizePath, pageTitle } from "../lib/site.ts";
 
 interface Props {
   /** Page title without the site suffix. Omit on the home page. */
@@ -70,11 +70,12 @@ Astro.csp?.insertScriptHash(speculationRulesHash);
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
-    <meta name="theme-color" content="#0B1F4D" />
-    <meta name="msapplication-TileColor" content="#0B1F4D" />
+    {/* The header band is Cuba blue in light and dark mode, so one theme colour serves both. */}
+    <meta name="theme-color" content={BRAND.blue} />
+    <meta name="msapplication-TileColor" content={BRAND.blue} />
     <meta name="msapplication-config" content="/browserconfig.xml" />
-    {/* Only the display face is preloaded: the h1 is the largest thing on most pages. */}
     <Font cssVariable="--font-body" />
+    {/* Only the display face is preloaded: the h1 is the largest thing on most pages. */}
     <Font cssVariable="--font-display" preload />
 
     <meta property="og:site_name" content={SITE.name} />

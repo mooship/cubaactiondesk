@@ -29,18 +29,18 @@ test("articles stay a readable single column, under 70 characters wide", async (
   expect(width).toBeLessThan(900);
 });
 
-test("the home page puts its featured action beside the other destinations on desktop", async ({ page }) => {
+test("the home page sets the featured letter beside a narrower column of other actions on desktop", async ({
+  page,
+}) => {
   await page.goto("/");
   const featured = (await page.getByRole("region", { name: "A message you can send today" }).boundingBox())!;
-  const routes = page.getByRole("link", { name: "Write to someone", exact: true });
-  const route = (await routes.boundingBox())!;
-  expect(route.x).toBeGreaterThan(featured.x + featured.width);
-  await expect(routes).toHaveAttribute("href", "/act");
-  await expect(page.getByRole("link", { name: "Understand the blockade", exact: true })).toHaveAttribute(
-    "href",
-    "/learn",
-  );
-  await expect(page.getByRole("link", { name: "Help fund aid", exact: true })).toHaveAttribute("href", "/give");
+  const others = page.getByRole("region", { name: "Other actions" });
+  const column = (await others.boundingBox())!;
+  expect(column.x).toBeGreaterThan(featured.x + featured.width);
+  expect(featured.width).toBeGreaterThan(column.width * 1.5);
+  await expect(others.getByRole("link", { name: "All actions" })).toHaveAttribute("href", "/act");
+  await expect(page.getByRole("link", { name: "read up on the blockade" })).toHaveAttribute("href", "/learn");
+  await expect(page.getByRole("link", { name: "help fund aid to Cuba" })).toHaveAttribute("href", "/give");
 });
 
 test("letters print on their own, without the page chrome", async ({ page }) => {

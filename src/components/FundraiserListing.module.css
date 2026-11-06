@@ -1,20 +1,32 @@
+/* One organisation per row of the directory: its details on the left, its link status and donate button in a fixed
+   column on the right on wide screens. */
 .listing {
-  height: 100%;
-  padding: var(--space-5);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
+  display: grid;
+  gap: var(--space-4) var(--space-7);
+  padding: var(--space-5) 0 var(--space-6);
+  border-top: 1px solid var(--border);
+}
+
+.details,
+.side {
+  min-width: 0;
 }
 
 .name {
   margin: 0 0 var(--space-1);
-  font-size: var(--step-2);
+  padding: 0;
+  border: 0;
+  font-size: var(--step-3);
 }
 
 .tags {
   margin-bottom: var(--space-4);
   color: var(--text-muted);
+  font-family: var(--font-display);
+  font-weight: 800;
   font-size: var(--step-small);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .facts {
@@ -55,7 +67,27 @@
 }
 
 .trail summary {
+  min-height: var(--target);
+  padding-top: var(--space-2);
   cursor: pointer;
   color: var(--text-muted);
   font-size: var(--step-small);
+}
+
+@media (min-width: 768px) {
+  .facts > div {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .listing {
+    grid-template-columns: minmax(0, 1fr) 17rem;
+  }
+
+  .side {
+    padding-top: var(--space-2);
+  }
 }

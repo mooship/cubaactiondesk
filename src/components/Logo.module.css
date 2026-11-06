@@ -1,38 +1,36 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
   min-height: var(--target);
   color: var(--on-dark);
   text-decoration: none;
 }
 
 .logo:focus-visible {
-  outline-color: var(--focus-on-dark);
+  outline: 3px solid var(--focus-on-dark);
+  outline-offset: 3px;
 }
 
-.mark {
-  flex: none;
-  width: 32px;
-  height: 32px;
-}
-
-.disc {
-  fill: var(--red);
-}
-
-.star {
-  fill: var(--white);
-}
-
-.word {
+/* A rubber-stamp box around the name, set in the display face. */
+.stamp {
+  display: inline-block;
+  padding: 0.3em 0.55em 0.2em;
+  border: 2px solid currentColor;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: var(--step-1);
   line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .sa {
-  font-weight: 400;
-  opacity: 0.85;
+  color: var(--gold);
+}
+
+@media (forced-colors: active) {
+  .sa {
+    color: inherit;
+  }
 }

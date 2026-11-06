@@ -25,7 +25,7 @@ const apps = [
   <p class={prose.lede}>Use a Cuba Action Desk star as your profile photo. Choose a colour below.</p>
 
   <ul class={styles.grid}>
-    {PROFILE_PICTURES.map((picture) => (
+    {PROFILE_PICTURES.map((picture, i) => (
       <li class={styles.item}>
         <img
           class={styles.preview}
@@ -33,6 +33,7 @@ const apps = [
           alt={picture.alt}
           width={PREVIEW_SIZE}
           height={PREVIEW_SIZE}
+          loading={i < 2 ? "eager" : "lazy"}
           decoding="async"
         />
         <Button href={picturePath(picture)} variant="secondary" download>

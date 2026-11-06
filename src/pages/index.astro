@@ -1,66 +1,88 @@
 ---
 import Base from "../layouts/Base.astro";
-import ActionCard from "../components/ActionCard.astro";
+import Star from "../components/Star.astro";
 import prose from "../styles/prose.module.css";
 import home from "../styles/home.module.css";
 import { getLiveActions, getTargets, targetName } from "../lib/content.ts";
+import { minutes } from "../lib/format.ts";
 import { SITE } from "../lib/site.ts";
 
 const actions = await getLiveActions();
-const featured = actions[0];
+const [featured, ...others] = actions;
 const targets = await getTargets();
 
-const entries = [
-  {
-    href: "/act",
-    title: "Write to someone",
-    text: "Choose a recipient and edit a suggested message. You send it from your own app.",
-  },
-  {
-    href: "/learn",
-    title: "Understand the blockade",
-    text: "Read about the sanctions, their effects and South Africa's ties with Cuba. Follow the sources and the arguments for keeping them.",
-  },
-  {
-    href: "/give",
-    title: "Help fund aid",
-    text: "Find an organisation delivering aid to Cuba. Read our checks before donating on its own website.",
-  },
-];
+// The opening of the featured template, up to the first blank the sender fills in, shown as a letter on the page.
+const excerpt = (featured?.body ?? "")
+  .split(/\n\s*\n/)
+  .map((p) => p.trim())
+  .filter(Boolean)
+  .slice(0, 2)
+  .filter((p) => !/\{[a-z]/.test(p));
 ---
 
 <Base description={SITE.tagline} path="/">
   <h1 class={home.title}>Take action on the US blockade of Cuba</h1>
   <p class={prose.lede}>
-    From South Africa, you can write to a public representative or help fund aid to Cuba. Start with a message below, or
-    read up on the blockade before deciding what to do.
+    From South Africa, you can write to a public representative or <a href="/give">help fund aid to Cuba</a>. Start with
+    a message below, or <a href="/learn">read up on the blockade</a> before deciding what to do.
   </p>
 
-  <div class={home.paths}>
-    {featured && (
-      <section class={home.featured} aria-labelledby="featured-heading">
-        <h2 id="featured-heading">A message you can send today</h2>
-        <ActionCard
-          slug={featured.id}
-          title={featured.data.title}
-          summary={featured.data.summary}
-          timeMinutes={featured.data.timeMinutes}
-          targetName={targetName(targets, featured.data.target)}
-        />
+  {featured && (
+    <div class={home.desk}>
+      <section class={home.featured} aria-labelledby="featured-heading" data-action-card={featured.id}>
+        <h2 id="featured-heading" class={home.kicker}>
+          A message you can send today
+        </h2>
+        <p class={home.stamp}>To: {targetName(targets, featured.data.target)}</p>
+        <h3 class={home.letterTitle}>
+          <a href={`/act/${featured.id}`}>{featured.data.title}</a>
+        </h3>
+        {excerpt.length > 0 ? (
+          <blockquote class={home.letter}>
+            {excerpt.map((p) => (
+              <p>{p}</p>
+            ))}
+          </blockquote>
+        ) : (
+          <p>{featured.data.summary}</p>
+        )}
+        <p class={home.go}>
+          <a href={`/act/${featured.id}`}>Edit and send it</a>
+          <span class={home.time}>{minutes(featured.data.timeMinutes)}</span>
+        </p>
+        <span class={home.done} data-done-mark hidden>
+          <Star class={home.star} />
+          <span>Done on this device</span>
+        </span>
       </section>
-    )}
 
-    <ul class={home.routes}>
-      {entries.map((e) => (
-        <li class={home.entry}>
-          <h2 class={prose.cardTitle}>
-            <a href={e.href}>{e.title}</a>
+      {others.length > 0 && (
+        <section class={home.others} aria-labelledby="others-heading">
+          <h2 id="others-heading" class={home.kicker}>
+            Other actions
           </h2>
-          <p>{e.text}</p>
-        </li>
-      ))}
-    </ul>
-  </div>
+          <ul class={home.list}>
+            {others.map((a) => (
+              <li data-action-card={a.id}>
+                <span class={home.to}>To: {targetName(targets, a.data.target)}</span>
+                <a class={home.listLink} href={`/act/${a.id}`}>
+                  {a.data.title}
+                </a>
+                <span class={home.time}>{minutes(a.data.timeMinutes)}</span>
+                <span class={home.done} data-done-mark hidden>
+                  <Star class={home.star} />
+                  <span>Done on this device</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p class={home.all}>
+            <a href="/act">All actions</a>
+          </p>
+        </section>
+      )}
+    </div>
+  )}
 
   <p class={prose.meta}>
     An independent South African project. <a href="/about">About the site</a>.

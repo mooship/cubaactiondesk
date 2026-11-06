@@ -1,13 +1,12 @@
-// Generates the favicon / app icon set from one design: a red disc with a white star.
+// Generates the favicon / app icon set from one design: a paper star in a gold stamp frame on Cuba blue.
 // Run `npm run build:icons` after changing the design; the outputs in public/ are committed,
 // so a normal build does not need sharp.
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import sharp from "sharp";
+import { BRAND } from "../src/lib/site.ts";
 
-const NAVY = "#0B1F4D";
-const RED = "#C8102E";
-const WHITE = "#FFFFFF";
+const { blue: BLUE, gold: GOLD, paper: PAPER } = BRAND;
 const PUBLIC = join(import.meta.dirname, "..", "public");
 
 /** Five-point star path centred on (cx, cy). Inner radius is 40% of the outer radius, as in the logo. */
@@ -23,17 +22,19 @@ function starPath(cx, cy, outer) {
 
 const svg = (body) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">${body}</svg>`;
 
-/** The logo: red disc, white star, transparent corners. Matches public/favicon.svg. */
-const disc = svg(`<circle cx="50" cy="50" r="50" fill="${RED}"/><path fill="${WHITE}" d="${starPath(50, 50, 28)}"/>`);
-
-/** Navy tile with the disc inset. For apple-touch-icon (iOS fills transparency with black) and Windows tiles. */
-const tile = svg(
-  `<rect width="100" height="100" fill="${NAVY}"/><circle cx="50" cy="50" r="38" fill="${RED}"/><path fill="${WHITE}" d="${starPath(50, 50, 25)}"/>`,
+/** Blue square, gold stamp frame, paper star. Matches public/favicon.svg. */
+const badge = svg(
+  `<rect width="100" height="100" rx="8" fill="${BLUE}"/><rect x="11" y="11" width="78" height="78" fill="none" stroke="${GOLD}" stroke-width="6"/><path fill="${PAPER}" d="${starPath(50, 51, 27)}"/>`,
 );
 
-/** Full-bleed red with the star inside the maskable safe zone (centre 80%), so any OS mask keeps it. */
+/** The same badge with square corners, for apple-touch-icon (iOS fills transparency with black) and Windows tiles. */
+const tile = svg(
+  `<rect width="100" height="100" fill="${BLUE}"/><rect x="11" y="11" width="78" height="78" fill="none" stroke="${GOLD}" stroke-width="6"/><path fill="${PAPER}" d="${starPath(50, 51, 27)}"/>`,
+);
+
+/** Full-bleed blue with the frame and star inside the maskable safe zone (a circle 80% wide), so any OS mask keeps them. */
 const maskable = svg(
-  `<rect width="100" height="100" fill="${RED}"/><path fill="${WHITE}" d="${starPath(50, 50, 30)}"/>`,
+  `<rect width="100" height="100" fill="${BLUE}"/><rect x="23" y="23" width="54" height="54" fill="none" stroke="${GOLD}" stroke-width="4"/><path fill="${PAPER}" d="${starPath(50, 50.5, 18)}"/>`,
 );
 
 const png = (source, size) =>
@@ -68,8 +69,8 @@ const manifest = {
   start_url: "/",
   scope: "/",
   display: "standalone",
-  background_color: NAVY,
-  theme_color: NAVY,
+  background_color: BLUE,
+  theme_color: BLUE,
   icons: [
     { src: "/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
     { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
@@ -82,7 +83,7 @@ const browserconfig = `<?xml version="1.0" encoding="utf-8"?>
   <msapplication>
     <tile>
       <square150x150logo src="/mstile-150x150.png"/>
-      <TileColor>${NAVY}</TileColor>
+      <TileColor>${BLUE}</TileColor>
     </tile>
   </msapplication>
 </browserconfig>
@@ -92,12 +93,12 @@ await mkdir(PUBLIC, { recursive: true });
 
 const files = {
   "favicon.svg": Buffer.from(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="${RED}"/><path fill="${WHITE}" d="${starPath(16, 16, 9)}"/></svg>\n`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="3" fill="${BLUE}"/><rect x="3.5" y="3.5" width="25" height="25" fill="none" stroke="${GOLD}" stroke-width="2"/><path fill="${PAPER}" d="${starPath(16, 16.3, 8.6)}"/></svg>\n`,
   ),
-  "favicon.ico": ico(await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await png(disc, size) })))),
+  "favicon.ico": ico(await Promise.all([16, 32, 48].map(async (size) => ({ size, data: await png(badge, size) })))),
   "apple-touch-icon.png": await png(tile, 180),
-  "icon-192.png": await png(disc, 192),
-  "icon-512.png": await png(disc, 512),
+  "icon-192.png": await png(badge, 192),
+  "icon-512.png": await png(badge, 512),
   "icon-maskable-512.png": await png(maskable, 512),
   "mstile-150x150.png": await png(tile, 150),
   "site.webmanifest": Buffer.from(`${JSON.stringify(manifest, null, 2)}\n`),

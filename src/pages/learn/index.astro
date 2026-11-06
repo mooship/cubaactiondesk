@@ -26,7 +26,7 @@ const articles = await getLiveArticles();
       <p>The first explainers are on their way. Please check back soon.</p>
     </div>
   ) : (
-    <ul class={`${prose.grid} ${prose.directory}`}>
+    <ul class={`${prose.rows} ${prose.directory}`}>
       {articles.map((a) => (
         <li>
           <h2 class={prose.cardTitle}>

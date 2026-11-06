@@ -24,7 +24,8 @@
 .header {
   background: var(--header-bg);
   color: var(--on-dark);
-  padding: var(--space-2) var(--gutter);
+  padding: var(--space-3) var(--gutter);
+  border-bottom: 4px solid var(--header-rule);
 }
 
 .headerInner {

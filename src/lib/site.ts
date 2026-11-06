@@ -11,13 +11,18 @@ export const SITE = {
 } as const;
 
 export const NAV_ITEMS = [
-  { label: "Act", href: "/act", icon: "act" },
-  { label: "Learn", href: "/learn", icon: "learn" },
-  { label: "Give", href: "/give", icon: "give" },
-  { label: "About", href: "/about", icon: "about" },
+  { label: "Act", href: "/act" },
+  { label: "Learn", href: "/learn" },
+  { label: "Give", href: "/give" },
+  { label: "About", href: "/about" },
 ] as const;
 
-export type NavIcon = (typeof NAV_ITEMS)[number]["icon"];
+/** Colours used outside CSS: the browser theme colour, app icons and generated images. They match src/styles/tokens.css. */
+export const BRAND = {
+  blue: "#002a8f",
+  gold: "#e0a526",
+  paper: "#f4efe4",
+} as const;
 
 /** "Page title, Cuba Action Desk SA", except the home page which uses the bare name. */
 export function pageTitle(title?: string): string {

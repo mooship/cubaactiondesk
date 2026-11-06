@@ -23,82 +23,86 @@ const host = hostOf(data.donateUrl);
 ---
 
 <article class={styles.listing} aria-labelledby={`org-${id}`}>
-  <h2 id={`org-${id}`} class={styles.name}>
-    {data.name}
-  </h2>
-  <p class={styles.tags}>
-    {data.country} · {CATEGORY[data.category]}
-  </p>
+  <div class={styles.details}>
+    <h2 id={`org-${id}`} class={styles.name}>
+      {data.name}
+    </h2>
+    <p class={styles.tags}>
+      {data.country} · {CATEGORY[data.category]}
+    </p>
 
-  <dl class={styles.facts}>
-    <div>
-      <dt>What they deliver</dt>
-      <dd>{data.delivers}</dd>
+    <dl class={styles.facts}>
+      <div>
+        <dt>What they deliver</dt>
+        <dd>{data.delivers}</dd>
+      </div>
+      {data.recipientsInCuba && (
+        <div>
+          <dt>Who receives it in Cuba</dt>
+          <dd>{data.recipientsInCuba}</dd>
+        </div>
+      )}
+      {data.howMoneyReaches && (
+        <div>
+          <dt>How money reaches Cuba</dt>
+          <dd>{data.howMoneyReaches}</dd>
+        </div>
+      )}
+      {data.registration && (
+        <div>
+          <dt>Registration</dt>
+          <dd>
+            {data.registration.number} ({data.registration.body})
+            {data.registration.url && (
+              <>
+                {" "}
+                <a href={data.registration.url} rel="noopener noreferrer">
+                  check the register
+                </a>
+              </>
+            )}
+          </dd>
+        </div>
+      )}
+      {data.lastVerified && (
+        <div>
+          <dt>Last checked by us</dt>
+          <dd>
+            <time datetime={isoDate(data.lastVerified)}>{formatDate(data.lastVerified)}</time>
+          </dd>
+        </div>
+      )}
+    </dl>
+
+    {data.payNote && <p class={styles.payNote}>{data.payNote}</p>}
+    {data.paymentNotes && (
+      <details class={styles.trail}>
+        <summary>How we checked the payment options</summary>
+        <p class={styles.note}>{data.paymentNotes}</p>
+      </details>
+    )}
+  </div>
+
+  <div class={styles.side}>
+    <p class={styles.status}>
+      <StatusBadge status={status} />
+    </p>
+
+    <div class={styles.donate}>
+      <Button href={`/go/${id}`} disabled={!enabled}>
+        Donate on {host}
+      </Button>
+      {enabled ? (
+        <p class={styles.note}>You will leave this site and pay {host} directly. We never handle the money.</p>
+      ) : (
+        <p class={styles.note}>
+          Donations are paused while we check this link. Try the organisation's own site:{" "}
+          <a href={data.website} rel="noopener noreferrer">
+            {hostOf(data.website)}
+          </a>
+          .
+        </p>
+      )}
     </div>
-    {data.recipientsInCuba && (
-      <div>
-        <dt>Who receives it in Cuba</dt>
-        <dd>{data.recipientsInCuba}</dd>
-      </div>
-    )}
-    {data.howMoneyReaches && (
-      <div>
-        <dt>How money reaches Cuba</dt>
-        <dd>{data.howMoneyReaches}</dd>
-      </div>
-    )}
-    {data.registration && (
-      <div>
-        <dt>Registration</dt>
-        <dd>
-          {data.registration.number} ({data.registration.body})
-          {data.registration.url && (
-            <>
-              {" "}
-              <a href={data.registration.url} rel="noopener noreferrer">
-                check the register
-              </a>
-            </>
-          )}
-        </dd>
-      </div>
-    )}
-    {data.lastVerified && (
-      <div>
-        <dt>Last checked by us</dt>
-        <dd>
-          <time datetime={isoDate(data.lastVerified)}>{formatDate(data.lastVerified)}</time>
-        </dd>
-      </div>
-    )}
-  </dl>
-
-  {data.payNote && <p class={styles.payNote}>{data.payNote}</p>}
-  {data.paymentNotes && (
-    <details class={styles.trail}>
-      <summary>How we checked the payment options</summary>
-      <p class={styles.note}>{data.paymentNotes}</p>
-    </details>
-  )}
-
-  <p class={styles.status}>
-    <StatusBadge status={status} />
-  </p>
-
-  <div class={styles.donate}>
-    <Button href={`/go/${id}`} disabled={!enabled}>
-      Donate on {host}
-    </Button>
-    {enabled ? (
-      <p class={styles.note}>You will leave this site and pay {host} directly. We never handle the money.</p>
-    ) : (
-      <p class={styles.note}>
-        Donations are paused while we check this link. Try the organisation's own site:{" "}
-        <a href={data.website} rel="noopener noreferrer">
-          {hostOf(data.website)}
-        </a>
-        .
-      </p>
-    )}
   </div>
 </article>

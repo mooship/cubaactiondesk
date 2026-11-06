@@ -1,17 +1,32 @@
+/* An action is a row on a ruled list, headed by who it goes to, like the address on an envelope. */
 .card {
   position: relative;
-  padding: var(--space-5);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
+  padding: var(--space-5) 0 var(--space-6);
+  border-top: 1px solid var(--border);
+}
+
+.stamp {
+  display: inline-block;
+  margin: 0 0 var(--space-3);
+  padding: 0.15em 0.45em 0.05em;
+  border: 2px solid currentColor;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-small);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .title {
   margin: 0 0 var(--space-2);
-  font-size: var(--step-2);
+  padding: 0;
+  border: 0;
+  font-size: var(--step-3);
 }
 
-/* The whole card is the click target; the heading link carries the name. */
+/* The whole row is the click target; the heading link carries the name. */
 .link {
   color: inherit;
   text-decoration: none;
@@ -21,11 +36,11 @@
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: var(--radius-card);
 }
 
 .link:hover {
   text-decoration: underline;
+  text-decoration-thickness: 2px;
 }
 
 .link:focus-visible {
@@ -33,11 +48,12 @@
 }
 
 .link:focus-visible::after {
-  outline: 2px solid var(--focus);
+  outline: 3px solid var(--focus);
   outline-offset: 2px;
 }
 
 .summary {
+  max-width: var(--measure);
   margin-bottom: var(--space-3);
 }
 
