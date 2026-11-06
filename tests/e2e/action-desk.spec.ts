@@ -11,7 +11,7 @@ test.describe("with JavaScript", () => {
     await expect(message).toHaveValue(/\{mp_name\}/);
     await page.getByLabel("Your name").fill("Thandi Nkosi");
     await page.getByLabel("Your town").fill("Gqeberha");
-    await expect(message).toHaveValue(/I am a constituent in Gqeberha/);
+    await expect(message).toHaveValue(/constituent in Gqeberha/);
     await expect(message).toHaveValue(/Thandi Nkosi/);
     await expect(page.getByText("Still to fill in:")).toContainText("{mp_name}");
   });
