@@ -35,7 +35,7 @@ const rows = await getLinkRows(getDb(env.DB)).catch(() => new Map<string, LinkRo
 
   {fundraisers.length === 0 ? (
     <div class={prose.notice}>
-      <h2 style="margin-top: 0">No organisations are listed yet</h2>
+      <h2 class={prose.cardTitle}>No organisations are listed yet</h2>
       <p>
         We have not finished checking any organisation, and we will not list one until we have. Read{" "}
         <a href="/give/how-we-vet">how we check</a>. In the meantime you can <a href="/act">take action</a> or{" "}

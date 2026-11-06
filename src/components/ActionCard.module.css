@@ -49,7 +49,7 @@
   padding: 0;
   list-style: none;
   color: var(--text-muted);
-  font-size: 0.9375rem;
+  font-size: var(--step-small);
 }
 
 .meta li {

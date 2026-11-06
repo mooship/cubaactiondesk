@@ -30,24 +30,33 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.2;
-  margin: 0 0 var(--space-3);
+  font-weight: 800;
+  line-height: var(--leading-display);
+  margin: 0 0 var(--space-4);
   text-wrap: balance;
 }
 
 h1 {
   font-size: var(--step-4);
+  font-weight: 900;
+  letter-spacing: -0.005em;
 }
 
 h2 {
   font-size: var(--step-3);
-  margin-top: var(--space-6);
+  margin-top: var(--space-7);
 }
 
 h3 {
   font-size: var(--step-2);
-  margin-top: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+/* Section headings in the page body sit under a heavy ink rule, like a newspaper column head.
+   :where keeps this at element strength so any component class overrides it. */
+main :where(h2:not([class])) {
+  padding-top: var(--space-3);
+  border-top: 3px solid var(--rule-heavy);
 }
 
 p,
@@ -72,11 +81,11 @@ a {
   color: var(--link);
   text-decoration: underline;
   text-underline-offset: 0.18em;
-  text-decoration-thickness: 0.08em;
+  text-decoration-thickness: 1px;
 }
 
 a:hover {
-  text-decoration-thickness: 0.15em;
+  text-decoration-thickness: 2px;
 }
 
 :focus-visible {

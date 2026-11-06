@@ -9,15 +9,15 @@
   left: var(--space-2);
   z-index: 20;
   padding: var(--space-3) var(--space-4);
-  background: var(--navy);
-  color: var(--white);
+  background: var(--cuba-blue);
+  color: var(--paper);
   border-radius: var(--radius-control);
   transform: translateY(-200%);
 }
 
 .skipLink:focus {
   transform: none;
-  outline: 2px solid var(--white);
+  outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
 

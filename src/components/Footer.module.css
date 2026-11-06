@@ -3,7 +3,7 @@
   padding: var(--space-6) var(--gutter);
   background: var(--surface);
   border-top: 1px solid var(--border);
-  font-size: 0.9375rem;
+  font-size: var(--step-small);
 }
 
 .inner {

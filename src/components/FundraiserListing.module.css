@@ -14,7 +14,7 @@
 .tags {
   margin-bottom: var(--space-4);
   color: var(--text-muted);
-  font-size: 0.9375rem;
+  font-size: var(--step-small);
 }
 
 .facts {
@@ -43,7 +43,7 @@
 .note {
   margin: var(--space-2) 0 0;
   color: var(--text-muted);
-  font-size: 0.9375rem;
+  font-size: var(--step-small);
 }
 
 .payNote {
@@ -57,5 +57,5 @@
 .trail summary {
   cursor: pointer;
   color: var(--text-muted);
-  font-size: 0.9375rem;
+  font-size: var(--step-small);
 }

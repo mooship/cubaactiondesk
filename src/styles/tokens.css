@@ -1,93 +1,106 @@
 /* Design tokens. Component modules reference these, never raw hex values. */
 
 :root {
-  /* Brand palette */
-  --navy: #0b1f4d;
-  --red: #c8102e;
+  /* Palette: newsprint paper, ink, Cuban flag blue, a pressed red and a gold for rules. */
+  --paper: #f4efe4;
+  --paper-sunk: #ebe4d4;
+  --ink: #1b1a17;
+  --ink-soft: #4f4a40;
+  --rule: #7a7264;
+  --cuba-blue: #002a8f;
+  --press-red: #b3261e;
+  --gold: #e0a526;
   --white: #ffffff;
-  --mist: #eef1f6;
-  --ink: #1a1f2b;
-  --green: #007749;
+  --green: #004d33;
 
   /* Semantic colours: light */
-  --bg: var(--white);
-  --surface: var(--mist);
+  --bg: var(--paper);
+  --surface: var(--paper-sunk);
   --text: var(--ink);
-  --text-muted: #434a5c;
-  --link: var(--navy);
-  --border: #b7bfd0;
-  --focus: var(--navy);
-  --on-dark: var(--white);
-  --focus-on-dark: var(--white);
-  --header-bg: var(--navy);
-  --btn-primary-bg: var(--red);
+  --text-muted: var(--ink-soft);
+  --link: var(--cuba-blue);
+  --border: var(--rule);
+  --rule-heavy: var(--ink);
+  --accent: var(--press-red);
+  --focus: var(--cuba-blue);
+  --on-dark: var(--paper);
+  --focus-on-dark: var(--gold);
+  --header-bg: var(--cuba-blue);
+  --header-rule: var(--gold);
+  --btn-primary-bg: var(--press-red);
   --btn-primary-text: var(--white);
-  --btn-secondary-bg: var(--white);
-  --btn-secondary-text: var(--navy);
-  --btn-secondary-border: var(--navy);
+  --btn-secondary-bg: transparent;
+  --btn-secondary-text: var(--ink);
+  --btn-secondary-border: var(--ink);
   --success: var(--green);
-  --warning-bg: #fff4d6;
-  --warning-text: #5c4300;
-  --placeholder-mark: #fff0b3;
+  --warning-bg: #f3dc9c;
+  --warning-text: #4a3500;
+  --placeholder-mark: #f3dc9c;
 
   /* Typography. --font-body and --font-display are defined by Astro's font provider (see astro.config.mjs). */
-  --step-0: 1.0625rem; /* 17px */
-  --step-1: 1.25rem; /* 20px */
-  --step-2: 1.5rem; /* 24px */
-  --step-3: 1.875rem; /* 30px */
-  --step-4: 2.375rem; /* 38px */
+  --step-0: 1.125rem; /* 18px body */
+  --step-1: 1.3125rem; /* 21px */
+  --step-2: 1.625rem; /* 26px */
+  --step-3: 2.125rem; /* 34px */
+  --step-4: clamp(2.5rem, 1.75rem + 3.5vw, 4rem); /* 40 to 64px */
+  --step-small: 1rem; /* 16px meta text */
   --leading-body: 1.55;
-  --measure: 68ch;
+  --leading-display: 1.05;
+  --measure: 66ch;
 
-  /* Spacing scale: 4, 8, 12, 16, 24, 32, 48, 64 */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: 3rem;
-  --space-8: 4rem;
+  /* Spacing follows the body line (18px x 1.55, about 28px): eighths, quarters, halves and whole lines. */
+  --line: 1.75rem;
+  --space-1: calc(var(--line) / 8);
+  --space-2: calc(var(--line) / 4);
+  --space-3: calc(var(--line) * 3 / 8);
+  --space-4: calc(var(--line) / 2);
+  --space-5: calc(var(--line) * 3 / 4);
+  --space-6: var(--line);
+  --space-7: calc(var(--line) * 1.5);
+  --space-8: calc(var(--line) * 2);
 
-  --radius-control: 6px;
-  --radius-card: 8px;
+  /* Square corners for paper; a hint of rounding on controls. */
+  --radius-control: 2px;
+  --radius-card: 0;
 
   --gutter: var(--space-4);
   --nav-h: 56px;
   --target: 44px;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --page-max: 72rem;
+  --page-max: 70rem;
 }
 
 @media (min-width: 640px) {
-  :root {
-    --gutter: var(--space-5);
-  }
-}
-
-@media (min-width: 1024px) {
   :root {
     --gutter: var(--space-6);
   }
 }
 
-/* Dark mode: ground navy, surfaces lighter navy, red stays. */
+@media (min-width: 1024px) {
+  :root {
+    --gutter: var(--space-7);
+  }
+}
+
+/* Dark mode: a warm near-black page with paper-coloured text. The header keeps its blue band. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: var(--navy);
-    --surface: #16306e;
-    --text: var(--mist);
-    --text-muted: #c5ccdd;
-    --link: var(--white);
-    --border: #4a62a0;
-    --focus: #ffd84d;
-    --header-bg: #071433;
-    --btn-secondary-bg: transparent;
-    --btn-secondary-text: var(--white);
-    --btn-secondary-border: var(--white);
+    --bg: #16140f;
+    --surface: #221f18;
+    --text: var(--paper);
+    --text-muted: #c9c1b0;
+    --link: #9db3ff;
+    --border: #8a8270;
+    --rule-heavy: var(--paper);
+    --accent: #ff7a6e;
+    --focus: var(--gold);
+    --btn-primary-bg: #ff7a6e;
+    --btn-primary-text: #16140f;
+    --btn-secondary-text: var(--paper);
+    --btn-secondary-border: var(--paper);
     --success: #7fe0b0;
-    --warning-bg: #3d3000;
-    --warning-text: #ffe9a6;
-    --placeholder-mark: #5a4a00;
+    --warning-bg: #3a2c08;
+    --warning-text: #f4d58a;
+    --placeholder-mark: #463a00;
   }
 }
