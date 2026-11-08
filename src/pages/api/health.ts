@@ -1,5 +1,5 @@
-import type { APIRoute } from "astro";
 import { env } from "cloudflare:workers";
+import type { APIRoute } from "astro";
 import { json } from "../../lib/http.ts";
 
 export const prerender = false;

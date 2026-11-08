@@ -111,7 +111,7 @@ const browser = await chromium.launch();
 const work = mkdtempSync(join(tmpdir(), "cad-images-"));
 for (const image of images) {
   const page = await browser.newPage({ viewport: { width: image.width, height: image.height } });
-  const source = join(work, image.file.replaceAll(/\W+/g, "-") + ".html");
+  const source = join(work, `${image.file.replaceAll(/\W+/g, "-")}.html`);
   writeFileSync(source, `<!doctype html><meta charset="utf-8">${image.html}`);
   await page.goto(pathToFileURL(source).href);
   await page.evaluate(() => document.fonts.ready);

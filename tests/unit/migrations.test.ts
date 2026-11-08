@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { getTableConfig } from "drizzle-orm/sqlite-core";
+import { describe, expect, it } from "vitest";
 import { actionCounts, linkChecks } from "../../src/db/schema.ts";
 import { migratedSqlite, migrationFiles } from "../helpers/d1.ts";
 

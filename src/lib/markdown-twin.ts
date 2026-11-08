@@ -1,8 +1,8 @@
+import type { SourceData } from "../content/schemas.ts";
 import { plainCitations } from "./citations.ts";
 import { formatDate, isoDate, minutes } from "./format.ts";
 import { ORIGIN_LABELS } from "./origins.ts";
-import { SITE, absoluteUrl } from "./site.ts";
-import type { SourceData } from "../content/schemas.ts";
+import { absoluteUrl, SITE } from "./site.ts";
 
 /**
  * Markdown twins of the HTML pages, built from the same content.

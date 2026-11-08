@@ -1,5 +1,5 @@
 import { getDb } from "../../src/db/client.ts";
-import { runChecks, type CheckedLink } from "../../src/lib/link-check-run.ts";
+import { type CheckedLink, runChecks } from "../../src/lib/link-check-run.ts";
 import links from "./links.generated.json";
 
 /**

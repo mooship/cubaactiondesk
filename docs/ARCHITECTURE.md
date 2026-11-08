@@ -130,17 +130,18 @@ and Cape Town.
 ## Accessibility
 
 The target is WCAG 2.2 AA everywhere, with a few AAA measures where they are cheap (7:1 body contrast, 44 px targets, plain
-English). Every page is scanned by axe in light and dark mode in the Playwright suite, and `eslint-plugin-astro` checks the
+English). Every page is scanned by axe in light and dark mode in the Playwright suite, and Biome's accessibility rules check the
 templates. Automated tools find only part of the real barriers, so manual testing with TalkBack, NVDA and VoiceOver and
 with disabled users is on the launch checklist.
 
 ## Decisions and trade-offs
 
-- TypeScript 7, without `@astrojs/check`, which needs TypeScript 5 or 6. Type checking is `tsc --noEmit`, which does not
-  read `.astro` files, so logic that matters lives in typed `.ts` modules and the Astro frontmatter is covered by ESLint,
-  the build and the browser tests.
-- ESLint lives in `tools/lint`. typescript-eslint needs TypeScript's JavaScript API, which version 7 does not have, so the
-  lint package pins TypeScript 6. See the README.
+- TypeScript 7.1 (pinned to `7.1.0-beta`), without `@astrojs/check`, which needs TypeScript 5 or 6. `tsc` reads `.astro`
+  files through `@astrojs/ts-content-mapper`, so props and frontmatter are type-checked. Logic that matters still lives in
+  typed `.ts` modules under `src/lib`, where it can have a unit test.
+- Biome replaces Prettier and ESLint. typescript-eslint cannot run on TypeScript 7, and keeping it meant a separate lint
+  package pinned to TypeScript 6. Biome does not depend on TypeScript, so that package is gone. It formats everything except `.astro` files, whose rendered
+  whitespace its experimental Astro formatter changed. See the README.
 - Markdown processing uses Sätteri, Astro 7's default, with a small plugin for citations.
 - Astro sessions are off (`session: false`), so the adapter does not provision a KV namespace the site would never use.
 - Placeholders are not highlighted inside the textarea, because a textarea cannot style part of its text. Unfilled blanks

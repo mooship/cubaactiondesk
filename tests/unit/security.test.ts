@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { SECURITY_HEADERS, headersFile, withSecurityHeaders } from "../../src/lib/security.ts";
+import { headersFile, SECURITY_HEADERS, withSecurityHeaders } from "../../src/lib/security.ts";
 
 describe("SECURITY_HEADERS", () => {
   it("sets the required headers", () => {

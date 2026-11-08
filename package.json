@@ -12,14 +12,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "typecheck": "astro sync && tsc --noEmit",
-    "lint": "npm exec --prefix tools/lint -- eslint --max-warnings 0 .",
-    "lint:fix": "npm exec --prefix tools/lint -- eslint --fix .",
-    "lint:setup": "npm ci --prefix tools/lint",
-    "lint:ensure": "node scripts/ensure-lint.mjs",
-    "lint:ci": "npm run lint:setup && npm run format:check && npm run lint",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "typecheck": "astro sync && tsc --noEmit --runExternalCode",
+    "lint": "biome check --error-on-warnings .",
+    "lint:fix": "biome check --write .",
+    "lint:ci": "biome ci --error-on-warnings .",
+    "format": "biome format --write .",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
@@ -38,20 +35,6 @@
     "prepare": "lefthook install --force || echo \"Skipped git hooks (not a git repository)\"",
     "lhci:desktop": "lhci autorun --config=.github/lighthouserc.desktop.cjs"
   },
-  "prettier": {
-    "printWidth": 120,
-    "plugins": [
-      "prettier-plugin-astro"
-    ],
-    "overrides": [
-      {
-        "files": "*.astro",
-        "options": {
-          "parser": "astro"
-        }
-      }
-    ]
-  },
   "dependencies": {
     "@astrojs/cloudflare": "14.4.3",
     "@astrojs/markdown-satteri": "0.4.6",
@@ -61,17 +44,17 @@
     "satteri": "0.10.5"
   },
   "devDependencies": {
+    "@astrojs/ts-content-mapper": "0.2.0",
     "@axe-core/playwright": "4.14.0",
+    "@biomejs/biome": "2.6.4",
     "@lhci/cli": "0.16.0",
     "@playwright/test": "1.64.1",
     "@types/node": "24.19.2",
     "drizzle-kit": "0.31.11",
     "html-validate": "11.17.0",
     "lefthook": "2.2.2",
-    "prettier": "3.9.10",
-    "prettier-plugin-astro": "1.1.2",
     "sharp": "0.35.5",
-    "typescript": "7.0.2",
+    "typescript": "7.1.0-beta",
     "vitest": "5.0.5",
     "wrangler": "4.155.0",
     "yaml": "2.9.1"

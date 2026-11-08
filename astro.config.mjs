@@ -1,9 +1,9 @@
-import { defineConfig, fontProviders } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
-import sitemap from "@astrojs/sitemap";
 import { satteri } from "@astrojs/markdown-satteri";
-import { satteriCitations } from "./src/lib/satteri-citations.ts";
+import sitemap from "@astrojs/sitemap";
+import { defineConfig, fontProviders } from "astro/config";
 import { loadSiteContent } from "./src/lib/content-files.ts";
+import { satteriCitations } from "./src/lib/satteri-citations.ts";
 import { siteUrl } from "./src/lib/site.ts";
 
 // The public origin: SITE_URL if set, otherwise the default in src/lib/site.ts.

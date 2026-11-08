@@ -1,5 +1,5 @@
 import { isoDate } from "./format.ts";
-import { SITE, absoluteUrl } from "./site.ts";
+import { absoluteUrl, SITE } from "./site.ts";
 
 type Origin = URL | string;
 

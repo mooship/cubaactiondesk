@@ -7,7 +7,7 @@ import type {
   TargetData,
 } from "../content/schemas.ts";
 import { citedIds } from "./citations.ts";
-import { TITLE_MAX, pageTitle } from "./site.ts";
+import { pageTitle, TITLE_MAX } from "./site.ts";
 import { contactProblems, contactsOf, verifiedContacts } from "./targets.ts";
 import { extractPlaceholders } from "./template.ts";
 import { countWords } from "./text.ts";

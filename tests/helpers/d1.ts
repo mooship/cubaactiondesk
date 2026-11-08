@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
-import { DatabaseSync, type SQLInputValue } from "node:sqlite";
 import { join } from "node:path";
-import { getDb, type Db } from "../../src/db/client.ts";
+import { DatabaseSync, type SQLInputValue } from "node:sqlite";
+import { type Db, getDb } from "../../src/db/client.ts";
 
 const MIGRATIONS_DIR = join(import.meta.dirname, "..", "..", "migrations");
 

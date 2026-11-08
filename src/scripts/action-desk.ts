@@ -1,7 +1,7 @@
 import { computeSend, fillTemplate } from "../lib/action-desk.ts";
 import { addDone, getStorage, nextAction, readDone } from "../lib/done-store.ts";
-import type { Contact } from "../lib/targets.ts";
 import { peopleCount } from "../lib/format.ts";
+import type { Contact } from "../lib/targets.ts";
 
 /** How long to wait for the counter before showing a placeholder instead. */
 const SLOW_MS = 150;

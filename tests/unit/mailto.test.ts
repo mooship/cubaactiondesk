@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { MAILTO_MAX_LENGTH, buildMailto } from "../../src/lib/mailto.ts";
+import { buildMailto, MAILTO_MAX_LENGTH } from "../../src/lib/mailto.ts";
 
 describe("buildMailto", () => {
   it("builds a mailto URL with encoded subject and body", () => {

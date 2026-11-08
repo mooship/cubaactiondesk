@@ -1,5 +1,5 @@
-import { findGluedInline } from "./html-check.ts";
 import type { Issue } from "./content-check.ts";
+import { findGluedInline } from "./html-check.ts";
 import { DESCRIPTION_MAX, TITLE_MAX } from "./site.ts";
 
 /** The built site, as files relative to dist/client, plus the routes the Worker renders on demand. */
@@ -100,9 +100,9 @@ export function checkOutput(site: OutputSite): Issue[] {
   const articles = [...site.files.keys()].filter((f) => /^learn\/[^/]+\.html$/.test(f)).map((f) => f.slice(6, -5));
   const actions = sitemapPaths.filter((p) => /^\/act\/[^/]+$/.test(p)).map((p) => p.slice(5));
   for (const slug of articles)
-    if (!site.files.has(`learn/${slug}.md`)) error(`learn/${slug}`, "missing Markdown twin learn/" + slug + ".md");
+    if (!site.files.has(`learn/${slug}.md`)) error(`learn/${slug}`, `missing Markdown twin learn/${slug}.md`);
   for (const slug of actions)
-    if (!site.files.has(`act/${slug}.md`)) error(`act/${slug}`, "missing Markdown twin act/" + slug + ".md");
+    if (!site.files.has(`act/${slug}.md`)) error(`act/${slug}`, `missing Markdown twin act/${slug}.md`);
   if (!site.files.has("give.md")) error("give", "missing Markdown twin give.md");
 
   // Sitemap entries must resolve.

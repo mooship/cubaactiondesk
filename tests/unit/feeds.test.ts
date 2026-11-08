@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { robotsTxt } from "../../src/lib/robots.ts";
 import { rssFeed } from "../../src/lib/rss.ts";
 import { parseFeed } from "../helpers/rss-parse.ts";
-import { robotsTxt } from "../../src/lib/robots.ts";
 
 const origin = "https://example.org";
 
