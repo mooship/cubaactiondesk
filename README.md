@@ -26,7 +26,7 @@ before launch is in [docs/LAUNCH-CHECKLIST.md](docs/LAUNCH-CHECKLIST.md).
 
 ## Getting started
 
-You need Node 22.23.4 or newer (24 is what CI uses).
+You need Node 24.22.1 or newer (24 and 26 are supported) and npm 11 or newer. `.node-version` says `24`, and `packageManager` pins npm 11.19.1 for Corepack and Cloudflare Workers Builds.
 
 ```sh
 npm install        # also installs the git hooks
