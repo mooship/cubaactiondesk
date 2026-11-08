@@ -2,7 +2,7 @@
 import styles from "./ActionDesk.module.css";
 import Button from "./Button.astro";
 import Star from "./Star.astro";
-import { computeSend, MAX_VALUE_LENGTH } from "../lib/action-desk.ts";
+import { computeSend, describeBlanks, MAX_VALUE_LENGTH } from "../lib/action-desk.ts";
 import { peopleCount } from "../lib/format.ts";
 import type { ActionData } from "../content/schemas.ts";
 import type { Contact } from "../lib/targets.ts";
@@ -50,6 +50,7 @@ const usesWhatsApp = channel === "whatsapp";
 const canPrint = channel === "email" || channel === "letter";
 const AUTOCOMPLETE: Record<string, string> = { name: "name", town: "address-level2" };
 const needsRecipientNote = usesEmail && !contact?.address;
+const labels = Object.fromEntries(placeholders.map((p) => [p.key, p.label]));
 // scripts/build-images.ts writes a small WebP next to each card PNG. The page shows the WebP; the PNG is the download.
 const preview = image?.endsWith(".png") ? image.replace(/\.png$/, "-preview.webp") : image;
 ---
@@ -60,6 +61,7 @@ const preview = image?.endsWith(".png") ? image.replace(/\.png$/, "-preview.webp
   data-slug={slug}
   data-subject={subject}
   data-template={template}
+  data-labels={JSON.stringify(labels)}
   data-contacts={JSON.stringify(contacts.map((c) => ({ id: c.id, address: c.address })))}
   data-next={JSON.stringify(next)}
 >
@@ -97,9 +99,7 @@ const preview = image?.endsWith(".png") ? image.replace(/\.png$/, "-preview.webp
               maxlength={MAX_VALUE_LENGTH}
               data-key={p.key}
               aria-describedby={p.hint ? `h-${p.key}` : undefined}
-            >
-                {values[p.key] ?? ""}
-              </textarea>
+            >{values[p.key] ?? ""}</textarea>
           ) : (
             <input
               id={`f-${p.key}`}
@@ -155,7 +155,7 @@ const preview = image?.endsWith(".png") ? image.replace(/\.png$/, "-preview.webp
       <span data-count>{send.characters} characters</span>
     </p>
     <p class={styles.unfilled} data-unfilled hidden={send.unfilled.length === 0}>
-      Still to fill in: <strong data-unfilled-list>{send.unfilled.map((k) => `{${k}}`).join(", ")}</strong>
+      Still to fill in: <span data-unfilled-list>{describeBlanks(send.unfilled, labels)}</span>
     </p>
     <p class={styles.hint} data-edited hidden>
       You edited the message by hand, so the boxes above no longer change it.
@@ -228,7 +228,7 @@ const preview = image?.endsWith(".png") ? image.replace(/\.png$/, "-preview.webp
     <p class={styles.hint}>This site does not send your message. You send it yourself.</p>
 
     <div class={styles.doneBox} data-js-only hidden>
-      <button type="button" class={styles.doneButton} data-done aria-pressed="false">
+      <button type="button" class={styles.doneButton} data-done aria-disabled="false">
         <span class={styles.doneStar} aria-hidden="true">
           <Star />
         </span>

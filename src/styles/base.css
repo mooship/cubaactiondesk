@@ -157,7 +157,7 @@ abbr[title] {
 
 @media (prefers-reduced-motion: no-preference) {
   .skeleton {
-    animation: skeleton-shimmer 1.4s ease-in-out infinite;
+    animation: skeleton-shimmer 1.4s ease-in-out 3;
   }
 }
 

@@ -1,7 +1,23 @@
 import { describe, expect, it } from "vitest";
-import { computeSend, fillTemplate, parseValues } from "../../src/lib/action-desk.ts";
+import { computeSend, describeBlanks, fillTemplate, parseValues } from "../../src/lib/action-desk.ts";
 import { addDone, nextAction, readDone } from "../../src/lib/done-store.ts";
 import { MAILTO_MAX_LENGTH } from "../../src/lib/mailto.ts";
+
+describe("describeBlanks", () => {
+  it("uses the action's field labels in message order", () => {
+    expect(describeBlanks(["mp_name", "town"], { mp_name: "Your MP's name", town: "Your town" })).toBe(
+      "Your MP's name, Your town",
+    );
+  });
+
+  it("makes an added blank readable without inventing a field label", () => {
+    expect(describeBlanks(["my_added_point"], {})).toBe("my added point");
+  });
+
+  it("has nothing to list when all blanks are filled", () => {
+    expect(describeBlanks([], { name: "Your name" })).toBe("");
+  });
+});
 
 describe("parseValues", () => {
   const params = (qs: string) => new URLSearchParams(qs);

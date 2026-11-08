@@ -10,6 +10,10 @@ import { buildWhatsAppShare } from "./whatsapp.ts";
 
 export const MAX_VALUE_LENGTH = 1000;
 
+export function describeBlanks(keys: readonly string[], labels: Record<string, string>): string {
+  return keys.map((key) => (Object.hasOwn(labels, key) ? labels[key] : key.replaceAll("_", " "))).join(", ");
+}
+
 /** Prefill values from the query string, for the keys this action defines only. */
 export function parseValues(params: URLSearchParams, keys: readonly string[]): Record<string, string> {
   const values: Record<string, string> = {};

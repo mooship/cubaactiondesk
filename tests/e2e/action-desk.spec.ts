@@ -13,7 +13,27 @@ test.describe("with JavaScript", () => {
     await page.getByLabel("Your town").fill("Gqeberha");
     await expect(message).toHaveValue(/constituent in Gqeberha/);
     await expect(message).toHaveValue(/Thandi Nkosi/);
-    await expect(page.getByText("Still to fill in:")).toContainText("{mp_name}");
+    await expect(page.getByText("Still to fill in:")).toContainText("Your MP's name");
+    await expect(page.getByText("Still to fill in:")).not.toContainText("{mp_name}");
+  });
+
+  test("multiline blanks start empty and show prefilled text without indentation", async ({ page }) => {
+    await page.goto(ACTION);
+    await expect(page.getByLabel("Why this matters to you")).toHaveValue("");
+    await expect(page.getByLabel("Your own point")).toHaveValue("");
+    await page.goto(`${ACTION}?personal_reason=My+reason`);
+    await expect(page.getByLabel("Why this matters to you")).toHaveValue("My reason");
+  });
+
+  test("filling or restoring the last blank announces the change once", async ({ page }) => {
+    await page.goto(ACTION);
+    const message = page.getByLabel("Your message");
+    await message.fill("My own words.");
+    await expect(page.getByRole("status")).toHaveText("All the blanks are filled in.");
+    await message.fill("My own words. {mp_name}");
+    await expect(page.getByRole("status")).toHaveText("Still to fill in: Your MP's name.");
+    await message.fill("More of my own words. {mp_name}");
+    await expect(page.getByRole("status")).toHaveText("Still to fill in: Your MP's name.");
   });
 
   test("Copy puts the message on the clipboard and says so", async ({ page }) => {
@@ -23,6 +43,23 @@ test.describe("with JavaScript", () => {
     await expect(page.getByRole("button", { name: "Message copied" })).toBeVisible();
     expect(await page.evaluate(() => navigator.clipboard.readText())).toContain("Sipho");
     await expect(page.getByRole("status")).toHaveText("Message copied");
+  });
+
+  test("Copy can announce success again without clearing newer feedback", async ({ page }) => {
+    await page.clock.install();
+    await page.goto(ACTION);
+    const copy = page.locator("[data-copy]");
+    const status = page.getByRole("status");
+    await copy.click();
+    await expect(status).toHaveText("Message copied");
+    await page.clock.fastForward(3000);
+    await expect(status).toBeEmpty();
+    await copy.click();
+    await expect(status).toHaveText("Message copied");
+    await page.getByLabel("Your message").fill("word ".repeat(500));
+    await expect(status).toContainText("too long");
+    await page.clock.fastForward(3000);
+    await expect(status).toContainText("too long");
   });
 
   test("editing by hand is respected, and the template can be restored", async ({ page }) => {
@@ -68,18 +105,21 @@ test.describe("with JavaScript", () => {
     await stubCounter(page, { count: 41 });
     await page.goto(ACTION);
     const done = page.locator("[data-done]");
-    await expect(done).toHaveAttribute("aria-pressed", "false");
+    await expect(done).toHaveAttribute("aria-disabled", "false");
+    await expect(done).not.toHaveAttribute("aria-pressed", /.*/);
     let posts = 0;
     page.on("request", (req) => req.method() === "POST" && req.url().includes("/taken") && posts++);
     await done.click();
-    await expect(done).toHaveAttribute("aria-pressed", "true");
+    await expect(done).toHaveAttribute("aria-disabled", "true");
+    await expect(done).toBeFocused();
     await expect(page.getByText("41 people took this action.")).toBeVisible();
     await expect(page.getByText(/Next:/)).toBeVisible();
     expect(posts).toBe(1);
 
     await page.reload();
-    await expect(page.getByRole("button", { name: /Done/ })).toHaveAttribute("aria-pressed", "true");
-    await page.getByRole("button", { name: /Done/ }).click();
+    await expect(page.getByRole("button", { name: /Done/ })).toHaveAttribute("aria-disabled", "true");
+    await page.getByRole("button", { name: /Done/ }).focus();
+    await page.keyboard.press("Enter");
     expect(posts).toBe(1);
   });
 
@@ -107,7 +147,7 @@ test.describe("with JavaScript", () => {
     await stubCounter(page, { fail: true });
     await page.goto(ACTION);
     await page.getByRole("button", { name: /Mark as done/ }).click();
-    await expect(page.getByRole("button", { name: /Done/ })).toHaveAttribute("aria-pressed", "true");
+    await expect(page.getByRole("button", { name: /Done/ })).toHaveAttribute("aria-disabled", "true");
     await expect(page.locator("[data-total-text]")).not.toHaveText("Counting…");
     await expect(page.locator("[data-total]")).not.toHaveAttribute("aria-busy", /.*/);
     await expect(page.locator("[data-total-text].skeleton")).toHaveCount(0);
@@ -124,6 +164,14 @@ test.describe("with JavaScript", () => {
 
 test.describe("without JavaScript", () => {
   test.use({ javaScriptEnabled: false });
+
+  test("multiline values and missing-field labels remain readable without JavaScript", async ({ page }) => {
+    await page.goto(ACTION);
+    await expect(page.getByLabel("Why this matters to you")).toHaveValue("");
+    await expect(page.getByText("Still to fill in:")).toContainText("Your MP's name");
+    await page.goto(`${ACTION}?personal_reason=My+reason`);
+    await expect(page.getByLabel("Why this matters to you")).toHaveValue("My reason");
+  });
 
   test("the template is plain text, the form fills the blanks, and Email and Update still work", async ({ page }) => {
     await page.goto(ACTION);

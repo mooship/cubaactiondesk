@@ -1,4 +1,4 @@
-import { computeSend, fillTemplate } from "../lib/action-desk.ts";
+import { computeSend, describeBlanks, fillTemplate } from "../lib/action-desk.ts";
 import { addDone, getStorage, nextAction, readDone } from "../lib/done-store.ts";
 import { peopleCount } from "../lib/format.ts";
 import type { Contact } from "../lib/targets.ts";
@@ -50,11 +50,13 @@ function init(root: HTMLElement): void {
   const slug = root.dataset.slug ?? "";
   const template = root.dataset.template ?? "";
   const subject = root.dataset.subject ?? "";
+  const labels: Record<string, string> = JSON.parse(root.dataset.labels ?? "{}");
   const contacts: Pick<Contact, "id" | "address">[] = JSON.parse(root.dataset.contacts ?? "[]");
   const others: Suggestion[] = JSON.parse(root.dataset.next ?? "[]");
 
   let lastAuto = message.value;
   let wasTooLong = emailItem?.hidden ?? false;
+  let hadBlanks = !unfilled.hidden;
   let copyTimer: ReturnType<typeof setTimeout> | undefined;
 
   // Announced politely, and only when something changes, never on every keystroke.
@@ -69,8 +71,14 @@ function init(root: HTMLElement): void {
     const state = computeSend({ text: message.value, to: contact?.address ? [contact.address] : [], subject });
 
     count.textContent = `${state.characters} characters`;
-    unfilledList.textContent = state.unfilled.map((key) => `{${key}}`).join(", ");
-    unfilled.hidden = state.unfilled.length === 0;
+    const blankNames = describeBlanks(state.unfilled, labels);
+    const hasBlanks = state.unfilled.length > 0;
+    unfilledList.textContent = blankNames;
+    unfilled.hidden = !hasBlanks;
+    if (hasBlanks !== hadBlanks) {
+      say(hasBlanks ? `Still to fill in: ${blankNames}.` : "All the blanks are filled in.");
+      hadBlanks = hasBlanks;
+    }
     printBox.textContent = message.value;
     whatsapp?.setAttribute("href", state.whatsappUrl);
 
@@ -125,7 +133,12 @@ function init(root: HTMLElement): void {
     if (copied) {
       copyLabel.textContent = "Message copied";
       say("Message copied");
-      copyTimer = setTimeout(() => (copyLabel.textContent = "Copy message"), 3000);
+      copyTimer = setTimeout(() => {
+        copyLabel.textContent = "Copy message";
+        if (status.textContent === "Message copied") {
+          status.textContent = "";
+        }
+      }, 3000);
     } else {
       message.select();
       say("Could not copy automatically. The message is selected: copy it by hand.");
@@ -136,7 +149,7 @@ function init(root: HTMLElement): void {
 
   function showDone(): void {
     doneButton.dataset.state = "done";
-    doneButton.setAttribute("aria-pressed", "true");
+    doneButton.setAttribute("aria-disabled", "true");
     doneLabel.textContent = "Done. Thank you.";
     const next = nextAction(readDone(getStorage()), others, slug);
     nextBox.hidden = false;
@@ -152,7 +165,9 @@ function init(root: HTMLElement): void {
 
   if (readDone(getStorage()).includes(slug)) showDone();
   doneButton.addEventListener("click", async () => {
-    if (doneButton.dataset.state === "done") return;
+    if (doneButton.dataset.state === "done") {
+      return;
+    }
     addDone(getStorage(), slug);
     showDone();
     say("Marked as done.");
