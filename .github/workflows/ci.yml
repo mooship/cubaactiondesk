@@ -23,19 +23,15 @@ jobs:
     name: Lint, typecheck, unit tests, build checks
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: [24, 26]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 24
           cache: npm
-      # Workers Builds installs with npm 11 (packageManager); Node 26 may ship another major.
+      # Workers Builds installs with npm 11 (packageManager); keep CI on the same major.
       - run: npm install --global npm@11
       - run: npm ci
       # Biome: formatting, lint and import order, failing on warnings.

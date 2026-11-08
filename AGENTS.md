@@ -12,7 +12,7 @@ suggesting next steps. This file holds what you would otherwise get wrong, and h
 
 ## Commands
 
-Windows with Git Bash or PowerShell. Node 24.22.1 or newer (24 and 26 are supported) and npm 11 or newer.
+Windows with Git Bash or PowerShell. Node 24.22.1 or newer (24 is tested) and npm 11 or newer.
 
 - `npm run dev` starts Astro's dev server. `npm run build` builds into `dist`.
 - `npm test` runs Vitest (`tests/unit`). `npm run test:coverage` is the same run with coverage of `src/lib`, and fails
@@ -26,7 +26,7 @@ Windows with Git Bash or PowerShell. Node 24.22.1 or newer (24 and 26 are suppor
   fixes, `npm run format` only formats, and `npm run lint:ci` is the read-only run CI uses.
 - Lefthook formats and lints the staged files on commit, with Biome. It never runs tests; they run separately and in CI.
   Do not skip hooks with `LEFTHOOK=0` to get a commit through.
-- CI (`.github/workflows/ci.yml`) is the reference list of what must pass. The `check` job runs on Node 24 and 26; the
+- CI (`.github/workflows/ci.yml`) is the reference list of what must pass. The `check` job runs on Node 24; the
   e2e and Lighthouse jobs use `.node-version`.
 
 ## Engineering principles
