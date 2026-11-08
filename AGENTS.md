@@ -70,21 +70,21 @@ comment too. No narration and no history.
 
 ### Dependencies and lockfiles
 
-There is one lockfile, `package-lock.json`, and one npm major everywhere: 11. `packageManager` (exactly `npm@11.19.1`)
-sets it for Cloudflare Workers Builds, which would otherwise use npm 10, and every CI job runs
-`npm install --global npm@11` before `npm ci`. A lockfile that one npm major accepts and the other rejects is an
-environment mismatch, not a problem with the change.
+There is one lockfile, `package-lock.json`. It has to install under two npm majors: Cloudflare Workers Builds runs
+npm 10.9.2 whatever the Node version, while CI (every job runs `npm install --global npm@11` before `npm ci`) and the
+maintainer use npm 11. `packageManager` is pinned to `npm@11.19.1` for Corepack. npm 11 can write a lockfile that
+npm 10 refuses, which is what Dependabot tends to do, so a lockfile has to be proved under both.
 
-- After any `package.json` change run a real `npm install` and commit `package.json` and the lockfile together. Do not use
-  `--package-lock-only`: it keeps stale nested entries when a range or override changes. If `npm ls` then prints an
-  `invalid` or `missing` line, delete the stale nested entries from the lockfile and run `npm install` again. Never
-  hand-edit a version.
-- Prove a lockfile with a real `npm ci --ignore-scripts` in a throwaway clone, not `npm ci --dry-run`, which has passed
-  on a lockfile that failed a real install.
+- Prove a lockfile with a real `npm ci --ignore-scripts` under `npx -y npm@10` and under npm 11, each in a throwaway
+  clone. Never rely on `npm ci --dry-run`: it has passed on a lockfile that failed a real install.
+- After any `package.json` change, update the lockfile and commit both files together. If npm 10 rejects the result (it
+  reports `Missing: ... from lock file`), regenerate with `npx -y npm@10 install --package-lock-only --ignore-scripts`;
+  a lockfile written by npm 10 also passes npm 11. Re-run both checks, and `npm ls` must print no `invalid` or
+  `missing` line. Never hand-edit a version.
 - Prerelease pins are exact. A caret on `7.1.0-beta` resolves to nightly `7.1.0-dev` builds, and a prerelease does not
   satisfy a plain peer range such as `>=2.9`, so a tool that peers on it can fail to resolve.
-- Dependabot owns its own lockfile changes. Regenerate one by hand only when a real `npm ci` fails under npm 11, and push
-  the fix to its branch.
+- Dependabot owns its own lockfile changes. Regenerate one by hand only when a real `npm ci` fails under npm 10 or 11,
+  and push the fix to its branch.
 - Run the project's binaries through `npm run` or `npx --no-install <tool>`. A plain `npx biome` fetched an unrelated
   package named `biome` when the local one was missing.
 - Do not install in a working tree someone else is using; use a throwaway clone.

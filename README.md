@@ -26,7 +26,7 @@ before launch is in [docs/LAUNCH-CHECKLIST.md](docs/LAUNCH-CHECKLIST.md).
 
 ## Getting started
 
-You need Node 24.22.1 or newer (24 and 26 are supported) and npm 11 or newer. `.node-version` says `24`, and `packageManager` pins npm 11.19.1 for Corepack and Cloudflare Workers Builds.
+You need Node 24.22.1 or newer (24 and 26 are supported) and npm 11 or newer. `.node-version` says `24`, and `packageManager` pins npm 11.19.1 for Corepack. The lockfile must also install under npm 10, which Cloudflare Workers Builds uses (see AGENTS.md).
 
 ```sh
 npm install        # also installs the git hooks
