@@ -11,6 +11,8 @@ updates:
     ignore:
       - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
+      # TypeScript is pinned to the 7.1 beta; without this Dependabot proposes nightly 7.1.0-dev builds. Remove once 7.1 is stable.
+      - dependency-name: "typescript"
     groups:
       npm:
         applies-to: version-updates
