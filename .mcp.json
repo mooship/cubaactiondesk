@@ -3,9 +3,6 @@
     "playwright-test": {
       "command": "cmd",
       "args": ["/c", "npx", "playwright", "run-test-mcp-server"]
-    },
-    "cloudflare-api": {
-      "url": "https://mcp.cloudflare.com/mcp"
     }
   }
 }
