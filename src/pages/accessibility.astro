@@ -11,13 +11,14 @@ import { SITE } from "../lib/site.ts";
 >
   <article class={prose.article}>
     <h1>Accessibility</h1>
-    <p class={prose.meta}>Last reviewed 29 October 2026.</p>
+    <p class={prose.meta}>Last reviewed 8 November 2026.</p>
     <p class={prose.lede}>We aim to meet WCAG 2.2 level AA on every page.</p>
 
     <h2>The standard we aim for</h2>
     <p>
-      Body text and status text have a contrast of at least 7:1 against their background, and touch targets are at least
-      44 by 44 pixels. We use plain English and link unfamiliar terms to the glossary.
+      Text has a contrast of at least 4.5:1 against its background. Buttons, form controls and navigation links are at
+      least 44 by 44 pixels; links within sentences can be smaller. We use plain English and link unfamiliar terms to
+      the glossary.
     </p>
 
     <h2>How the site is built for this</h2>
@@ -26,7 +27,7 @@ import { SITE } from "../lib/site.ts";
       <li>You can use everything with a keyboard, and there is a link to skip to the main content.</li>
       <li>Colour is never the only signal. Status labels use words and an icon.</li>
       <li>Light and dark themes follow your device settings, and the layout works at 400% zoom.</li>
-      <li>The completion star and loading placeholders animate. Both stop if your device is set to reduce motion.</li>
+      <li>Brief animations stop if your device is set to reduce motion.</li>
       <li>Letters print cleanly on A4 without menus or buttons.</li>
     </ul>
 

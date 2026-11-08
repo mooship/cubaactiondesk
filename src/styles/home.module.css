@@ -40,7 +40,6 @@
   line-height: 1.1;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  transform: rotate(-1.5deg);
 }
 
 .letterTitle {
@@ -137,6 +136,12 @@
 .star {
   width: 24px;
   height: 24px;
+}
+
+@media (min-width: 640px) {
+  .stamp {
+    transform: rotate(-1.5deg);
+  }
 }
 
 @media (min-width: 1024px) {

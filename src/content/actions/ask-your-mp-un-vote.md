@@ -4,14 +4,14 @@ title: Ask your MP to keep SA backing Cuba
 summary: Ask your MP to raise South Africa's position on the embargo with Parliament's international relations committee.
 context:
   - An email to your own Member of Parliament.
-  - The "find the address" link below opens People's Assembly, where you can look up your MP's name and email address. You send the email yourself; the site cannot send it for you.
+  - The "Look up the recipient's details" link below opens People's Assembly, where you can look up your MP's name and email address. You send the email yourself; the site cannot send it for you.
   - The UN General Assembly voted on the embargo again on 28 October 2026, and support for the resolution fell to a 20-year low.
 target: your-mp
 channel: email
 timeMinutes: 2
 subject: "A constituent's request on South Africa's position on the Cuba embargo"
 placeholders:
-  - { key: mp_name, label: "Your MP's name", hint: "The Look this up link below the box finds them.", kind: target }
+  - { key: mp_name, label: "Your MP's name", hint: "Use the link below the box to find your MP's name and email address.", kind: target }
   - { key: name, label: Your name, kind: identity }
   - { key: town, label: Your town, kind: identity }
   - { key: personal_reason, label: "Why this matters to you", hint: "One or two sentences in your own words.", kind: own_words, multiline: true }

@@ -144,6 +144,10 @@ export function giveTwin(entries: GiveTwinEntry[], origin: URL | string): string
     "# Give\n",
     "These organisations deliver aid to Cuba. You pay them directly, and this site never collects money. " +
       `How they are checked: ${absoluteUrl("/give/how-we-vet", origin)}\n`,
+    "## Before you donate\n\n" +
+      "- Some payment providers block or delay payments that mention Cuba. If a payment fails, try the organisation's other payment method.\n" +
+      "- If you are a US citizen or resident, extra US rules may apply. Ask the organisation how it follows them.\n" +
+      "- This is not financial or legal advice.\n",
   ];
   if (entries.length === 0) {
     parts.push("No organisations are listed yet. We will not list one until we have finished checking it.\n");
@@ -161,12 +165,6 @@ export function giveTwin(entries: GiveTwinEntry[], origin: URL | string): string
     ].filter(Boolean);
     parts.push(`## ${e.name}\n\n${facts.join("\n")}\n`);
   }
-  parts.push(
-    "## Before you donate\n\n" +
-      "- Some payment providers block or delay payments that mention Cuba. If a payment fails, try the organisation's other payment method.\n" +
-      "- If you are a US citizen or resident, extra US rules may apply. Ask the organisation how it follows them.\n" +
-      "- This is not financial or legal advice.\n",
-  );
   return finish(parts.join("\n"));
 }
 

@@ -33,6 +33,21 @@ const rows = await getLinkRows(getDb(env.DB)).catch(() => new Map<string, LinkRo
     each week and pause the button after two failed checks in a row.
   </p>
 
+  <section class={prose.article} aria-labelledby="caveats-heading">
+    <h2 id="caveats-heading">Before you donate</h2>
+    <ul>
+      <li>
+        Some payment providers block or delay payments that mention Cuba. If a payment fails, try the organisation's
+        other payment method.
+      </li>
+      <li>
+        If you are a US citizen or resident, extra US rules may apply to what you can send to Cuba. Ask the organisation
+        how it follows them before you donate.
+      </li>
+      <li>This is not financial or legal advice.</li>
+    </ul>
+  </section>
+
   {fundraisers.length === 0 ? (
     <div class={prose.notice}>
       <h2 class={prose.cardTitle}>No organisations are listed yet</h2>
@@ -52,18 +67,4 @@ const rows = await getLinkRows(getDb(env.DB)).catch(() => new Map<string, LinkRo
     </ul>
   )}
 
-  <section class={prose.article} aria-labelledby="caveats-heading">
-    <h2 id="caveats-heading">Before you donate</h2>
-    <ul>
-      <li>
-        Some payment providers block or delay payments that mention Cuba. If a payment fails, try the organisation's
-        other payment method.
-      </li>
-      <li>
-        If you are a US citizen or resident, extra US rules may apply to what you can send to Cuba. Ask the organisation
-        how it follows them before you donate.
-      </li>
-      <li>This is not financial or legal advice.</li>
-    </ul>
-  </section>
 </Base>

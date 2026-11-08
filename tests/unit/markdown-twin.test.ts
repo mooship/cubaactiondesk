@@ -163,6 +163,7 @@ describe("giveTwin", () => {
     expect(md).toContain("- Paying: Pay by bank transfer.");
     expect(md).toContain("https://one.example");
     expect(md).toContain("29 October 2026");
+    expect(md.indexOf("## Before you donate")).toBeLessThan(md.indexOf("## Org One"));
   });
 });
 

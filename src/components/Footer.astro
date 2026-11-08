@@ -5,7 +5,7 @@ import { SITE } from "../lib/site.ts";
 
 <footer class={styles.footer}>
   <div class={styles.inner}>
-    <p class={styles.lead}>{SITE.name} is an independent project run by one volunteer in South Africa.</p>
+    <p class={styles.lead}>{SITE.name} is an independent site run by one volunteer in South Africa.</p>
     <ul class={styles.links}>
       <li>
         <a href="/sources">Sources</a>
@@ -26,7 +26,7 @@ import { SITE } from "../lib/site.ts";
         <a href="/accessibility">Accessibility</a>
       </li>
       <li>
-        <a href="/rss.xml">RSS</a>
+        <a href="/rss.xml">RSS feed</a>
       </li>
       <li>
         <a href={SITE.instagram} rel="noopener noreferrer">
@@ -38,14 +38,6 @@ import { SITE } from "../lib/site.ts";
       Written content is licensed{" "}
       <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener noreferrer">
         CC BY 4.0
-      </a>
-      . Code is{" "}
-      <a href={`${SITE.repo}/blob/main/LICENSE`} rel="noopener noreferrer">
-        MIT
-      </a>
-      , on{" "}
-      <a href={SITE.repo} rel="noopener noreferrer">
-        GitHub
       </a>
       . Questions or corrections: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
     </p>

@@ -129,8 +129,8 @@ and Cape Town.
 
 ## Accessibility
 
-The target is WCAG 2.2 AA everywhere, with a few AAA measures where they are cheap (7:1 body contrast, 44 px targets, plain
-English). Every page is scanned by axe in light and dark mode in the Playwright suite, and Biome's accessibility rules check the
+The target is WCAG 2.2 AA everywhere. Text contrast is at least 4.5:1, with 44 px buttons, form controls and navigation
+links, and plain English. Every page is scanned by axe in light and dark mode in the Playwright suite, and Biome's accessibility rules check the
 templates. Automated tools find only part of the real barriers, so manual testing with TalkBack, NVDA and VoiceOver and
 with disabled users is on the launch checklist.
 

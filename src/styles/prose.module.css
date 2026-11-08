@@ -159,13 +159,14 @@
 
 .originTag {
   display: inline-block;
+  max-width: calc(100% - var(--space-1));
   margin-left: var(--space-1);
   padding: 0 var(--space-2);
   border: 1px solid currentColor;
   border-radius: var(--radius-control);
   font-size: 0.875rem;
   font-weight: 600;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .related {

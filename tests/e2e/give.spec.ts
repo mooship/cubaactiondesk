@@ -35,6 +35,19 @@ test("each listing shows a status as text, and its donate button names the desti
   }
 });
 
+test("payment cautions come before organisations or the empty notice", async ({ page }) => {
+  await page.goto("/give");
+  const caveats = page.getByRole("region", { name: "Before you donate" });
+  const first = page
+    .locator("article")
+    .first()
+    .or(page.getByRole("heading", { name: "No organisations are listed yet" }));
+  await expect(first).toBeVisible();
+  const advice = (await caveats.boundingBox())!;
+  const listing = (await first.boundingBox())!;
+  expect(advice.y + advice.height).toBeLessThanOrEqual(listing.y);
+});
+
 test("with no approved listings Give shows the empty state and still explains payments", async ({ page }) => {
   await page.goto("/give");
   test.skip((await page.locator("article").count()) > 0, "listings are live");

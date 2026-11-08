@@ -75,7 +75,7 @@ for (const width of [320, 640]) {
     page,
     request,
   }) => {
-    await page.setViewportSize({ width, height: 400 });
+    await page.setViewportSize({ width, height: width === 320 ? 640 : 400 });
     for (const path of await pagesToVisit(request)) {
       await page.goto(path);
       expect(await horizontalOverflow(page), path).toBeLessThanOrEqual(0);
@@ -83,15 +83,18 @@ for (const width of [320, 640]) {
   });
 }
 
-test("200% text enlargement keeps the header within a 320px page", async ({ page }) => {
+test("200% text enlargement keeps every page within 320px", async ({ page, request }) => {
   await page.setViewportSize({ width: 320, height: 640 });
-  await page.goto("/");
-  await page.evaluate(() => {
-    const sheet = new CSSStyleSheet();
-    sheet.replaceSync("html { font-size: 200%; }");
-    document.adoptedStyleSheets = [sheet];
-  });
-  expect(await horizontalOverflow(page)).toBeLessThanOrEqual(0);
+  for (const path of await pagesToVisit(request)) {
+    await page.goto(path);
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      const sheet = new CSSStyleSheet();
+      sheet.replaceSync("html { font-size: 200%; }");
+      document.adoptedStyleSheets = [sheet];
+    });
+    expect(await horizontalOverflow(page), path).toBeLessThanOrEqual(0);
+  }
 });
 
 test("navigation leaves reading space on a short zoomed screen", async ({ page }) => {

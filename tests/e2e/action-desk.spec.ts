@@ -52,6 +52,8 @@ test.describe("with JavaScript", () => {
     const status = page.getByRole("status");
     await copy.click();
     await expect(status).toHaveText("Message copied");
+    await copy.click();
+    await expect(status).toHaveText("Message copied again");
     await page.clock.fastForward(3000);
     await expect(status).toBeEmpty();
     await copy.click();

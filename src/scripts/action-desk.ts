@@ -132,10 +132,10 @@ function init(root: HTMLElement): void {
     clearTimeout(copyTimer);
     if (copied) {
       copyLabel.textContent = "Message copied";
-      say("Message copied");
+      say(status.textContent === "Message copied" ? "Message copied again" : "Message copied");
       copyTimer = setTimeout(() => {
         copyLabel.textContent = "Copy message";
-        if (status.textContent === "Message copied") {
+        if (status.textContent === "Message copied" || status.textContent === "Message copied again") {
           status.textContent = "";
         }
       }, 3000);
