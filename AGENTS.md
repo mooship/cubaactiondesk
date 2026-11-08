@@ -96,8 +96,8 @@ Do not reopen these without being asked.
   donate URL of an approved listing. Vetting check 5 is "the organisation's own donation page offers an online card form
   or bank transfer", not a test payment.
 - No accounts, comments or mailing list. No reuse of other groups' logos or artwork.
-- Dependencies are pinned to exact versions, and the current version is fine. The usual 7-day package-age rule does not
-  apply to this project.
+- Dependencies are pinned to exact versions, and the current version is fine. There is no package-age delay
+  before taking a new release.
 - Code is MIT, written content is CC BY 4.0. The site states that it is independent.
 
 ## Writing
