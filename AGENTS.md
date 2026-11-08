@@ -12,7 +12,7 @@ suggesting next steps. This file holds what you would otherwise get wrong, and h
 
 ## Commands
 
-Windows with Git Bash or PowerShell. Node 22.23.4 or newer.
+Windows with Git Bash or PowerShell. Node 24.22.1 or newer (24 and 26 are supported) and npm 11 or newer.
 
 - `npm run dev` starts Astro's dev server. `npm run build` builds into `dist`.
 - `npm test` runs Vitest (`tests/unit`). `npm run test:coverage` is the same run with coverage of `src/lib`, and fails
@@ -26,7 +26,8 @@ Windows with Git Bash or PowerShell. Node 22.23.4 or newer.
   fixes, `npm run format` only formats, and `npm run lint:ci` is the read-only run CI uses.
 - Lefthook formats and lints the staged files on commit, with Biome. It never runs tests; they run separately and in CI.
   Do not skip hooks with `LEFTHOOK=0` to get a commit through.
-- CI (`.github/workflows/ci.yml`) is the reference list of what must pass.
+- CI (`.github/workflows/ci.yml`) is the reference list of what must pass. The `check` job runs on Node 24 and 26; the
+  e2e and Lighthouse jobs use `.node-version`.
 
 ## Engineering principles
 
@@ -67,6 +68,27 @@ Comment only a reason the code cannot show: a constraint, a workaround, or why s
 it to a line or two next to the thing. Config files (`biome.jsonc`, `wrangler.jsonc`, the workflows) may carry such a
 comment too. No narration and no history.
 
+### Dependencies and lockfiles
+
+There is one lockfile, `package-lock.json`, and one npm major everywhere: 11. `packageManager` (exactly `npm@11.19.1`)
+sets it for Cloudflare Workers Builds, which would otherwise use npm 10, and every CI job runs
+`npm install --global npm@11` before `npm ci`. A lockfile that one npm major accepts and the other rejects is an
+environment mismatch, not a problem with the change.
+
+- After any `package.json` change run a real `npm install` and commit `package.json` and the lockfile together. Do not use
+  `--package-lock-only`: it keeps stale nested entries when a range or override changes. If `npm ls` then prints an
+  `invalid` or `missing` line, delete the stale nested entries from the lockfile and run `npm install` again. Never
+  hand-edit a version.
+- Prove a lockfile with a real `npm ci --ignore-scripts` in a throwaway clone, not `npm ci --dry-run`, which has passed
+  on a lockfile that failed a real install.
+- Prerelease pins are exact. A caret on `7.1.0-beta` resolves to nightly `7.1.0-dev` builds, and a prerelease does not
+  satisfy a plain peer range such as `>=2.9`, so a tool that peers on it can fail to resolve.
+- Dependabot owns its own lockfile changes. Regenerate one by hand only when a real `npm ci` fails under npm 11, and push
+  the fix to its branch.
+- Run the project's binaries through `npm run` or `npx --no-install <tool>`. A plain `npx biome` fetched an unrelated
+  package named `biome` when the local one was missing.
+- Do not install in a working tree someone else is using; use a throwaway clone.
+
 ### Writing
 
 Nothing on the site or in the docs may read as AI-generated. This covers articles, action templates, page copy, the
@@ -103,6 +125,8 @@ Run the checks for what you changed, read the output, and say so if any failed o
   `npm run check:output`, `npm run check:html` and `npm run check:budgets`. Add `npm run test:e2e` for anything
   interactive or visual.
 - A generated file's source: regenerate it and commit both (see below).
+- `package.json` or the lockfile: follow [Dependencies and lockfiles](#dependencies-and-lockfiles), then run
+  `npm ci`, `npm run lint`, `npm run typecheck`, `npm run test:coverage` and `npm run build`.
 
 ## Safety
 
