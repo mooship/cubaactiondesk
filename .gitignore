@@ -17,8 +17,6 @@ coverage/
 .vscode/*
 !.vscode/settings.json
 
-# Claude Code (local settings and vendored skills; skills-lock.json records the skills)
-.claude/settings.json
+# Claude Code personal settings and agent worktrees
 .claude/settings.local.json
-.claude/skills/
 .claude/worktrees/
