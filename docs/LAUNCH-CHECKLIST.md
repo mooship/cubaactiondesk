@@ -93,8 +93,6 @@ or Page Rules that match only `cuba.timothybrits.co.za`, or wait until the proje
       `eo-14380-2026` (academic), SAHO (academic) and PMG (NGO).
 - [ ] Archive links: every `archiveUrl` is empty. Look each page up with the Wayback Machine's read-only availability API
       (`https://archive.org/wayback/available?url=...`). Do not use Save Page Now.
-- [ ] `npm audit` in `tools/lint` shows 3 low advisories in a Markdown plugin's math dependency (`katex`). It is a development
-      tool and never runs on the site.
 
 ## 5. Accessibility testing (people)
 

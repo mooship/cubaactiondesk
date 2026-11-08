@@ -23,7 +23,7 @@ export const horizontalOverflow = (page: Page) =>
   page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
 
 /** The counter endpoint for the action every spec drives. */
-export const COUNTER_PATH = ACTION_PATH.replace("/act/", "/api/actions/") + "/taken";
+export const COUNTER_PATH = `${ACTION_PATH.replace("/act/", "/api/actions/")}/taken`;
 
 /**
  * Answers the "I did this" counter without touching the database. `delay` holds the answer back, and `fail`

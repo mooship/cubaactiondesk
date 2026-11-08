@@ -48,7 +48,6 @@ describe("articleLd", () => {
 
   it("round-trips through JSON", () => {
     // The point of this test is JSON serialisation, so structuredClone would test the wrong thing.
-    // eslint-disable-next-line unicorn/prefer-structured-clone
     expect(JSON.parse(JSON.stringify(ld))).toEqual(ld);
   });
 });

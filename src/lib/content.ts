@@ -1,4 +1,4 @@
-import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+import { type CollectionEntry, getCollection, getEntry } from "astro:content";
 
 export type ActionEntry = CollectionEntry<"actions">;
 export type ArticleEntry = CollectionEntry<"articles">;

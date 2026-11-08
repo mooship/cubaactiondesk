@@ -47,10 +47,10 @@ npx wrangler dev --port 8799
 | ----------------------- | ------------------------------------------------------------------------------------ |
 | `npm test`              | Unit tests (Vitest).                                                                 |
 | `npm run test:e2e`      | Browser tests and accessibility scans against the built Worker (Playwright and axe). |
-| `npm run typecheck`     | Syncs Astro's types, then `tsc --noEmit`.                                            |
-| `npm run lint`          | ESLint. `npm run lint:fix` fixes what it can.                                        |
-| `npm run format`        | Prettier, writing changes. `npm run format:check` only checks.                       |
-| `npm run lint:ci`       | What CI runs: installs the lint tools, checks formatting, then lints.                |
+| `npm run typecheck`     | Syncs Astro's types, then `tsc`, which checks `.astro` files too (see below).        |
+| `npm run lint`          | Biome: lint, formatting and import order. `npm run lint:fix` fixes what it can.      |
+| `npm run format`        | Biome's formatter, writing changes.                                                  |
+| `npm run lint:ci`       | What CI runs: the same Biome checks, read-only.                                      |
 | `npm run check:content` | Cross-collection content rules. Run it after editing anything in `src/content`.      |
 | `npm run build`         | Production build into `dist`.                                                        |
 | `npm run check:output`  | Links, anchors, Markdown twins, `llms.txt`, sitemap and spacing in the built pages.  |
@@ -82,18 +82,23 @@ Organisations live in `src/content/fundraisers/<id>.yaml`. One stays `approved: 
 
 Write plainly, in short sentences a 13-year-old can follow. The Writing section of [AGENTS.md](AGENTS.md#writing) has the house style and lists what to avoid.
 
-## Lint and format
+## Lint, format and type checking
 
-Prettier formats everything except `src/content`, `docs` and generated files. ESLint uses the flat config with
-typescript-eslint, `eslint-plugin-astro` (with its accessibility rules), Unicorn, and the JSON, Markdown and CSS language
-plugins.
+[Biome](https://biomejs.dev) lints and formats the TypeScript, JavaScript, CSS and JSON, and lints the `.astro`
+templates, including their accessibility rules. Its config is `biome.jsonc`. It leaves `src/content`, `docs`, Markdown,
+YAML and generated files alone. Warnings fail the check.
 
-ESLint lives in its own package, `tools/lint`, because typescript-eslint needs TypeScript's JavaScript API and
-TypeScript 7 does not have one. That package pins TypeScript 6 while the site compiles with 7. `npm run lint:ci` installs it.
-The root `eslint.config.js` re-exports the real config so editors find it.
+Biome does not format `.astro` files. Its Astro formatter is still experimental, and with `compressHTML` on it changed
+the rendered text: it joined "{SITE.name} is" into "SAis" and put spaces inside link text. It also leaves their import
+order alone, because in a component that order is the order the CSS loads in.
 
-Lefthook runs on every commit: Prettier (writing) and ESLint (fixing). Unit tests run separately and in CI. Fix any failing
-check before committing; do not bypass the hooks.
+TypeScript is pinned to `7.1.0-beta`, because content mappers need 7.1 or later.
+`@astrojs/ts-content-mapper` (registered in `tsconfig.json`) lets `tsc` read `.astro` files, so component props and
+frontmatter are type-checked with everything else. A mapper runs code from `node_modules`, which is why the typecheck
+script passes `--runExternalCode`.
+
+Lefthook runs on every commit: Biome formats the staged files, then lints and fixes them. Unit tests run separately and in
+CI, never in the hook. Fix any failing check before committing; do not bypass the hooks.
 
 ## Deploying
 

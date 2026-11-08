@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { checkUrl, runChecks, type FetchLike } from "../../src/lib/link-check-run.ts";
+import { checkUrl, type FetchLike, runChecks } from "../../src/lib/link-check-run.ts";
 import { getLinkRows } from "../../src/lib/link-checks.ts";
 import { testDb } from "../helpers/d1.ts";
 
@@ -53,9 +53,12 @@ describe("checkUrl", () => {
 
   it("identifies itself and follows redirects", async () => {
     let init: RequestInit | undefined;
-    await checkUrl(URL_A, async (_input, i) => ((init = i), new Response(null, { status: 200 })));
+    await checkUrl(URL_A, async (_input, i) => {
+      init = i;
+      return new Response(null, { status: 200 });
+    });
     expect(init?.redirect).toBe("follow");
-    expect(String((init?.headers as Record<string, string>)["User-Agent"])).toMatch(/CubaActionDesk/);
+    expect(String((init?.headers as Record<string, string> | undefined)?.["User-Agent"])).toMatch(/CubaActionDesk/);
   });
 });
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { handleTaken } from "../../src/lib/taken.ts";
 import { getActionCounts } from "../../src/lib/counters.ts";
+import { handleTaken } from "../../src/lib/taken.ts";
 import { testDb } from "../helpers/d1.ts";
 
 const allow = { limit: async () => ({ success: true }) };
@@ -55,14 +55,28 @@ describe("handleTaken", () => {
 
   it("keys the limiter on the caller's IP", async () => {
     const keys: string[] = [];
-    const { call } = setup({ limiter: { limit: async ({ key }) => (keys.push(key), { success: true }) } });
+    const { call } = setup({
+      limiter: {
+        limit: async ({ key }) => {
+          keys.push(key);
+          return { success: true };
+        },
+      },
+    });
     await call({ ip: "198.51.100.9" });
     expect(keys).toEqual(["198.51.100.9"]);
   });
 
   it("still limits callers whose IP is unknown", async () => {
     const keys: string[] = [];
-    const { call } = setup({ limiter: { limit: async ({ key }) => (keys.push(key), { success: true }) } });
+    const { call } = setup({
+      limiter: {
+        limit: async ({ key }) => {
+          keys.push(key);
+          return { success: true };
+        },
+      },
+    });
     await call({ ip: null });
     expect(keys).toEqual(["unknown"]);
   });

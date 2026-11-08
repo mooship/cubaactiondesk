@@ -1,17 +1,17 @@
+import { fillTemplate } from "./action-desk.ts";
 import {
+  type ActionEntry,
+  type ArticleEntry,
   getApprovedFundraisers,
   getLiveActions,
   getLiveArticles,
   getRelatedLiveActions,
   getSourcesInOrder,
   getTargets,
-  targetName,
-  type ActionEntry,
-  type ArticleEntry,
   type SourceEntry,
+  targetName,
 } from "./content.ts";
 import { actionTwin, articleTwin, giveTwin, llmsFullTxt, llmsTxt, type TwinSource } from "./markdown-twin.ts";
-import { fillTemplate } from "./action-desk.ts";
 import { absoluteUrl } from "./site.ts";
 
 /** Builds Markdown twins from the content collections. The formatting itself is in markdown-twin.ts. */

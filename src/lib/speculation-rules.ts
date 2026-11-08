@@ -23,4 +23,4 @@ export const speculationRulesJson = JSON.stringify(rules);
  * Computed once when the module loads, not on every request.
  */
 const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(speculationRulesJson));
-export const speculationRulesHash = `sha256-${btoa(String.fromCodePoint(...new Uint8Array(digest)))}`;
+export const speculationRulesHash: `sha256-${string}` = `sha256-${btoa(String.fromCodePoint(...new Uint8Array(digest)))}`;

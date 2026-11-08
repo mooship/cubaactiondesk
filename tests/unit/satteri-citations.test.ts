@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { defineMdastPlugin, markdownToHtml } from "satteri";
+import { describe, expect, it } from "vitest";
 import { citationMarkup, inlineWithCitations } from "../../src/lib/citations.ts";
 import { satteriCitations, splitCitations } from "../../src/lib/satteri-citations.ts";
 

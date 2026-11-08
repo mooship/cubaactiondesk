@@ -124,7 +124,7 @@ abbr[title] {
 
 /* `hidden` must win over any component display rule. */
 [hidden] {
-  /* eslint-disable-next-line css/no-important -- `hidden` must win over any component display rule */
+  /* biome-ignore lint/complexity/noImportantStyles: `hidden` must win over any component display rule */
   display: none !important;
 }
 

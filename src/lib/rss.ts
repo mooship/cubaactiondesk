@@ -1,4 +1,4 @@
-import { SITE, absoluteUrl } from "./site.ts";
+import { absoluteUrl, SITE } from "./site.ts";
 
 export interface FeedItem {
   title: string;

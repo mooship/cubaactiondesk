@@ -49,7 +49,7 @@ export const PROFILE_PICTURES: readonly ProfilePicture[] = [
     id: "disc",
     label: "Red disc",
     alt: "A white five-point star on a red disc, on a dark navy background.",
-    svg: frame(field(NAVY) + `<circle cx="50" cy="50" r="38" fill="${RED}"/>` + star(WHITE, 25)),
+    svg: frame(`${field(NAVY)}<circle cx="50" cy="50" r="38" fill="${RED}"/>${star(WHITE, 25)}`),
   },
   {
     id: "light",

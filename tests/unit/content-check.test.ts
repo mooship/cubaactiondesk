@@ -7,7 +7,7 @@ import {
   sourceSchema,
   targetSchema,
 } from "../../src/content/schemas.ts";
-import { checkContent, type ContentSet, type Issue } from "../../src/lib/content-check.ts";
+import { type ContentSet, checkContent, type Issue } from "../../src/lib/content-check.ts";
 
 const TODAY = new Date("2026-10-29T00:00:00Z");
 const daysAgo = (n: number) => new Date(TODAY.getTime() - n * 86_400_000).toISOString().slice(0, 10);

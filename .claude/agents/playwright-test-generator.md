@@ -70,5 +70,5 @@ Where these differ from the instructions above, these win.
 - Start from `tests/e2e/seed.spec.ts`.
 - Take copy from `src/content` and `src/lib/site.ts` rather than writing the strings out, unless the test is about
   the wording itself.
-- `generator_write_test` writes a file of its own: put it in `tests/e2e/`, then run `npx prettier --write` and
-  `npm run lint` on it.
+- `generator_write_test` writes a file of its own: put it in `tests/e2e/`, then run `npx biome check --write` on it
+  and `npm run lint`.

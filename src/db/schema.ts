@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 /** Anonymous per-action counters. No personal information. */
 export const actionCounts = sqliteTable("action_counts", {

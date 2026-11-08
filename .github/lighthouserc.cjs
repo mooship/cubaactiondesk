@@ -19,7 +19,7 @@ module.exports = {
         : {
             startServerCommand: "npx wrangler dev --port 8799 --ip 127.0.0.1",
             startServerReadyPattern: "Ready on",
-            startServerReadyTimeout: 90000,
+            startServerReadyTimeout: 90_000,
           }),
       url: pages.map((path) => base + path),
       numberOfRuns: 3,

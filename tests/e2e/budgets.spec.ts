@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
-import { checkPage, kindOf, measurePage } from "../../src/lib/budgets.ts";
 import { readDist } from "../../scripts/dist.ts";
+import { checkPage, kindOf, measurePage } from "../../src/lib/budgets.ts";
 import { sitePaths } from "./routes.ts";
 
 // `npm run check:budgets` reads the prerendered pages from dist/client. The Action Desk and Give pages are rendered by

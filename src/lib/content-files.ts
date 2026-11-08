@@ -1,8 +1,8 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { basename, extname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { parse as parseYaml } from "yaml";
 import type { ZodType } from "astro/zod";
+import { parse as parseYaml } from "yaml";
 import {
   actionSchema,
   articleSchema,
