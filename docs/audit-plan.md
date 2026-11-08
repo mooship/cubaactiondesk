@@ -19,6 +19,7 @@ The site is for South Africans who want to understand the US blockade of Cuba an
 | C1 | Donation decisions | `/give`, `src/pages/give/index.astro:56` | Payment and US-rules cautions follow all the donation buttons. | major | Move the existing cautions before the listings and keep the Markdown version in the same order. |
 | C2 | Accessibility statement | `src/pages/accessibility.astro:19` | The 7:1 contrast claim and blanket 44px target claim exceed what the styles actually guarantee. | minor | State the AA text contrast target and distinguish controls from inline links. Keep assistive-technology testing explicitly unfinished. |
 | C3 | Link clarity | `/act`, `/give`, footer and MP action | DIRCO is unexplained on the action index; register and lookup links are vague outside their surrounding sentence. | minor | Make small, factual label changes, using the organisation and field names already present. |
+| C4 | Visitor-facing identity | `src/components/Footer.astro:43`, `src/pages/about.astro:51` | Source-code and code-licence links present the site as a software project. The maintainer explicitly wants these removed. | major | Remove the code links and their surrounding copy everywhere on the website, preserving research citations and the written-content licence. |
 | T1 | Test coverage | `tests/e2e/a11y.spec.ts:77` | Reflow covers only seven routes and text spacing only one; there is no full-site 200% reflow check. | minor | Extend the existing tests to all discovered routes at 320 and 640 CSS pixels, and check text spacing across the same routes. |
 
 No blocker was found. Text, links, borders and focus colours reviewed in light and dark themes pass AA. The existing skip link, language declaration, labels, image dimensions and alternative text, heading order, native controls and forced-colour rules are sound. No meaningful audio or video requires captions.
@@ -45,7 +46,7 @@ Commit: `fix(layout): keep action controls and reading pages accessible at zoom`
 
 ### 3. Put cautions and useful words where visitors need them
 
-Address C1 to C3. Move existing donation advice without adding legal or financial claims. Correct the accessibility statement and its review date, without claiming screen-reader or participant testing. Clarify only the identified labels. Review every edited sentence with the humanizer rules and keep the relevant Markdown copies consistent.
+Address C1 to C4. Move existing donation advice without adding legal or financial claims. Correct the accessibility statement and its review date, without claiming screen-reader or participant testing. Clarify only the identified labels and remove all visitor-facing source-code links. Review every edited sentence with the humanizer rules and keep the relevant Markdown copies consistent.
 
 Commit: `fix(copy): show donation cautions before links and clarify guidance`.
 
@@ -68,7 +69,8 @@ Commit each passing group locally with hooks enabled. A push requires separate c
 
 - Read-only audit and baseline: complete.
 - Group 1: complete. The new cases failed against the unchanged site, then all 20 action browser tests passed. Lint, typecheck, 352 unit tests and coverage, build, output, HTML and static-page budgets passed. Server-rendered budgets remain part of final verification.
-- Group 2: pending.
+- Group 2: complete. Four targeted regressions first failed against the previous styles, then passed after the fixes. All 23 layout and accessibility-behaviour checks passed, including full-site text spacing and 320/640px reflow. Typecheck passed; the ordinary desktop columns, header and print layout remain intact.
 - Group 3: pending.
 - Final verification and fresh-eyes review: pending.
 - Push: awaiting separate confirmation; no remote change made.
+- Delete this working plan after final verification, as requested by the maintainer.

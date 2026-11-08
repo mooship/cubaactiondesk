@@ -179,6 +179,12 @@ abbr[title] {
   }
 }
 
+@media (max-width: 1023px) and (max-height: 30rem) {
+  html {
+    scroll-padding-bottom: 0;
+  }
+}
+
 @media print {
   html {
     scroll-padding-bottom: 0;

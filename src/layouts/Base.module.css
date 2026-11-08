@@ -57,6 +57,16 @@
   }
 }
 
+@media (max-width: 1023px) and (max-height: 30rem) {
+  .body {
+    padding-bottom: 0;
+  }
+
+  .headerInner {
+    flex-wrap: wrap;
+  }
+}
+
 @media print {
   .body {
     padding-bottom: 0;

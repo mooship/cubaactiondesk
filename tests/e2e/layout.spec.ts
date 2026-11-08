@@ -29,6 +29,24 @@ test("articles stay a readable single column, under 70 characters wide", async (
   expect(width).toBeLessThan(900);
 });
 
+test("the image send panel stays in normal flow on a short desktop screen", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 600 });
+  await page.goto("/act/post-instagram-explainer-card");
+  await expect(page.getByRole("complementary")).toHaveCSS("position", "static");
+  await page.getByRole("button", { name: "Mark as done" }).focus();
+  await expect(page.getByRole("button", { name: "Mark as done" })).toBeInViewport();
+});
+
+test("supporting article headings match the article's section scale", async ({ page }) => {
+  await page.goto("/learn/un-votes");
+  const size = await page
+    .locator("article h2")
+    .first()
+    .evaluate((el) => getComputedStyle(el).fontSize);
+  await expect(page.getByRole("heading", { name: "Sources", exact: true })).toHaveCSS("font-size", size);
+  await expect(page.getByRole("heading", { name: "What you can do", exact: true })).toHaveCSS("font-size", size);
+});
+
 test("the home page sets the featured letter beside a narrower column of other actions on desktop", async ({
   page,
 }) => {

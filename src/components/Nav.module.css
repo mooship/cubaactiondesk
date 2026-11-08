@@ -96,6 +96,25 @@
   }
 }
 
+@media (max-width: 1023px) and (max-height: 30rem) {
+  .nav {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .list {
+    height: auto;
+  }
+
+  .link {
+    min-height: var(--nav-h);
+    padding: var(--space-2) 0;
+  }
+}
+
 @media (forced-colors: active) {
   .link[aria-current="page"]::after {
     background: CanvasText;

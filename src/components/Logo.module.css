@@ -1,6 +1,7 @@
 .logo {
   display: inline-flex;
   align-items: center;
+  min-width: 0;
   min-height: var(--target);
   color: var(--on-dark);
   text-decoration: none;
@@ -22,7 +23,6 @@
   line-height: 1;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  white-space: nowrap;
 }
 
 .sa {

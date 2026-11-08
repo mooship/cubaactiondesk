@@ -123,6 +123,11 @@
   margin-top: var(--space-7);
 }
 
+.sources h2,
+.related h2 {
+  font-size: var(--step-2);
+}
+
 .sources ol {
   padding-left: 1.5em;
 }

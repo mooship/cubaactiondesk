@@ -165,7 +165,7 @@ const preview = image?.endsWith(".png") ? image.replace(/\.png$/, "-preview.webp
     </p>
   </section>
 
-  <aside class={styles.send} aria-labelledby="send-heading">
+  <aside class:list={[styles.send, image && styles.withImage]} aria-labelledby="send-heading">
     <h2 id="send-heading" class={styles.heading}>
       3. Send it
     </h2>

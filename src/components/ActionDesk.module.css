@@ -215,8 +215,10 @@
     gap: var(--space-7);
     align-items: start;
   }
+}
 
-  .send {
+@media (min-width: 1024px) and (min-height: 40rem) {
+  .send:not(.withImage) {
     position: sticky;
     top: var(--space-5);
   }

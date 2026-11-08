@@ -55,23 +55,63 @@ test("with reduced motion the done star does not animate", async ({ page }) => {
   expect(animation).toBe("none");
 });
 
-test("text spacing overrides do not break the layout (WCAG 1.4.12)", async ({ page }) => {
-  await page.goto(ACTION_PATH);
-  // A constructable stylesheet is allowed by our CSP; an inline <style> element would be blocked.
+test("text spacing overrides do not break any page (WCAG 1.4.12)", async ({ page, request }) => {
+  for (const path of await pagesToVisit(request)) {
+    await page.goto(path);
+    // A constructable stylesheet is allowed by our CSP; an inline <style> element would be blocked.
+    await page.evaluate(() => {
+      const sheet = new CSSStyleSheet();
+      sheet.replaceSync(
+        "* { line-height: 1.5 !important; letter-spacing: 0.12em !important; word-spacing: 0.16em !important; } p { margin-bottom: 2em !important; }",
+      );
+      document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+    });
+    expect(await horizontalOverflow(page), path).toBeLessThanOrEqual(0);
+  }
+});
+
+for (const width of [320, 640]) {
+  test(`at ${width === 320 ? "400%" : "200%"} zoom every page reflows (${width} CSS pixels)`, async ({
+    page,
+    request,
+  }) => {
+    await page.setViewportSize({ width, height: 400 });
+    for (const path of await pagesToVisit(request)) {
+      await page.goto(path);
+      expect(await horizontalOverflow(page), path).toBeLessThanOrEqual(0);
+    }
+  });
+}
+
+test("200% text enlargement keeps the header within a 320px page", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 640 });
+  await page.goto("/");
   await page.evaluate(() => {
     const sheet = new CSSStyleSheet();
-    sheet.replaceSync(
-      "* { line-height: 1.5 !important; letter-spacing: 0.12em !important; word-spacing: 0.16em !important; } p { margin-bottom: 2em !important; }",
-    );
-    document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+    sheet.replaceSync("html { font-size: 200%; }");
+    document.adoptedStyleSheets = [sheet];
   });
   expect(await horizontalOverflow(page)).toBeLessThanOrEqual(0);
 });
 
-test("at 400% zoom (320 CSS pixels wide) nothing needs horizontal scrolling", async ({ page }) => {
-  await page.setViewportSize({ width: 320, height: 640 });
-  for (const path of ["/", "/learn", "/learn/un-votes", ACTION_PATH, "/give", "/about", "/profile-pictures"]) {
-    await page.goto(path);
-    expect(await horizontalOverflow(page), path).toBeLessThanOrEqual(0);
-  }
+test("navigation leaves reading space on a short zoomed screen", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 200 });
+  await page.goto(ACTION_PATH);
+  const nav = page.getByRole("navigation", { name: "Main" });
+  await expect(nav).toHaveCSS("position", "static");
+  const main = (await page.locator("main").boundingBox())!;
+  const bar = (await nav.boundingBox())!;
+  expect(bar.y + bar.height).toBeLessThanOrEqual(main.y);
+  expect(await horizontalOverflow(page)).toBeLessThanOrEqual(0);
+});
+
+test("image placeholders stop moving within five seconds", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/act/post-instagram-explainer-card");
+  const duration = await page.locator("[data-image-frame]").evaluate((el) => {
+    const style = getComputedStyle(el);
+    return Number.parseFloat(style.animationDuration) * Number.parseFloat(style.animationIterationCount);
+  });
+  expect(duration).toBeGreaterThan(0);
+  expect(duration).toBeLessThanOrEqual(5);
 });
