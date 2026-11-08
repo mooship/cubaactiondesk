@@ -9,6 +9,7 @@ dist/
 worker-configuration.d.ts
 playwright-report/
 test-results/
+coverage/
 .lighthouseci/
 *.log
 .DS_Store

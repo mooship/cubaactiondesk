@@ -116,6 +116,12 @@ describe("checkContent: actions", () => {
     expect(errors(checkContent(set, TODAY)).join("\n")).toMatch(/slug/i);
   });
 
+  it("flags a target whose id does not match its file name", () => {
+    const set = validSet();
+    set.targets[0]!.id = "dirco-file";
+    expect(errors(checkContent(set, TODAY)).join("\n")).toMatch(/id "dirco" does not match file name "dirco-file"/);
+  });
+
   it("flags a missing target", () => {
     const set = validSet();
     set.targets = [];
@@ -224,6 +230,14 @@ describe("checkContent: actions", () => {
     expect(errors(checkContent(set, TODAY)).join("\n")).toMatch(/surprise/);
   });
 
+  it("warns, but does not fail, when an input is never used in the text", () => {
+    const set = validSet();
+    set.actions[0]!.body = set.actions[0]!.body!.replace("{town}", "Pretoria");
+    const issues = checkContent(set, TODAY);
+    expect(errors(issues)).toEqual([]);
+    expect(warnings(issues).join("\n")).toMatch(/input "town" is defined but not used/);
+  });
+
   it("allows the reserved {link} placeholder without an input", () => {
     const set = validSet();
     set.actions[0]!.body += "\n{link}";
@@ -247,6 +261,18 @@ describe("checkContent: actions", () => {
     const set = validSet();
     set.actions[0]!.data.subject = undefined;
     expect(errors(checkContent(set, TODAY)).join("\n")).toMatch(/subject/i);
+  });
+
+  it("holds letters to the same subject rule, but not WhatsApp messages", () => {
+    const letter = validSet();
+    letter.actions[0]!.data.channel = "letter";
+    letter.actions[0]!.data.subject = undefined;
+    expect(errors(checkContent(letter, TODAY)).join("\n")).toMatch(/subject/i);
+
+    const whatsapp = validSet();
+    whatsapp.actions[0]!.data.channel = "whatsapp";
+    whatsapp.actions[0]!.data.subject = undefined;
+    expect(errors(checkContent(whatsapp, TODAY)).join("\n")).not.toMatch(/subject/i);
   });
 
   it("needs at least one source for email and letters", () => {

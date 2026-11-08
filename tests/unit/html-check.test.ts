@@ -40,3 +40,9 @@ describe("findGluedInline", () => {
     expect(findGluedInline(html)).toEqual([]);
   });
 });
+
+describe("findGluedInline without a body", () => {
+  it("finds nothing in a document that has no body element", () => {
+    expect(findGluedInline("<p>licensed<a>CC BY</a></p>")).toEqual([]);
+  });
+});

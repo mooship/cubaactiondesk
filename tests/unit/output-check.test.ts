@@ -90,6 +90,43 @@ describe("checkOutput", () => {
     expect(out).toMatch(/learn\/gone\.md/);
   });
 
+  it("checks links to static files exist, and skips protocol-relative links", () => {
+    const s = site();
+    s.files.set("favicon.svg", "<svg/>");
+    s.files.set(
+      "index.html",
+      html('<a href="/favicon.svg">i</a> <a href="/missing.png">p</a> <a href="//cdn.example/x">c</a>'),
+    );
+    const out = messages(s);
+    expect(out).toEqual(["index.html: link to missing file /missing.png"]);
+  });
+
+  it("resolves a link with a query string and a trailing slash, and a link to the home page", () => {
+    const s = site();
+    s.files.set(
+      "index.html",
+      html('<a href="/learn/one/?ref=x">One</a> <a href="/">Home</a> <a href="/?a=1#top">t</a>'),
+    );
+    s.files.set("index.html", s.files.get("index.html")!.replace("<h1>", '<h1 id="top">'));
+    expect(messages(s)).toEqual([]);
+  });
+
+  it("flags a missing llms.txt, and ignores off-site links in it", () => {
+    const missing = site();
+    missing.files.delete("llms.txt");
+    expect(messages(missing)).toEqual(["llms.txt: missing"]);
+
+    const offsite = site();
+    offsite.files.set("llms.txt", `${offsite.files.get("llms.txt")}- [Elsewhere](https://other.example/page): x\n`);
+    expect(messages(offsite)).toEqual([]);
+  });
+
+  it("treats a site with no sitemap as having no actions to check", () => {
+    const s = site();
+    s.files.delete("sitemap-0.xml");
+    expect(messages(s)).toEqual([]);
+  });
+
   it("flags a sitemap entry that does not resolve", () => {
     const s = site();
     s.files.set("sitemap-0.xml", `<urlset><url><loc>${origin}/learn/nowhere</loc></url></urlset>`);

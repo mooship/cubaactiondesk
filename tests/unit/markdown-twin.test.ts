@@ -198,3 +198,33 @@ describe("llmsFullTxt", () => {
     expect(out.indexOf("# One")).toBeLessThan(out.indexOf("# Two"));
   });
 });
+
+describe("twins without the optional parts", () => {
+  it("leaves out counterarguments and related actions an article does not have", () => {
+    const md = articleTwin({ ...article, counterarguments: [], related: [] }, origin);
+    expect(md).not.toContain("## Other views");
+    expect(md).not.toContain("## What you can do");
+    expect(md).toContain("## Sources");
+  });
+
+  it("leaves out the subject and sources an action does not have", () => {
+    const md = actionTwin(
+      {
+        id: "share-it",
+        title: "Share it",
+        summary: "One minute.",
+        context: ["Why."],
+        targetName: "Your friends",
+        timeMinutes: 1,
+        template: "Read this: {link}",
+        sources: [],
+        sourceIds: [],
+        reviewed: new Date("2026-10-29"),
+      },
+      origin,
+    );
+    expect(md).not.toContain("Subject:");
+    expect(md).not.toContain("## Sources");
+    expect(md).toContain("Takes about 1 minute.");
+  });
+});

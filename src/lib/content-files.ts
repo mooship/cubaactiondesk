@@ -71,7 +71,7 @@ function load<T>(
 }
 
 /** Reads and schema-validates every content file. Problems come back as issues, never thrown. */
-function loadContent(root: string): { set: ContentSet; issues: Issue[] } {
+export function loadContent(root: string): { set: ContentSet; issues: Issue[] } {
   const issues: Issue[] = [];
   const set: ContentSet = {
     actions: load(root, "actions", ".md", actionSchema, issues),
