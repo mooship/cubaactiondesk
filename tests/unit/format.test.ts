@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatDate, hostOf, isoDate, peopleCount } from "../../src/lib/format.ts";
+import { formatDate, hostOf, isoDate, minutes, peopleCount } from "../../src/lib/format.ts";
 
 describe("format", () => {
   it("writes absolute dates in plain English, in UTC", () => {
@@ -19,5 +19,12 @@ describe("format", () => {
   it("counts people", () => {
     expect(peopleCount(1)).toBe("1 person");
     expect(peopleCount(3)).toBe("3 people");
+  });
+});
+
+describe("minutes", () => {
+  it("uses the singular for one minute only", () => {
+    expect(minutes(1)).toBe("1 minute");
+    expect(minutes(2)).toBe("2 minutes");
   });
 });

@@ -15,8 +15,9 @@ suggesting next steps. This file holds what you would otherwise get wrong, and h
 Windows with Git Bash or PowerShell. Node 22.23.4 or newer.
 
 - `npm run dev` starts Astro's dev server. `npm run build` builds into `dist`.
-- `npm test` runs Vitest (`tests/unit`). `npm run test:e2e` runs Playwright and axe; it builds the site and starts
-  `wrangler dev` itself.
+- `npm test` runs Vitest (`tests/unit`). `npm run test:coverage` is the same run with coverage of `src/lib`, and fails
+  below 95% statements and branches or 100% functions and lines; CI runs this one. `npm run test:e2e` runs Playwright
+  and axe; it builds the site and starts `wrangler dev` itself.
 - `npm run typecheck` runs `astro sync`, then `tsc --noEmit --runExternalCode`. `@astrojs/ts-content-mapper` lets `tsc`
   read `.astro` files, so props and frontmatter are checked too; the flag is what allows the mapper to load. It needs the
   binding types first: `worker-configuration.d.ts` is git-ignored, so run `npx wrangler types` once, and again after
@@ -34,9 +35,10 @@ this repo. Apply them with judgement; do not recite them.
 
 - **Test first for logic.** Anything that decides something (a rule, a parser, a size or format check) lives in a typed
   module under `src/lib` with a unit test in `tests/unit`. Write the failing test, see it fail for the right reason, then
-  make it pass and tidy up. For a bug, reproduce it in a test before fixing it. Pages, copy and styling have no unit test
-  to write; the typecheck, the build, `check:output`, `check:html` and the browser tests cover them. Never weaken, skip
-  or delete a test to get a green run.
+  make it pass and tidy up. For a bug, reproduce it in a test before fixing it. The coverage gate on `src/lib` means new
+  logic arrives with its tests; reach a missed branch with a real case, never an ignore comment. Pages, copy and styling
+  have no unit test to write; the typecheck, the build, `check:output`, `check:html` and the browser tests cover them.
+  Never weaken, skip or delete a test to get a green run.
 - **Build only what was asked (YAGNI, KISS).** No option, prop or abstraction until a second real caller needs it. Prefer
   a plain function and a data list over a class or a registry. Three similar lines beat a premature helper. A new
   dependency needs a reason the platform and the current ones cannot meet; the budgets turn weight into a failing test.
@@ -95,7 +97,7 @@ README and docs. Use the `humanizer` skill when writing or reviewing prose.
 Run the checks for what you changed, read the output, and say so if any failed or were skipped.
 
 - Every change: `npm run lint`.
-- `src/lib`, `scripts`, tests: `npm run typecheck` and `npm test`.
+- `src/lib`, `scripts`, tests: `npm run typecheck` and `npm run test:coverage`.
 - `src/content`: `npm run check:content`.
 - Pages, components, styles, Markdown twins: `npm run typecheck` (it covers `.astro` files), `npm run build`, then
   `npm run check:output`, `npm run check:html` and `npm run check:budgets`. Add `npm run test:e2e` for anything

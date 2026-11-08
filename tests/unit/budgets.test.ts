@@ -1,6 +1,6 @@
 import { gzipSync } from "node:zlib";
 import { describe, expect, it } from "vitest";
-import { BUDGETS, checkPage, measurePage, referencedAssets } from "../../src/lib/budgets.ts";
+import { BUDGETS, checkPage, kindOf, measurePage, referencedAssets } from "../../src/lib/budgets.ts";
 
 const kb = (n: number) => n * 1024;
 const noise = (bytes: number) => {
@@ -16,6 +16,17 @@ const noise = (bytes: number) => {
 
 const page = (head: string, body = "<main><h1>Hi</h1></main>") =>
   `<!doctype html><html><head>${head}</head><body>${body}</body></html>`;
+
+describe("kindOf", () => {
+  it("picks the budget from the path", () => {
+    expect(kindOf("/learn")).toBe("learn");
+    expect(kindOf("/learn/the-laws")).toBe("learn");
+    expect(kindOf("/give")).toBe("give");
+    expect(kindOf("/give/how-we-vet")).toBe("other");
+    expect(kindOf("/act/write-dirco")).toBe("action");
+    expect(kindOf("/about")).toBe("other");
+  });
+});
 
 describe("referencedAssets", () => {
   it("finds fonts in CSS and preload links, and first-party scripts, once each", () => {
@@ -63,6 +74,25 @@ describe("measurePage", () => {
     const m = measurePage(page('<script src="/_astro/missing.js"></script>'), read);
     expect(m.missing).toEqual(["/_astro/missing.js"]);
   });
+
+  it("reports a missing font and does not count it", () => {
+    const m = measurePage(page('<link rel="preload" href="/_astro/gone.woff2" as="font">'), read);
+    expect(m.missing).toEqual(["/_astro/gone.woff2"]);
+    expect(m.fontBytes).toBe(0);
+    expect(m.fontFiles).toBe(1);
+  });
+
+  it("counts each chunk once when scripts import each other in a cycle", () => {
+    const cyclic: Record<string, string> = {
+      "/_astro/a.js": 'import"./b.js";',
+      "/_astro/b.js": 'import"./a.js";',
+    };
+    const m = measurePage(page('<script src="/_astro/a.js"></script>'), (p) =>
+      cyclic[p] === undefined ? undefined : Buffer.from(cyclic[p]!),
+    );
+    expect(m.scripts.toSorted((x, y) => x.localeCompare(y))).toEqual(["/_astro/a.js", "/_astro/b.js"]);
+    expect(m.missing).toEqual([]);
+  });
 });
 
 describe("checkPage", () => {
@@ -105,6 +135,10 @@ describe("checkPage", () => {
   it("allows no first-party JavaScript on Learn and Give pages", () => {
     expect(checkPage("learn", { ...ok, scripts: ["/a.js"], jsGz: 300 }).join("\n")).toMatch(/JavaScript/);
     expect(checkPage("give", { ...ok, scripts: ["/a.js"], jsGz: 300 }).join("\n")).toMatch(/JavaScript/);
+  });
+
+  it("does not police scripts on other pages", () => {
+    expect(checkPage("other", { ...ok, scripts: ["/a.js"], jsGz: kb(9) })).toEqual([]);
   });
 
   it("caps Action Desk JavaScript at 8 KB", () => {

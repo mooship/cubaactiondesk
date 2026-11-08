@@ -63,3 +63,11 @@ describe("rssFeed", () => {
     expect(items[0]!.guid).toBe("https://example.org/learn/a");
   });
 });
+
+describe("rssFeed with no items", () => {
+  it("is still a valid channel, dated at the epoch", () => {
+    const xml = rssFeed([], origin);
+    expect(xml).toContain("<lastBuildDate>Thu, 01 Jan 1970 00:00:00 GMT</lastBuildDate>");
+    expect(xml).not.toContain("<item>");
+  });
+});

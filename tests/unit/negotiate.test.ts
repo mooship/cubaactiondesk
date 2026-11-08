@@ -47,3 +47,9 @@ describe("NEGOTIABLE", () => {
     expect(NEGOTIABLE.test(path)).toBe(false);
   });
 });
+
+describe("wantsMarkdown with a malformed weight", () => {
+  it("treats an unreadable q value as the default weight of 1", () => {
+    expect(wantsMarkdown("text/markdown;q=high, text/html;q=0.9")).toBe(true);
+  });
+});

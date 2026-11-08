@@ -46,6 +46,7 @@ npx wrangler dev --port 8799
 | Command                 | What it does                                                                         |
 | ----------------------- | ------------------------------------------------------------------------------------ |
 | `npm test`              | Unit tests (Vitest).                                                                 |
+| `npm run test:coverage` | Unit tests with coverage of `src/lib`. Fails below 95% statements and branches.      |
 | `npm run test:e2e`      | Browser tests and accessibility scans against the built Worker (Playwright and axe). |
 | `npm run typecheck`     | Syncs Astro's types, then `tsc`, which checks `.astro` files too (see below).        |
 | `npm run lint`          | Biome: lint, formatting and import order. `npm run lint:fix` fixes what it can.      |
