@@ -74,8 +74,8 @@ Astro.csp?.insertScriptHash(speculationRulesHash);
     <meta name="theme-color" content={BRAND.blue} />
     <meta name="msapplication-TileColor" content={BRAND.blue} />
     <meta name="msapplication-config" content="/browserconfig.xml" />
-    <Font cssVariable="--font-body" />
-    {/* Only the display face is preloaded: the h1 is the largest thing on most pages. */}
+    {/* Both faces are preloaded: without the body face the text reflows when it swaps in (CLS 0.2 on the home page). */}
+    <Font cssVariable="--font-body" preload />
     <Font cssVariable="--font-display" preload />
 
     <meta property="og:site_name" content={SITE.name} />
