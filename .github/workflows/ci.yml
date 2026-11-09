@@ -31,8 +31,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      # Workers Builds installs with npm 11 (packageManager); keep CI on the same major.
-      - run: npm install --global npm@11
+      - run: npm install --global npm@11.19.1
       - run: npm ci
       # Biome: formatting, lint and import order, failing on warnings.
       - run: npm run lint:ci
@@ -62,7 +61,7 @@ jobs:
         with:
           node-version-file: .node-version
           cache: npm
-      - run: npm install --global npm@11
+      - run: npm install --global npm@11.19.1
       - run: npm ci
       # Cache the browser download per Playwright version; system libraries are installed either way.
       - id: playwright-version
@@ -97,7 +96,7 @@ jobs:
         with:
           node-version-file: .node-version
           cache: npm
-      - run: npm install --global npm@11
+      - run: npm install --global npm@11.19.1
       - run: npm ci
       - run: npm run build
       - run: npx wrangler d1 migrations apply DB --local

@@ -6,7 +6,7 @@
   "type": "module",
   "description": "Cuba Action Desk SA: act, learn and give, for South Africans who want to do something about the US blockade of Cuba.",
   "engines": {
-    "node": ">=24.22.1",
+    "node": ">=24.0.0",
     "npm": ">=11.0.0"
   },
   "packageManager": "npm@11.19.1",
