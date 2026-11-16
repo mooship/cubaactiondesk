@@ -77,6 +77,7 @@ There is one lockfile, `package-lock.json`. Node 24 and npm 11 are the minimums.
 Corepack and Cloudflare Workers Builds, and CI installs that same version before `npm ci`.
 
 - Never install or upgrade to a package version published less than 7 days ago. `.npmrc` sets `min-release-age=7` and
+- A release under 7 days old (an urgent security fix, say) needs the maintainer's approval in the conversation first; an agent never decides this alone. With approval, install it with `npm install <package>@<version> --min-release-age=0`, or exempt one package with `--min-release-age-exclude=<package>`, and leave `.npmrc` alone.
   Dependabot has a 7-day cooldown; do not work around either. A fix that exists only in a newer release goes to the
   maintainer first.
 - After any `package.json` change, run `npm install` and commit the lockfile with it. Never hand-edit a version.
