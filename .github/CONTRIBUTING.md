@@ -27,7 +27,7 @@ By taking part you agree to follow the [code of conduct](CODE_OF_CONDUCT.md).
 Setup and commands are in the [README](../README.md). The principles are in [AGENTS.md](../AGENTS.md), which is written for people and for AI tools alike. In short:
 
 - Write the failing test first for anything in `src/lib`. Match the code around your change, and build only what the change needs.
-- Run the checks for what you changed. The "Done means" section of [AGENTS.md](../AGENTS.md) lists them, and CI runs the same ones.
+- Run the checks for what you changed. The "Definition of done" section of [AGENTS.md](../AGENTS.md) lists them, and CI runs the same ones.
 - Generated files (`public/_headers`, the link list, icons, images, profile pictures and migrations) are committed. Change the source, regenerate and commit both.
 - Leave the Lefthook commit hook switched on.
 - The site has no accounts, comments or mailing list, and it never handles money. It uses no client framework and no CSS framework, because the pages have to stay light on a prepaid phone. A change that breaks one of these needs a very good reason.

@@ -2,7 +2,7 @@
 
 ## Checks
 
-Tick what applies to this change. The "Done means" section of AGENTS.md lists the commands.
+Tick what applies to this change. The "Definition of done" section of AGENTS.md lists the commands.
 
 - [ ] Code: `npm run typecheck`, `npm test` and `npm run lint` pass, and new logic has a test.
 - [ ] Content: `npm run check:content` passes.

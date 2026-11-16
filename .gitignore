@@ -13,7 +13,8 @@ coverage/
 .lighthouseci/
 *.log
 .DS_Store
-.playwright-mcp/
+.playwright-cli/
+.tmp-visual/
 .vscode/*
 !.vscode/settings.json
 
