@@ -50,7 +50,7 @@
     "@astrojs/ts-content-mapper": "0.2.0",
     "@axe-core/playwright": "4.14.0",
     "@biomejs/biome": "2.6.6",
-    "@lhci/cli": "0.16.0",
+    "@lhci/cli": "0.16.1",
     "@playwright/test": "1.65.0",
     "@types/node": "24.19.2",
     "@vitest/coverage-v8": "5.1.0",
