@@ -101,6 +101,14 @@
   margin-top: 0;
 }
 
+.body,
+.counter,
+.sources,
+.related {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 32rem;
+}
+
 .body h2 {
   font-size: var(--step-2);
 }
@@ -220,6 +228,8 @@
 
 .rows > li {
   margin: 0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 16rem;
 }
 
 /* Rows that are plain text entries (not components with their own rule) get the rule here. */
