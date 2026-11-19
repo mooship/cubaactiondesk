@@ -18,6 +18,8 @@ interface Props {
   path?: string;
   /** Path of the Markdown twin, when the page has one. */
   markdownPath?: string;
+  /** Page-specific Open Graph image. */
+  preview?: string;
   type?: "website" | "article";
   /** JSON-LD objects, serialised into script tags. */
   jsonLd?: Record<string, unknown>[];
@@ -29,6 +31,7 @@ const {
   description,
   path = Astro.url.pathname,
   markdownPath,
+  preview,
   type = "website",
   jsonLd = [],
   noindex = false,
@@ -40,7 +43,7 @@ const canonical = absoluteUrl(normalizePath(path), site);
 
 // One static preview image per section; everything else uses the default.
 const section = normalizePath(path).split("/", 2)[1] ?? "";
-const preview = ["learn", "act", "give"].includes(section) ? `/og/${section}.png` : "/og/default.png";
+const previewPath = preview ?? (["learn", "act", "give"].includes(section) ? `/og/${section}.png` : "/og/default.png");
 
 const organization = {
   "@context": "https://schema.org",
@@ -83,7 +86,7 @@ Astro.csp?.insertScriptHash(speculationRulesHash);
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={absoluteUrl(preview, site)} />
+    <meta property="og:image" content={absoluteUrl(previewPath, site)} />
     <meta property="og:image:alt" content={`${SITE.name}: ${title ?? SITE.tagline}`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

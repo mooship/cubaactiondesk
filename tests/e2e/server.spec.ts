@@ -94,6 +94,19 @@ test.describe("Markdown for AI readers", () => {
   });
 });
 
+test("article and action pages have page-specific share previews", async ({ request }) => {
+  for (const [path, image] of [
+    ["/learn/un-votes", "/og/learn/un-votes.png"],
+    [ACTION_PATH, "/og/act/ask-your-mp-un-vote.png"],
+  ]) {
+    const html = await (await request.get(path)).text();
+    expect(html, path).toContain(`property="og:image" content="https://cuba.timothybrits.co.za${image}"`);
+    const preview = await request.get(image);
+    expect(preview.status(), image).toBe(200);
+    expect(preview.headers()["content-type"], image).toContain("image/png");
+  }
+});
+
 test.describe("headers and policy", () => {
   test("server-rendered, negotiated and static responses all carry the security headers", async ({ request }) => {
     for (const path of [ACTION_PATH, "/give", "/api/health", "/learn/un-votes", "/about", "/learn/un-votes.md"]) {

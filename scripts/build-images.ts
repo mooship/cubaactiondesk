@@ -7,6 +7,7 @@ import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { chromium } from "@playwright/test";
 import sharp from "sharp";
+import { loadSiteContent } from "../src/lib/content-files.ts";
 import { SITE, siteUrl } from "../src/lib/site.ts";
 
 const root = join(import.meta.dirname, "..");
@@ -40,12 +41,13 @@ h1 { font-weight: 900; line-height: 1; }
 .host { color: ${INK_SOFT}; }`;
 
 function og(title: string, text: string): string {
+  const titleSize = title.length > 45 ? 72 : title.length > 30 ? 88 : 104;
   return `<style>${BASE_CSS}
 body { width: 1200px; height: 630px; }
 .band { padding: 36px 72px; }
 .stamp { font-size: 40px; }
 main { flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 48px 72px 44px; }
-h1 { font-size: 104px; max-width: 1040px; }
+h1 { font-size: ${titleSize}px; max-width: 1040px; text-wrap: balance; }
 p { font-size: 38px; line-height: 1.3; max-width: 980px; margin-top: 20px; }
 .host { font-size: 30px; border-top: 3px solid ${INK}; padding-top: 12px; }</style>
 <body><div class="band">${stamp}</div>
@@ -106,6 +108,24 @@ const images = [
   },
   { file: "cards/sa-and-cuba-in-60-seconds.png", width: 1080, height: 1350, html: card() },
 ];
+
+const content = loadSiteContent();
+for (const entry of content.set.articles.filter((article) => article.data.status === "live")) {
+  images.push({
+    file: `og/learn/${entry.id}.png`,
+    width: 1200,
+    height: 630,
+    html: og(entry.data.title, entry.data.summary),
+  });
+}
+for (const entry of content.set.actions.filter((action) => action.data.status === "live")) {
+  images.push({
+    file: `og/act/${entry.id}.png`,
+    width: 1200,
+    height: 630,
+    html: og(entry.data.title, entry.data.summary),
+  });
+}
 
 const browser = await chromium.launch();
 const work = mkdtempSync(join(tmpdir(), "cad-images-"));

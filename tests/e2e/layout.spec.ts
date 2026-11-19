@@ -22,11 +22,10 @@ test("the Action Desk is two columns with a sticky send panel", async ({ page })
 
 test("articles stay a readable single column, under 70 characters wide", async ({ page }) => {
   await page.goto("/learn/what-is-the-blockade");
-  const width = await page
-    .locator("article")
-    .first()
-    .evaluate((el) => el.getBoundingClientRect().width);
-  expect(width).toBeLessThan(900);
+  const box = (await page.locator("article").first().boundingBox())!;
+  const main = (await page.locator("main").boundingBox())!;
+  expect(box.width).toBeLessThan(900);
+  expect(Math.abs(box.x - main.x - (main.width - box.width) / 2)).toBeLessThan(2);
 });
 
 test("the image send panel stays in normal flow on a short desktop screen", async ({ page }) => {

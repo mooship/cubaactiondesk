@@ -5,6 +5,7 @@ import { getEntry } from "astro:content";
 import { env } from "cloudflare:workers";
 import Base from "../../layouts/Base.astro";
 import ActionDesk from "../../components/ActionDesk.astro";
+import Button from "../../components/Button.astro";
 import prose from "../../styles/prose.module.css";
 import { getDb } from "../../db/client.ts";
 import { getActionCount } from "../../lib/counters.ts";
@@ -49,6 +50,7 @@ if (Astro.url.search) Astro.response.headers.set("Cache-Control", "private, no-s
   description={data.summary}
   path={`/act/${entry.id}`}
   markdownPath={`/act/${entry.id}.md`}
+  preview={`/og/act/${entry.id}.png`}
   jsonLd={[
     breadcrumbList(
       [
@@ -64,6 +66,9 @@ if (Astro.url.search) Astro.response.headers.set("Cache-Control", "private, no-s
   </p>
   <h1>{data.title}</h1>
   <p class={prose.lede}>{data.summary}</p>
+  <p class={prose.quickAction}>
+    <Button href="#action-desk">Start the message</Button>
+  </p>
   <ul class={prose.context}>
     {data.context.map((line) => (
       <li>{line}</li>

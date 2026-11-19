@@ -73,6 +73,19 @@ test("the skip link is the first focusable element and moves focus to the main c
   await expect(page.locator("main")).toBeFocused();
 });
 
+test("the home page puts a primary action in the first mobile screen", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("link", { name: "Start a message" })).toBeInViewport();
+});
+
+test("an Action Desk links straight to the message editor", async ({ page }) => {
+  await page.goto(ACTION_PATH);
+  const start = page.getByRole("link", { name: "Start the message" });
+  await expect(start).toBeInViewport();
+  await start.click();
+  await expect(page.getByRole("heading", { name: "1. Fill in the blanks" })).toBeInViewport();
+});
+
 test("the bottom nav is on screen, 56px tall, has four labelled links, and marks the current page", async ({
   page,
 }) => {

@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import Button from "../components/Button.astro";
 import Star from "../components/Star.astro";
 import prose from "../styles/prose.module.css";
 import home from "../styles/home.module.css";
@@ -25,6 +26,10 @@ const excerpt = (featured?.body ?? "")
   <p class={prose.lede}>
     From South Africa, you can write to a public representative or <a href="/give">help fund aid to Cuba</a>. Start with
     a message below, or <a href="/learn">read up on the blockade</a> before deciding what to do.
+  </p>
+  <p class={home.start}>
+    <Button href={featured ? `/act/${featured.id}` : "/act"}>Start a message</Button>
+    <a href="/act">Browse all actions</a>
   </p>
 
   {featured && (

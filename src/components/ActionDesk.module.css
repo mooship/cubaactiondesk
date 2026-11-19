@@ -1,6 +1,7 @@
 .desk {
   display: grid;
   gap: var(--space-6);
+  scroll-margin-top: var(--space-5);
 }
 
 .compose,

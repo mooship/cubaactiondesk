@@ -22,6 +22,10 @@
   margin-bottom: var(--space-4);
 }
 
+.quickAction {
+  margin: var(--space-5) 0 var(--space-6);
+}
+
 .target {
   max-width: var(--measure);
   margin-bottom: var(--space-6);
@@ -29,6 +33,34 @@
 
 .article {
   max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.cautions {
+  max-width: var(--measure);
+  margin: 0 0 var(--space-6);
+  padding: var(--space-1) 0 var(--space-1) var(--space-4);
+  border-left: 6px solid var(--gold);
+}
+
+.cautions h2 {
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  border: 0;
+  font-size: var(--step-2);
+}
+
+.cautions p,
+.cautions ul {
+  margin-bottom: var(--space-2);
+  font-size: var(--step-small);
+}
+
+.cautions summary {
+  min-height: var(--target);
+  padding: var(--space-2) 0;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .meta {

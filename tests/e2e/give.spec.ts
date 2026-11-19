@@ -46,6 +46,8 @@ test("payment cautions come before organisations or the empty notice", async ({ 
   const advice = (await caveats.boundingBox())!;
   const listing = (await first.boundingBox())!;
   expect(advice.y + advice.height).toBeLessThanOrEqual(listing.y);
+  expect(advice.height).toBeLessThan(180);
+  await expect(caveats.getByText("Full donation cautions")).toBeVisible();
 });
 
 test("with no approved listings Give shows the empty state and still explains payments", async ({ page }) => {
