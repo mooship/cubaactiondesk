@@ -5,7 +5,7 @@ export default defineConfig({
     include: ["tests/unit/**/*.test.ts"],
     coverage: {
       provider: "v8",
-      // The typed logic modules. Pages, scripts and the link-checker Worker are thin wiring around these and are
+      // The typed logic modules. Pages and scripts are thin wiring around these and are
       // covered by the build, the check:* scripts and the browser tests instead.
       include: ["src/lib/**/*.ts"],
       reporter: ["text"],

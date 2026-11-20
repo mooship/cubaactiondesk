@@ -30,14 +30,12 @@ The deploy account is a personal one. Run `npx --no-install cf auth whoami` and 
 
 1. [x] Logged in with `npx --no-install cf auth login` (check with `npx --no-install cf auth whoami`). The account id is not committed; with more
        than one account, set `CLOUDFLARE_ACCOUNT_ID` when deploying from a script or CI.
-2. [x] Created the database `cubaactiondesk` (WEUR) and put its id in both `cloudflare.config.ts` files (the site and `workers/link-checker`) and in the `deploy:ci` script.
+2. [x] Created the database `cubaactiondesk` (WEUR) and put its id in `cloudflare.config.ts` and in the `deploy:ci` script.
 3. [x] Applied the migration: `npm run deploy:ci` runs `cf d1 migrations apply <DATABASE_ID> --dir migrations` (remote by default) before it deploys.
-4. [x] Deployed the link checker: `npm run deploy:link-checker`. It runs on Mondays at
-       03:00 UTC and has no public address.
-5. [x] Deployed the site to `cuba.timothybrits.co.za` with `npm run deploy` (content check, remote migration, build, deploy; the migration and deploy are `npm run deploy:ci`).
-6. [x] Enabled Analytics Engine (a one-time dashboard step) and redeployed with the `EVENTS` binding, dataset
+4. [x] Deployed the site to `cuba.timothybrits.co.za` with `npm run deploy` (content check, remote migration, build, deploy; the migration and deploy are `npm run deploy:ci`).
+5. [x] Enabled Analytics Engine (a one-time dashboard step) and redeployed with the `EVENTS` binding, dataset
        `cuba_action_desk_events`. Without it the deploy fails with error 10089.
-7. [ ] Optional: connect the repository in the dashboard (Workers Builds) with build
+6. [ ] Optional: connect the repository in the dashboard (Workers Builds) with build
        `npm run build`, deploy `npm run deploy:ci` and preview `npx --no-install cf previews deploy`. Its API token needs
        permission to edit D1, because `deploy:ci` runs the migration.
 

@@ -1,4 +1,4 @@
-/* One organisation per row of the directory: its details on the left, its link status and donate button in a fixed
+/* One organisation per row of the directory: its details on the left, its donate button in a fixed
    column on the right on wide screens. */
 .listing {
   display: grid;
@@ -42,10 +42,6 @@
 .facts dd {
   margin: 0;
   overflow-wrap: anywhere;
-}
-
-.status {
-  margin-bottom: var(--space-4);
 }
 
 .donate > :first-child {

@@ -12,6 +12,12 @@ export interface Correction {
 /** The public corrections log. Newest first. Add an entry whenever a published error is fixed. */
 export const CORRECTIONS: Correction[] = [
   {
+    date: "2026-11-20",
+    page: "/give",
+    was: "The Give page, the vetting page and the privacy page said we test every donation link each week and pause the donate button after two failed checks.",
+    now: "We have stopped the weekly link tests, so donate buttons are no longer paused automatically and we no longer store link test results. Each listing still shows the date we last checked it.",
+  },
+  {
     date: "2026-11-05",
     page: "/give/how-we-vet",
     was: "The page said a South African Visa or Mastercard works on any international card form.",

@@ -18,13 +18,12 @@ test("Give says plainly what it is, links how we vet, and never asks for card de
   await expect(page.getByRole("heading", { name: "Before you donate" })).toBeVisible();
 });
 
-test("each listing shows a status as text, and its donate button names the destination domain", async ({ page }) => {
+test("each listing's donate button names the destination domain", async ({ page }) => {
   await page.goto("/give");
   const listings = page.locator("article");
   const count = await listings.count();
   test.skip(count === 0, "no approved listings yet: the page shows the honest empty state instead");
   for (const listing of await listings.all()) {
-    await expect(listing.getByText(/Link (verified|under review|not checked yet|had a failed check)/)).toBeVisible();
     const donate = listing.getByRole("link", { name: /^Donate on / });
     if (!(await donate.count())) {
       continue;

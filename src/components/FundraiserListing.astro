@@ -1,24 +1,20 @@
 ---
 import styles from "./FundraiserListing.module.css";
 import Button from "./Button.astro";
-import StatusBadge from "./StatusBadge.astro";
 import { formatDate, hostOf, isoDate } from "../lib/format.ts";
-import { isDonateEnabled, type LinkStatus } from "../lib/linkstate.ts";
 import type { FundraiserData } from "../content/schemas.ts";
 
 interface Props {
   id: string;
   data: FundraiserData;
-  status: LinkStatus;
 }
-const { id, data, status } = Astro.props;
+const { id, data } = Astro.props;
 
 const CATEGORY: Record<FundraiserData["category"], string> = {
   solidarity: "Solidarity group",
   humanitarian: "Humanitarian organisation",
   "faith-based": "Faith-based organisation",
 };
-const enabled = isDonateEnabled(status);
 const host = hostOf(data.donateUrl);
 ---
 
@@ -84,25 +80,11 @@ const host = hostOf(data.donateUrl);
   </div>
 
   <div class={styles.side}>
-    <p class={styles.status}>
-      <StatusBadge status={status} />
-    </p>
-
     <div class={styles.donate}>
-      <Button href={`/go/${id}`} disabled={!enabled}>
+      <Button href={`/go/${id}`}>
         Donate on {host}
       </Button>
-      {enabled ? (
-        <p class={styles.note}>You will leave this site and pay {host} directly. We never handle the money.</p>
-      ) : (
-        <p class={styles.note}>
-          Donations are paused while we check this link. Try the organisation's own site:{" "}
-          <a href={data.website} rel="noopener noreferrer">
-            {hostOf(data.website)}
-          </a>
-          .
-        </p>
-      )}
+      <p class={styles.note}>You will leave this site and pay {host} directly. We never handle the money.</p>
     </div>
   </div>
 </article>
