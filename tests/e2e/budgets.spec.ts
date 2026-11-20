@@ -3,7 +3,7 @@ import { readDist } from "../../scripts/dist.ts";
 import { checkPage, kindOf, measurePage } from "../../src/lib/budgets.ts";
 import { sitePaths } from "./routes.ts";
 
-// `npm run check:budgets` reads the prerendered pages from dist/client. The Action Desk and Give pages are rendered by
+// `npm run check:budgets` reads the prerendered pages from the built assets. The Action Desk and Give pages are rendered by
 // the Worker, so this measures them from a running server: the 8 KB script budget and the "no JavaScript on Give" rule
 // would otherwise never be checked in CI.
 test("the server-rendered pages stay inside their performance budgets", async ({ request }) => {

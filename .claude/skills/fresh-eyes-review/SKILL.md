@@ -19,7 +19,7 @@ Check these first; they are the usual misses.
 
 - A rule in `AGENTS.md` the change breaks (Things that break quietly, Decisions already made, Safety, Writing, Conventions).
 - A behaviour change with no test, a test that no longer fails without the change, a weakened assertion, a skip, a fixed wait, or a coverage ignore.
-- A change that needs a companion change it lacks: a generated file (`public/_headers`, the link list, icons, images, migrations) regenerated with its source, `run_worker_first` in `wrangler.jsonc`, a document, the content check.
+- A change that needs a companion change it lacks: a generated file (`public/_headers`, the link list, icons, images, migrations) regenerated with its source, `assets.runWorkerFirst` in `cloudflare.config.ts`, a document, the content check.
 - A claim in an article, template or doc that the code or a source does not back, or prose that breaks the Writing rules (dashes, "not X but Y", bold labels, stock words, curly quotes).
 - A new dependency, or a version under 7 days old (`.npmrc` sets the delay).
 - A secret, a personal value, an employer reference, or a private path in the diff.

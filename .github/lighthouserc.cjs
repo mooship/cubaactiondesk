@@ -1,7 +1,8 @@
 // Lighthouse CI, mobile profile (Lighthouse's default: simulated slow 4G, 4x CPU slowdown, mid-range phone).
 //
-// `npm run lhci` starts the built Worker locally with `wrangler dev` and measures six pages, including the
-// server-rendered Action Desk and Give. Each run is repeated three times and the median is asserted.
+// `npm run lhci` serves the e2e build (`npm run build:e2e`, then `npm run d1:migrate:e2e`) with `astro preview` and
+// measures six pages, including the server-rendered Action Desk and Give. Each run is repeated three times and the
+// median is asserted.
 // Set LHCI_BASE_URL to measure a deployed preview instead (no local server is started).
 //
 // Accessibility, best practices and SEO must be exactly 100: they do not vary from run to run. Performance only has
@@ -17,8 +18,8 @@ module.exports = {
       ...(external
         ? {}
         : {
-            startServerCommand: "npx wrangler dev --port 8799 --ip 127.0.0.1",
-            startServerReadyPattern: "Ready on",
+            startServerCommand: "npx --no-install astro preview --mode e2e --port 8799 --host 127.0.0.1",
+            startServerReadyPattern: "ready in",
             startServerReadyTimeout: 90_000,
           }),
       url: pages.map((path) => base + path),

@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 /**
- * Runs against the built Worker (`wrangler dev`) with a local D1, so the server-rendered routes, the
+ * Runs against the production build (`astro build --mode e2e`, served by `astro preview`) with a local D1, so the server-rendered routes, the
  * Markdown negotiation and the headers are the real thing. Set E2E_BASE_URL to test a deployed preview instead,
  * or E2E_PORT to run beside another server.
  */
@@ -32,7 +32,7 @@ export default defineConfig({
   webServer: process.env.E2E_BASE_URL
     ? undefined
     : {
-        command: `npm run build && npx wrangler d1 migrations apply DB --local && npx wrangler dev --port ${port} --ip 127.0.0.1`,
+        command: `npm run build:e2e && npm run d1:migrate:e2e && npx --no-install astro preview --mode e2e --port ${port} --host 127.0.0.1`,
         url: `http://127.0.0.1:${port}/api/health`,
         // A built server can be stale or belong to another run, so one already on the port is an error.
         reuseExistingServer: false,

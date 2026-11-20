@@ -3,7 +3,7 @@ import { incrementAction } from "./counters.ts";
 import { json } from "./http.ts";
 import { isSlug } from "./slug.ts";
 
-/** The rate limit window in wrangler.jsonc (ratelimits.simple.period); a test keeps the two equal. */
+/** The rate limit window in cloudflare.config.ts (COUNTER_LIMITER simple.period); a test keeps the two equal. */
 export const RETRY_AFTER_SECONDS = 60;
 
 export interface RateLimiter {

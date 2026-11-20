@@ -4,7 +4,7 @@ import { NEGOTIABLE, wantsMarkdown } from "./lib/negotiate.ts";
 import { withSecurityHeaders } from "./lib/security.ts";
 
 /**
- * wrangler.jsonc `run_worker_first` runs this Worker for the server-rendered routes and the
+ * cloudflare.config.ts `runWorkerFirst` runs this Worker for the server-rendered routes and the
  * negotiable paths only; every other request is served straight from static assets (which get
  * their security headers from public/_headers).
  */

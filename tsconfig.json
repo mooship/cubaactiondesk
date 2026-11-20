@@ -3,7 +3,7 @@
   "contentMappers": [{ "package": "@astrojs/ts-content-mapper", "extensions": [".astro"] }],
   "include": [
     ".astro/types.d.ts",
-    "worker-configuration.d.ts",
+    ".cloudflare/types/index.d.ts",
     "src/**/*",
     "workers/**/*",
     "tests/**/*",

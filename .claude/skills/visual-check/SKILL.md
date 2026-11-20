@@ -13,7 +13,7 @@ The model that does this check must be able to read images. Claude models can; f
 
 1. Install the browser once if it is missing: `npx --no-install playwright install chromium`.
 2. Pick a port nobody uses (say 5190; 8799 belongs to the e2e run) and check that nothing listens on it: `Get-NetTCPConnection -LocalPort 5190 -State Listen` in PowerShell (an error means none), `lsof -nP -iTCP:5190 -sTCP:LISTEN` elsewhere. Another agent may have a server running, so never reuse a taken port.
-3. Build once (`npm run build`) and apply the migration to the local database (`npx --no-install wrangler d1 migrations apply DB --local`), then run `npx --no-install wrangler dev --port 5190 --ip 127.0.0.1` in the background. Wait for its ready line, run the listener check again and write down the PID: the port was free, so that process is yours. Load the home page once and let it finish.
+3. Build once (`npm run build:e2e`) and apply the migration to the local database (`npm run d1:migrate:e2e`), then run `npx --no-install astro preview --mode e2e --port 5190 --host 127.0.0.1` in the background. Wait for its ready line, run the listener check again and write down the PID: the port was free, so that process is yours. Load the home page once and let it finish.
 
 ## 2. Take the screenshots
 

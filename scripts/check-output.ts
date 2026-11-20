@@ -1,4 +1,4 @@
-// Checks the built site in dist/client: internal links and anchors, Markdown twins, llms.txt, sitemap,
+// Checks the built site (see scripts/dist.ts): internal links and anchors, Markdown twins, llms.txt, sitemap,
 // page basics, and missing spaces around links. Run after `npm run build`. Errors exit 1.
 import { readFileSync } from "node:fs";
 import { join } from "node:path";

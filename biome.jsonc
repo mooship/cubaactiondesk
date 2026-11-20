@@ -63,7 +63,7 @@
       "assist": { "actions": { "source": { "organizeImports": "off" } } },
     },
     {
-      // Keep the trailing commas Prettier wrote; wrangler accepts them.
+      // Keep the trailing commas the .jsonc files already use.
       "includes": ["**/*.jsonc"],
       "json": { "formatter": { "trailingCommas": "all" } },
     },

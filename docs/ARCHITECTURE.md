@@ -42,7 +42,7 @@ off, the filled-in fields reach the server in the query string so it can render 
 | `/api/*`                                                         | On demand                            | Counter and health                                   |
 | `/learn/[slug].md`, `/act/[slug].md`, `/give.md`, `llms*.txt`    | Prerendered                          | Markdown twins for AI readers                        |
 
-`wrangler.jsonc` lists the paths where the Worker runs first (`run_worker_first`). A path that is not in that list is served
+`cloudflare.config.ts` lists the paths where the Worker runs first (`assets.runWorkerFirst`). A path that is not in that list is served
 from static assets, so a server-rendered route missing from it returns the static 404 page. The list covers `/api/*`,
 `/go/*`, `/act`, `/act/*`, `/give` and `/learn/*`, with the `.md` twins excluded.
 
