@@ -5,7 +5,6 @@ import siteConfig from "../../cloudflare.config.ts";
 import { NEGOTIABLE } from "../../src/lib/negotiate.ts";
 import { siteUrl } from "../../src/lib/site.ts";
 import { RETRY_AFTER_SECONDS } from "../../src/lib/taken.ts";
-import checkerConfig from "../../workers/link-checker/cloudflare.config.ts";
 
 // Values that two files must agree on, and that nothing else would notice drifting apart. The package.json scripts
 // cannot import cloudflare.config.ts, so these tests are what keep the two in step with it and with the code.
@@ -30,7 +29,6 @@ async function resolve(config: unknown, mode: string): Promise<ResolvedConfig> {
 
 const site = await resolve(siteConfig, "production");
 const e2e = await resolve(siteConfig, "e2e");
-const checker = await resolve(checkerConfig, "production");
 const scripts = (
   JSON.parse(readFileSync(join(import.meta.dirname, "..", "..", "package.json"), "utf8")) as {
     scripts: Record<string, string>;
@@ -70,13 +68,6 @@ describe("cloudflare.config.ts and the code agree", () => {
     for (const path of ["/api/health", "/go/global-health-partners", "/act", "/give"]) {
       expect(runsWorkerFirst(patterns, path), path).toBe(true);
     }
-  });
-});
-
-describe("the link checker and the site share one database", () => {
-  it("uses the same database and compatibility date", () => {
-    expect(checker.worker.env.DB).toEqual(site.worker.env.DB);
-    expect(checker.worker.compatibilityDate).toBe(site.worker.compatibilityDate);
   });
 });
 

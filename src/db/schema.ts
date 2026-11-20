@@ -7,7 +7,7 @@ export const actionCounts = sqliteTable("action_counts", {
   updatedAt: text("updated_at").notNull(),
 });
 
-/** Latest result of the weekly donation-link check. */
+/** Dormant: written by the retired link checker. Kept so the schema stays in step with migrations/. */
 export const linkChecks = sqliteTable("link_checks", {
   url: text("url").primaryKey(),
   lastStatus: integer("last_status"),

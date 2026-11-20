@@ -165,7 +165,7 @@ Use a command-line tool where one does the job, and commit no MCP server configu
 ## Things that break quietly
 
 - **Generated files are committed and drift tests fail on them.** `public/_headers` (`npm run build:headers`),
-  `workers/link-checker/links.generated.json` (`npm run build:links`), icons and images (`npm run build:icons`,
+  icons and images (`npm run build:icons`,
   `npm run build:images`), profile pictures (`npm run build:avatars`), and `migrations/` (`npm run db:generate`). Change the source, regenerate, commit both.
 - **Security headers have one source,** `src/lib/security.ts`. Edit it and rebuild `_headers`; never edit `_headers` by hand.
 - **`cloudflare.config.ts` `assets.runWorkerFirst` lists the routes the Worker handles.** A server-rendered route missing from it
@@ -173,8 +173,7 @@ Use a command-line tool where one does the job, and commit no MCP server configu
 - **Cross-collection content rules (`src/lib/content-check.ts`) run in tests, CI and `check:content`, not in `astro build`.**
   This is deliberate: some rules depend on today's date, and a calendar must not break a deploy.
 - **A live action needs a target with an address, a source page and a verification date.** An organisation stays
-  `approved: false` until all five checks on `/give/how-we-vet` are met, and `check:content` refuses otherwise. After
-  approving one, run `npm run build:links`.
+  `approved: false` until all five checks on `/give/how-we-vet` are met, and `check:content` refuses otherwise..
 - **Whatever a page imports is bundled into the Worker.** Node-only modules such as `sharp` break the build there. Keep
   them in `scripts/` or in a file that only scripts and tests import, as `src/lib/profile-pictures-render.ts` does.
 - **`tsc` sees `.astro` files only through the content mapper.** Without `--runExternalCode`, or with the

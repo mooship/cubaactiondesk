@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { loadContent } from "../../src/lib/content-files.ts";
+import { loadContent, loadSiteContent } from "../../src/lib/content-files.ts";
 
 let root: string;
 
@@ -60,5 +60,15 @@ describe("loadContent", () => {
     expect(messages).toHaveLength(2);
     expect(messages[0]).toMatch(/^glossary\/empty-term\.yaml term: /);
     expect(messages[1]).toMatch(/^glossary\/scalar\.yaml \(root\): /);
+  });
+});
+
+describe("loadSiteContent", () => {
+  it("loads the site's own content, Markdown and YAML, without a single issue", () => {
+    const { set, issues } = loadSiteContent();
+    expect(issues).toEqual([]);
+    expect(set.actions.length).toBeGreaterThan(0);
+    expect(set.actions.every((a) => typeof a.body === "string")).toBe(true);
+    expect(set.glossary.length).toBeGreaterThan(0);
   });
 });

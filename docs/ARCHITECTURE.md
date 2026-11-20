@@ -19,11 +19,9 @@ flowchart LR
   V[Visitor] --> CF[Cloudflare edge]
   CF -->|prerendered pages, twins, assets| A[Workers Static Assets]
   CF -->|server routes and negotiation| W[Worker: src/worker.ts]
-  W --> D1[(D1: counters, link checks)]
+  W --> D1[(D1: counters)]
   W --> RL[Rate limiting binding]
   W --> AE[Analytics Engine: outbound clicks]
-  CRON[Cron Worker, weekly] -->|HEAD, then GET| ORG[Organisation donate pages]
-  CRON --> D1
   V -.->|mailto or WhatsApp share| OWN[Visitor's own email or WhatsApp]
 ```
 
@@ -37,7 +35,7 @@ off, the filled-in fields reach the server in the query string so it can render 
 | ---------------------------------------------------------------- | ------------------------------------ | ---------------------------------------------------- |
 | `/`, `/learn`, `/learn/[slug]`, About, Privacy, Sources, Glossary | Prerendered                          | Fastest, no Worker time                              |
 | `/act`, `/act/[slug]`                                            | On demand                            | Query-string prefill and live counters               |
-| `/give`                                                          | On demand                            | Shows the latest link-check result from D1           |
+| `/give`                                                          | On demand                            | Server-rendered; nothing on it needs D1 now          |
 | `/go/[id]`                                                       | On demand                            | A 302 to the donate page that logs one anonymous click |
 | `/api/*`                                                         | On demand                            | Counter and health                                   |
 | `/learn/[slug].md`, `/act/[slug].md`, `/give.md`, `llms*.txt`    | Prerendered                          | Markdown twins for AI readers                        |
@@ -77,7 +75,6 @@ Rules worth knowing:
 | Data                              | Where                                  | Personal information?             |
 | --------------------------------- | -------------------------------------- | --------------------------------- |
 | Action counters (slug, total)     | D1 `action_counts`                     | No                                |
-| Link check results                | D1 `link_checks`                       | No                                |
 | Outbound clicks (organisation id) | Workers Analytics Engine               | No                                |
 | Page views and loading speed      | Cloudflare Web Analytics               | Cloudflare says it collects none  |
 | Which actions a visitor finished  | The visitor's own `localStorage`       | Stays on their device             |
@@ -99,7 +96,7 @@ The other headers are defined once, in `src/lib/security.ts`. The Worker adds th
 `/go/[id]` only ever redirects to the donate URL of an approved listing from the content files. A URL in the query
 string, or any other id, is a 404, so it cannot be used as an open redirect.
 
-The link checker's GitHub token is a Worker secret. Nothing secret is in the repository.
+Nothing secret is in the repository.
 
 ## Performance
 
@@ -149,9 +146,8 @@ with disabled users is on the launch checklist.
 - Vetting checks do not include payments. Check 5 asks whether the organisation's own donation page offers an online card
   form or a bank transfer. Reading the payment options cannot confirm whether a bank or payment provider will accept a
   particular donation from South Africa.
-- The link checker has no outside integration. When a link first goes under review it writes one warning to Workers Logs,
-  once and not every week, and the donate button switches itself off. Nobody is notified, so look at `/give` or the logs
-  now and then.
+- Donation links are no longer tested automatically, so a dead link is only found by a reader or at the next manual check.
+  The `link_checks` table is left over from the retired link checker and is no longer read or written.
 - Reading time is computed from the word count, not written in the frontmatter.
 - `compressHTML` is left on, and the few places where a space must survive next to a link use `{" "}`. A build check
   (`npm run check:output`) fails on a missing or stray space around links.

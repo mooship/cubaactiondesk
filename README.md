@@ -60,14 +60,13 @@ The `e2e` mode in `cloudflare.config.ts` points at its own local database, so it
 | `npm run build`         | Production build (`cf build`) into `.cloudflare/output/v1`.                          |
 | `npm run build:e2e`     | The same build in `e2e` mode, which Playwright and Lighthouse serve.                  |
 | `npm run deploy:ci`     | Applies the D1 migrations to the remote database, then `cf deploy`. Needs a login.   |
-| `npm run deploy:link-checker` | Builds and deploys the weekly link checker Worker (`workers/link-checker`).     |
 | `npm run check:output`  | Links, anchors, Markdown twins, `llms.txt`, sitemap and spacing in the built pages.  |
 | `npm run check:budgets` | Performance budgets. Set `BUDGET_BASE_URL` to include the server-rendered pages.     |
 | `npm run check:html`    | HTML validity.                                                                       |
 | `npm run lhci`          | Lighthouse, mobile. `npm run lhci:desktop` runs the desktop profile.                 |
 
 Generated files are committed and a test or CI step fails if they drift: `public/_headers`
-(`npm run build:headers`), `workers/link-checker/links.generated.json` (`npm run build:links`),
+(`npm run build:headers`),
 the icons and images (`npm run build:icons`, `npm run build:images`), the profile pictures
 (`npm run build:avatars`) and the migrations in `migrations/`
 (`npm run db:generate`).
@@ -85,8 +84,7 @@ of `sources` in the frontmatter. Every article needs a direct answer, counterarg
 Sources live in `src/content/sources/<id>.yaml`. Use only pages that were actually read.
 
 Organisations live in `src/content/fundraisers/<id>.yaml`. One stays `approved: false` until all five checks on
-`/give/how-we-vet` are met, and `npm run check:content` refuses `approved: true` otherwise. After approving one, run
-`npm run build:links` so the weekly link checker tests it.
+`/give/how-we-vet` are met, and `npm run check:content` refuses `approved: true` otherwise.
 
 Write plainly, in short sentences a 13-year-old can follow. The Writing section of [AGENTS.md](AGENTS.md#writing) has the house style and lists what to avoid.
 
