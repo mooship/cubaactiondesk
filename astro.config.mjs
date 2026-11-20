@@ -75,6 +75,8 @@ export default defineConfig({
   session: false,
   adapter: cloudflare({
     imageService: "compile",
+    // Applies public/_headers and _redirects in the dev server too. The built output is what the tests check.
+    experimental: { headersAndRedirectsDevModeSupport: true },
   }),
   integrations: [
     sitemap({

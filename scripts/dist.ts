@@ -2,8 +2,8 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const ROOT = join(import.meta.dirname, "..");
-/** The built static site that the checks read. */
-export const DIST = join(ROOT, "dist", "client");
+/** The built static site that the checks read: the assets directory of the default Worker in the Cloudflare Build Output. */
+export const DIST = join(ROOT, ".cloudflare", "output", "v1", "workers", "default", "assets");
 
 /** Every file under the built site, as paths relative to it with forward slashes. */
 export function listDist(dist: string): string[] {

@@ -5,7 +5,7 @@ import { type Db, getDb } from "../../src/db/client.ts";
 
 const MIGRATIONS_DIR = join(import.meta.dirname, "..", "..", "migrations");
 
-/** SQL text of every migration, in order, exactly as `wrangler d1 migrations apply` runs them. Read once per test file. */
+/** SQL text of every migration, in order, exactly as `cf d1 migrations apply` runs them. Read once per test file. */
 const MIGRATIONS = readdirSync(MIGRATIONS_DIR)
   .filter((name) => name.endsWith(".sql"))
   .toSorted((a, b) => a.localeCompare(b))

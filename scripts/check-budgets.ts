@@ -1,6 +1,6 @@
-// Fails when a page is over the performance budgets. Prerendered pages are read from dist/client.
+// Fails when a page is over the performance budgets. Prerendered pages are read from the built assets (see scripts/dist.ts).
 // Server-rendered pages (/act/[slug], /give) are fetched when BUDGET_BASE_URL is set, for example
-// a `wrangler dev` or preview URL. Worker CPU per request cannot be measured here: see docs/LAUNCH-CHECKLIST.md.
+// a `cf dev`, `astro preview` or preview URL. Worker CPU per request cannot be measured here: see docs/LAUNCH-CHECKLIST.md.
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { checkPage, kindOf, measurePage } from "../src/lib/budgets.ts";

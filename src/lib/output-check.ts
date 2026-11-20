@@ -2,7 +2,7 @@ import type { Issue } from "./content-check.ts";
 import { findGluedInline } from "./html-check.ts";
 import { DESCRIPTION_MAX, TITLE_MAX } from "./site.ts";
 
-/** The built site, as files relative to dist/client, plus the routes the Worker renders on demand. */
+/** The built site, as files relative to the built assets (scripts/dist.ts), plus the routes the Worker renders on demand. */
 export interface OutputSite {
   origin: string;
   files: Map<string, string>;

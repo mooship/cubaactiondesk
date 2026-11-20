@@ -26,20 +26,20 @@ and the content checks are finished and pass locally (see the README for the com
 
 ## 2. Cloudflare setup (a person, once)
 
-The deploy account is a personal one. Run `npx wrangler whoami` and check it before you pin anything.
+The deploy account is a personal one. Run `npx --no-install cf auth whoami` and check it before you pin anything.
 
-1. [x] Logged in with `npx wrangler login` (check with `npx wrangler whoami`). The account id is not committed; with more
+1. [x] Logged in with `npx --no-install cf auth login` (check with `npx --no-install cf auth whoami`). The account id is not committed; with more
        than one account, set `CLOUDFLARE_ACCOUNT_ID` when deploying from a script or CI.
-2. [x] Created the database `cubaactiondesk` (WEUR) and put its id in both wrangler configs.
-3. [x] Applied the migration: `npx wrangler d1 migrations apply DB --remote`.
-4. [x] Deployed the link checker: `npx wrangler deploy -c workers/link-checker/wrangler.jsonc`. It runs on Mondays at
+2. [x] Created the database `cubaactiondesk` (WEUR) and put its id in both `cloudflare.config.ts` files (the site and `workers/link-checker`) and in the `deploy:ci` script.
+3. [x] Applied the migration: `npm run deploy:ci` runs `cf d1 migrations apply <DATABASE_ID> --dir migrations` (remote by default) before it deploys.
+4. [x] Deployed the link checker: `npm run deploy:link-checker`. It runs on Mondays at
        03:00 UTC and has no public address.
-5. [x] Deployed the site to `cuba.timothybrits.co.za` with `npm run deploy` (content check, remote migration, build, deploy).
+5. [x] Deployed the site to `cuba.timothybrits.co.za` with `npm run deploy` (content check, remote migration, build, deploy; the migration and deploy are `npm run deploy:ci`).
 6. [x] Enabled Analytics Engine (a one-time dashboard step) and redeployed with the `EVENTS` binding, dataset
        `cuba_action_desk_events`. Without it the deploy fails with error 10089.
 7. [ ] Optional: connect the repository in the dashboard (Workers Builds) with build
-       `npm ci && npm run build` and deploy `npx wrangler deploy`. Its API token needs permission to edit D1 if you also
-       want it to run the migration.
+       `npm run build`, deploy `npm run deploy:ci` and preview `npx --no-install cf previews deploy`. Its API token needs
+       permission to edit D1, because `deploy:ci` runs the migration.
 
 ### The zone is shared, so scope the settings
 

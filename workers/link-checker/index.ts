@@ -3,7 +3,7 @@ import { type CheckedLink, runChecks } from "../../src/lib/link-check-run.ts";
 import links from "./links.generated.json";
 
 /**
- * Weekly Cron Trigger (see wrangler.jsonc). Tests every approved donation link and stores the result in D1. After two
+ * Weekly Cron Trigger (see cloudflare.config.ts). Tests every approved donation link and stores the result in D1. After two
  * failed checks in a row the Give page switches the donate button off by itself. When that first happens the checker
  * also writes one warning to Workers Logs (observability is on), so there is a record without any outside service.
  * All logic is in src/lib/link-check-run.ts.

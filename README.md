@@ -30,16 +30,19 @@ You need Node 24 or newer and npm 11 or newer. `.node-version` says `24`, and `p
 
 ```sh
 npm install        # also installs the git hooks
-npm run dev        # Astro dev server
+npm run dev        # cf dev: Astro dev server with local D1 and the other bindings
 ```
 
-The Cloudflare bindings (D1, the rate limiter) only exist in the built Worker. To run the real thing locally:
+`cf dev` runs Astro in source mode. It does not behave like the deployed static assets, so the generated pages, `_headers`
+and the cache headers are checked against the production build instead. To run that locally:
 
 ```sh
-npm run build
-npx wrangler d1 migrations apply DB --local
-npx wrangler dev --port 8799
+npm run build:e2e
+npm run d1:migrate:e2e
+npx --no-install astro preview --mode e2e --port 8799
 ```
+
+The `e2e` mode in `cloudflare.config.ts` points at its own local database, so it never touches the real one.
 
 ## Commands
 
@@ -47,13 +50,17 @@ npx wrangler dev --port 8799
 | ----------------------- | ------------------------------------------------------------------------------------ |
 | `npm test`              | Unit tests (Vitest).                                                                 |
 | `npm run test:coverage` | Unit tests with coverage of `src/lib`. Fails below 95% statements and branches.      |
-| `npm run test:e2e`      | Browser tests and accessibility scans against the built Worker (Playwright and axe). |
+| `npm run test:e2e`      | Browser tests and accessibility scans against the e2e build (Playwright and axe).    |
+| `npm run types`         | Generates the binding types from `cloudflare.config.ts` into `.cloudflare/types`.     |
 | `npm run typecheck`     | Syncs Astro's types, then `tsc`, which checks `.astro` files too (see below).        |
 | `npm run lint`          | Biome: lint, formatting and import order. `npm run lint:fix` fixes what it can.      |
 | `npm run format`        | Biome's formatter, writing changes.                                                  |
 | `npm run lint:ci`       | What CI runs: the same Biome checks, read-only.                                      |
 | `npm run check:content` | Cross-collection content rules. Run it after editing anything in `src/content`.      |
-| `npm run build`         | Production build into `dist`.                                                        |
+| `npm run build`         | Production build (`cf build`) into `.cloudflare/output/v1`.                          |
+| `npm run build:e2e`     | The same build in `e2e` mode, which Playwright and Lighthouse serve.                  |
+| `npm run deploy:ci`     | Applies the D1 migrations to the remote database, then `cf deploy`. Needs a login.   |
+| `npm run deploy:link-checker` | Builds and deploys the weekly link checker Worker (`workers/link-checker`).     |
 | `npm run check:output`  | Links, anchors, Markdown twins, `llms.txt`, sitemap and spacing in the built pages.  |
 | `npm run check:budgets` | Performance budgets. Set `BUDGET_BASE_URL` to include the server-rendered pages.     |
 | `npm run check:html`    | HTML validity.                                                                       |
@@ -103,9 +110,10 @@ CI, never in the hook. Fix any failing check before committing; do not bypass th
 
 ## Deploying
 
-Deployment goes through Cloudflare Workers Builds, so there are no Cloudflare secrets in this repository. The build
-command applies D1 migrations before it builds. Step by step, with the dashboard settings that cannot be set from code, in
-[docs/LAUNCH-CHECKLIST.md](docs/LAUNCH-CHECKLIST.md).
+Deployment goes through Cloudflare Workers Builds, so there are no Cloudflare secrets in this repository. The dashboard
+build command is `npm run build`, the deploy command is `npm run deploy:ci` (it applies the D1 migrations, then runs
+`cf deploy`) and the preview command is `npx --no-install cf previews deploy`. Step by step, with the dashboard settings
+that cannot be set from code, in [docs/LAUNCH-CHECKLIST.md](docs/LAUNCH-CHECKLIST.md).
 
 ## Contributing
 
